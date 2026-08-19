@@ -1,0 +1,397 @@
+<!doctype html><html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f8f5"><title>Vardagskompassen 0.4</title><style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#dfe7e2;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#18352e}.app{max-width:430px;margin:auto;background:#f7f8f5;min-height:100vh}.page{display:none;min-height:100vh;padding:20px 18px 100px}.page:target{display:block}.page:first-of-type{display:block}.page:target~.page:first-of-type{display:none}.header{height:48px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:800;font-size:19px}.logo span{background:#e8f5ef;border-radius:50%;padding:9px;margin-right:8px}h1{font-size:30px;line-height:1.12;margin:28px 0 8px}h2{font-size:25px;margin:8px 0}p{color:#71807b;line-height:1.5}.hero{background:white;border:1px solid #e5ebe7;border-radius:25px;padding:20px}.art{text-align:center;font-size:56px;padding:7px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.card{display:block;text-decoration:none;background:#fff;border:1px solid #e5ebe7;border-radius:18px;padding:15px;min-height:96px;text-align:left;font-weight:750;color:#18352e}.card b{display:block;font-size:27px;margin-bottom:7px}.hot{background:#fff1ed}.back{font-size:30px;text-decoration:none;color:#18352e}.steps{display:flex;align-items:center;gap:6px;margin:12px 0 24px}.circle{width:27px;height:27px;border:1px solid #cad5cf;border-radius:50%;display:grid;place-items:center;font-size:12px;background:#fff}.on{background:#16865f;color:#fff;border-color:#16865f}.line{height:1px;background:#cad5cf;flex:1}.box,.quote,.avoid,.check{border-radius:17px;padding:15px;margin:10px 0}.box,.check{background:#fff;border:1px solid #e5ebe7}.box strong{display:block;margin-bottom:6px}.num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#16865f;color:#fff;margin-right:7px}.quote{background:#edf8f2;font-size:17px;line-height:1.45}.avoid{background:#fff2ef;border:1px solid #f1d8d2}.btn{display:block;width:100%;padding:16px;background:#16865f;color:#fff;border-radius:16px;text-align:center;font-weight:800;margin-top:16px;text-decoration:none}.alt{background:#edf1ef;color:#18352e}.success{text-align:center;padding-top:55px}.mark{width:78px;height:78px;border-radius:50%;background:#16865f;color:#fff;display:grid;place-items:center;font-size:40px;margin:auto}.principle{background:#f0f7f3;border:1px solid #dcece4;border-radius:20px;padding:17px;margin-top:14px}.principle b{display:block;font-size:15px;margin-bottom:5px}
+</style>
+<style>
+.vk-choices{display:grid;gap:9px;margin:14px 0}
+.vk-choice{width:100%;border:2px solid #dce7e1;background:#fff;border-radius:17px;padding:14px;text-align:left;cursor:pointer;font-size:15px;line-height:1.45;color:#253B42}
+.vk-choice:hover{border-color:#8ebead}
+.vk-choice.selected{border-color:#258C73;background:#eef7f2}
+.vk-choice b{display:block;margin-bottom:4px;color:#216f5e}
+.vk-hint{background:#f1f7f3;border-radius:14px;padding:11px 12px;font-size:13px;line-height:1.45;color:#52656A}
+.vk-feedback{margin-top:10px;background:#eef7f2;border-left:4px solid #258C73;border-radius:12px;padding:11px 12px;font-size:14px;line-height:1.45}
+</style>
+</head><body><div class="app">
+<section class="page" id="home"><div class="header"><div class="logo"><span>🧭</span>Vardagskompassen</div><span>ⓘ</span></div>
+<div class="hero"><div class="art">👩‍👧</div><h1>Vad händer hemma just nu?</h1><p>Välj det som känns mest aktuellt. Vi tar en sak i taget.</p></div>
+<div class="grid"><a class="card hot" href="#utbrott"><b>😡</b>Mitt barn får ett utbrott</a>
+<a class="card " href="#mobil"><b>📱</b>Vi bråkar om mobilen</a>
+<a class="card " href="#laggning"><b>🛏️</b>Läggningen fungerar inte</a>
+<a class="card " href="#skola"><b>🏫</b>Mitt barn vill inte gå till skolan</a>
+<a class="card " href="#prata"><b>💬</b>Mitt barn vill inte prata</a>
+<a class="card " href="#ledset"><b>😔</b>Mitt barn verkar ledset</a>
+<a class="card " href="#brak"><b>👨‍👩‍👧</b>Vi bråkar mycket hemma</a>
+<a class="card " href="#talamod"><b>🔥</b>Jag håller på att tappa tålamodet</a>
+<a class="card " href="#kompisar"><b>👫</b>Problem med kompisar</a>
+<a class="card " href="#dalig"><b>❤️</b>Jag känner mig som en dålig förälder</a></div><a class="btn alt" href="#saved">♡ Mina steg</a></section>
+
+<section class="page" id="utbrott">
+<div class="header"><a class="back" href="#home">‹</a><b>Mitt barn får ett utbrott</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Försök göra det lugnare runt barnet och minska pratet.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var lugn och tydlig med vad som gäller.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Visa att du förstår känslan utan att diskutera mitt i utbrottet.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Ge två enkla val som båda fungerar.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta en paus och försök igen när det blivit lugnare.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>😡 Börja med känslan</h2>
+<div class="quote">“Jag ser att du är jättearg. Det verkar vara väldigt viktigt för dig just nu.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Du får vara arg. Jag finns här med dig.</div>
+<a class="btn" href="#utbrott-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="utbrott-lead">
+<div class="header"><a class="back" href="#utbrott">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Du får vara arg, men jag låter dig inte slå eller skada någon.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#utbrott-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="utbrott-after">
+<div class="header"><a class="back" href="#utbrott-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“Nu när det känns lugnare kan vi försöka förstå vad som hände.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#utbrott-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="utbrott-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: försök bekräfta känslan innan du förklarar eller löser.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="mobil">
+<div class="header"><a class="back" href="#home">‹</a><b>Vi bråkar om mobilen</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Förvarna innan skärmen ska stängas av.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med tiden och håll fast vid den.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Bekräfta att barnet vill fortsätta utan att börja argumentera.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Ge barnet två alternativ för vad som händer efter skärmen.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta diskussionen senare om det redan blivit för mycket.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>📱 Börja med känslan</h2>
+<div class="quote">“Jag ser att du verkligen vill fortsätta. Det är svårt att sluta när något är roligt.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Jag förstår att du blir besviken när skärmtiden är slut.</div>
+<a class="btn" href="#mobil-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="mobil-lead">
+<div class="header"><a class="back" href="#mobil">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Du får vara besviken. Regeln gäller ändå, och jag hjälper dig genom det.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#mobil-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="mobil-after">
+<div class="header"><a class="back" href="#mobil-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När det lugnat sig kan vi prata om vad som skulle göra övergången lättare.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#mobil-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="mobil-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: förbered avslutet tillsammans innan skärmtiden tar slut.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="laggning">
+<div class="header"><a class="back" href="#home">‹</a><b>Läggningen fungerar inte</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Skapa en lugnare övergång mot kvällen.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med ordningen och håll den enkel.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Lyssna på vad barnet tycker är svårt med läggningen.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Ge barnet små val, till exempel pyjamas eller tandborstning först.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta en paus från diskussionen och gå tillbaka till rutinen.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>🛏️ Börja med känslan</h2>
+<div class="quote">“Jag märker att du inte vill avsluta dagen. Det kanske känns svårt att skiljas från det roliga.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Jag förstår att du gärna vill fortsätta vara uppe.</div>
+<a class="btn" href="#laggning-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="laggning-lead">
+<div class="header"><a class="back" href="#laggning">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Du får vara missnöjd. Nu är det ändå dags att vila.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#laggning-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="laggning-after">
+<div class="header"><a class="back" href="#laggning-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När det är lugnt kan ni prata om vad som gör kvällarna svåra.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#laggning-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="laggning-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: skapa en kort, trygg rutin som barnet känner igen.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="skola">
+<div class="header"><a class="back" href="#home">‹</a><b>Mitt barn vill inte gå till skolan</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Gör morgonen lugnare och ta ett steg i taget.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med vad nästa steg är utan långa diskussioner.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Lyssna efter vad barnet oroar sig för.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Ge två val som båda leder vidare mot skolan.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta hjälp av skolan när det blir för svårt att lösa själv.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>🏫 Börja med känslan</h2>
+<div class="quote">“Jag hör att det känns jobbigt att gå till skolan idag.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Du behöver inte lösa allt på en gång. Jag vill förstå vad som känns svårt.</div>
+<a class="btn" href="#skola-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="skola-lead">
+<div class="header"><a class="back" href="#skola">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Jag tar det du berättar på allvar och hjälper dig att hitta nästa steg.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#skola-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="skola-after">
+<div class="header"><a class="back" href="#skola-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När ni har lugnat er kan ni tillsammans utforska vad som händer i skolan.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#skola-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="skola-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: prata om det svåra när det inte är bråttom att komma iväg.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="prata">
+<div class="header"><a class="back" href="#home">‹</a><b>Mitt barn vill inte prata</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Ge barnet lite mer tid och utrymme.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med att du finns kvar även om barnet inte vill prata.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Lyssna när barnet väl börjar berätta och försök att inte lösa direkt.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Ge barnet möjlighet att välja när eller hur ni ska prata.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta en paus från frågorna och återkom senare.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>💬 Börja med känslan</h2>
+<div class="quote">“Jag märker att du inte vill prata just nu. Det är okej.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Du behöver inte berätta innan du är redo. Jag finns kvar.</div>
+<a class="btn" href="#prata-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="prata-lead">
+<div class="header"><a class="back" href="#prata">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Jag respekterar att du behöver tid, samtidigt som jag vill finnas nära.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#prata-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="prata-after">
+<div class="header"><a class="back" href="#prata-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När barnet är redo kan du börja med en enkel fråga och lyssna.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#prata-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="prata-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: skapa en stund tillsammans utan krav på samtal.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="ledset">
+<div class="header"><a class="back" href="#home">‹</a><b>Mitt barn verkar ledset</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Var nära och skapa en lugn stund tillsammans.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Berätta enkelt att du har märkt att barnet inte verkar må bra.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Lyssna om barnet vill berätta, utan att pressa.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Fråga om barnet vill ha sällskap, hjälp eller lite egen tid.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta en paus från problemlösningen och visa att du finns kvar.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>😔 Börja med känslan</h2>
+<div class="quote">“Jag ser att du verkar ledsen. Jag undrar hur det är för dig.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Du behöver inte må bättre direkt. Jag kan vara här med dig.</div>
+<a class="btn" href="#ledset-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="ledset-lead">
+<div class="header"><a class="back" href="#ledset">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Jag tar din känsla på allvar och hjälper dig om du behöver mer stöd.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#ledset-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="ledset-after">
+<div class="header"><a class="back" href="#ledset-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När det känns möjligt kan ni prata om vad som gjort ont eller varit svårt.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#ledset-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="ledset-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: lyssna mer än du försöker lösa.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="brak">
+<div class="header"><a class="back" href="#home">‹</a><b>Vi bråkar mycket hemma</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Sänk tempot och försök lugna situationen först.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med vad som inte är okej.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Lyssna på båda sidor när alla har lugnat sig.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Ge familjen två möjliga sätt att gå vidare.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta en paus och återkom till frågan senare.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>👨‍👩‍👧 Börja med känslan</h2>
+<div class="quote">“Jag märker att vi har fastnat i många konflikter. Det verkar jobbigt för oss alla.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Det är okej att vi känner olika. Vi behöver inte vinna över varandra.</div>
+<a class="btn" href="#brak-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="brak-lead">
+<div class="header"><a class="back" href="#brak">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Vi får vara arga, men vi behöver behandla varandra med respekt.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#brak-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="brak-after">
+<div class="header"><a class="back" href="#brak-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När alla är lugnare kan ni försöka förstå mönstret tillsammans.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#brak-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="brak-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: pausa konflikten tidigare och försök börja om.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="talamod">
+<div class="header"><a class="back" href="#home">‹</a><b>Jag håller på att tappa tålamodet</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Stanna upp och ta några lugna andetag innan du fortsätter.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med bara det viktigaste just nu.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Säg högt att du behöver lugna dig innan ni fortsätter.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Be barnet eller en annan vuxen om en liten paus om det går.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Avsluta samtalet tillfälligt och återkom när du är lugnare.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>🔥 Börja med känslan</h2>
+<div class="quote">“Jag märker att det här håller på att bli för mycket för mig.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Det är mänskligt att bli frustrerad. Jag behöver inte reagera perfekt.</div>
+<a class="btn" href="#talamod-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="talamod-lead">
+<div class="header"><a class="back" href="#talamod">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Jag får ta en paus innan jag säger eller gör något jag ångrar.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#talamod-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="talamod-after">
+<div class="header"><a class="back" href="#talamod-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När jag har landat kan jag återvända och reparera om det behövs.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#talamod-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="talamod-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: lär känna din egen tidiga signal och ta pausen tidigare.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="kompisar">
+<div class="header"><a class="back" href="#home">‹</a><b>Problem med kompisar</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Skapa en lugn stund där barnet får berätta.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med att barnet inte behöver lösa allt själv.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Lyssna först och vänta med råd tills du vet vad barnet behöver.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Ge barnet möjlighet att välja ett litet nästa steg.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta hjälp av skolan eller en annan trygg vuxen när det behövs.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>👫 Börja med känslan</h2>
+<div class="quote">“Det låter som att något hände med en kompis som gjorde ont.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Jag förstår att du kan känna dig ledsen, arg eller utanför.</div>
+<a class="btn" href="#kompisar-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="kompisar-lead">
+<div class="header"><a class="back" href="#kompisar">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Du får känna så. Vi kan samtidigt fundera på vad som är okej och inte okej i en relation.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#kompisar-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="kompisar-after">
+<div class="header"><a class="back" href="#kompisar-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“När barnet vill kan ni tillsammans gå igenom vad som hände.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#kompisar-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="kompisar-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: börja med att lyssna innan du ger råd eller försöker lösa.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="dalig">
+<div class="header"><a class="back" href="#home">‹</a><b>Jag känner mig som en dålig förälder</b><span>♡</span></div>
+<div class="principle"><b>🧭 Vardagskompassen</b>Känslan får finnas. Beteendet kan behöva en gräns. Relationen finns kvar.</div><div class="vk-hint">Fem olika sätt att prova. Alla är okej – välj det som känns mest möjligt just nu.</div><div class="vk-choices"><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🌿 Lugna</b>Stanna upp och påminn dig om att en svår stund inte gör dig till en dålig förälder.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🔵 Vara tydlig</b>Var tydlig med vad du vill göra annorlunda nästa gång.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>💛 Lyssna</b>Lyssna på vad du själv behöver utan att fastna i skuld.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟣 Ge ett val</b>Välj en liten sak du kan göra för att reparera situationen.</button><button type="button" class="vk-choice" onclick="vkPick(this)"><b>🟠 Ta en paus</b>Ta en paus och försök igen när du fått lite mer ork.</button></div>
+<p>1 · SE & BEKRÄFTA</p><h2>❤️ Börja med känslan</h2>
+<div class="quote">“Det låter som att du har haft en riktigt svår stund.”</div>
+<div class="box"><strong><span class="num">1</span>Se</strong>Vad händer just nu? Försök att lägga märke till känslan utan att döma.</div>
+<div class="box"><strong><span class="num">2</span>Bekräfta</strong>Att du känner skuld betyder inte att du är en dålig förälder.</div>
+<a class="btn" href="#dalig-lead">Nästa: Hjälp & håll gränsen →</a>
+</section>
+
+<section class="page" id="dalig-lead">
+<div class="header"><a class="back" href="#dalig">‹</a><b>Hjälp & håll gränsen</b><span>♡</span></div>
+<p>2 · LEDA</p><h2>Trygghet och tydlighet</h2>
+<div class="quote">“Du kan ta ansvar för det som blev fel utan att döma hela dig själv.”</div>
+<div class="box"><strong>🌿 Hjälp barnet att landa</strong>Håll tempot lågt. Använd få ord. Ge tid och närvaro.</div>
+<div class="box"><strong>🛑 En gräns kan vara varm</strong>Att bekräfta känslan betyder inte att du godkänner allt beteende.</div>
+<a class="btn alt" href="#dalig-after">När det lugnat sig →</a>
+</section>
+
+<section class="page" id="dalig-after">
+<div class="header"><a class="back" href="#dalig-lead">‹</a><b>När det lugnat sig</b><span>♡</span></div>
+<p>3 · FÖLJA UPP</p><h2>Hitta tillbaka</h2>
+<div class="quote">“Fundera på vad du vill reparera och vad du vill prova annorlunda.”</div>
+<div class="box"><strong>💬 Lyssna först</strong>Ställ en enkel fråga och ge plats för svaret. Du behöver inte lösa allt direkt.</div>
+<div class="box"><strong>❤️ Reparera om det behövs</strong>Om något blev fel kan du säga det. Att hitta tillbaka är en del av relationen.</div>
+<a class="btn" href="#dalig-done">Mitt lilla steg →</a>
+</section>
+
+<section class="page" id="dalig-done">
+<div class="success"><div class="mark">✓</div><h1>Ett litet steg räcker</h1>
+<p>Nästa gång: välj en liten förändring – inte kravet på att vara perfekt.</p>
+<div class="quote" style="text-align:left"><b>🧭 Kom ihåg</b><br><br>Du behöver inte vara perfekt. Målet är en lite tryggare stund och en lite starkare relation.</div>
+<a class="btn" href="#home">Till startsidan</a><a class="btn alt" href="#saved">♡ Mina steg</a></div>
+</section>
+
+<section class="page" id="saved"><div class="header"><a class="back" href="#home">‹</a><b>Mina steg</b><span>♡</span></div>
+<div class="hero"><div class="art">🌱</div><h2>Här samlar du dina små steg</h2><p>Vardagsförändringar behöver inte vara stora. Ett litet steg i taget räcker.</p></div>
+<div class="box"><strong>❤️ Vår grund</strong>Se → Bekräfta → Leda → Följ upp</div>
+<div class="box"><strong>⭐ Ditt fokus</strong>Du behöver inte vara perfekt. Små förändringar räknas.</div>
+<a class="btn" href="#home">Välj en ny situation</a></section>
+</div>
+<script>
+function vkPick(btn){
+  const box=btn.closest('.vk-choices');
+  box.querySelectorAll('.vk-choice').forEach(x=>x.classList.remove('selected'));
+  btn.classList.add('selected');
+  let old=box.querySelector('.vk-feedback');
+  if(!old){
+    old=document.createElement('div');
+    old.className='vk-feedback';
+    box.appendChild(old);
+  }
+  old.innerHTML='<b>Det kan vara ett bra sätt att börja.</b><br>Du behöver inte göra allt. Testa det här och se hur det fungerar hemma hos er.';
+}
+</script>
+</body></html>
