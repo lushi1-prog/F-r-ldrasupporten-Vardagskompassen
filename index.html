@@ -1,238 +1,1623 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vardagskompassen – komplett</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#17443e">
+
+<title>Vardagskompassen – stöd för föräldrar</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#FAF9F5;color:#253B42}
-button,input,textarea,select{font:inherit}
-.app{max-width:760px;margin:auto;padding:16px}
-.header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.logo{width:50px;height:50px;border-radius:15px;background:#E4F0EA;display:flex;align-items:center;justify-content:center;font-size:30px}
-.brand{font-size:23px;font-weight:700}.tagline{font-size:12px;color:#66777b}
-.topnav{display:flex;gap:7px;overflow:auto;margin:10px 0 16px;padding-bottom:3px}
-.navbtn{border:0;background:#e7efeb;color:#29454b;border-radius:14px;padding:9px 12px;font-weight:700;white-space:nowrap;cursor:pointer}
-.navbtn.active{background:#3F927D;color:white}
-.page{display:none}.page.active{display:block}
-.intro{background:#EAF4EF;border-radius:26px;padding:24px}
-.hello{font-size:20px;font-weight:700}.intro h1{font-size:32px;line-height:1.05;margin:8px 0 12px}.intro p,.sub{color:#40565B;line-height:1.4}
-.section-title{font-size:21px;font-weight:700;margin:25px 0 8px}.sub{font-size:15px;color:#52656A;margin-bottom:16px}
-.topic{width:100%;min-height:84px;border:0;border-radius:22px;margin-bottom:12px;padding:12px 18px;display:flex;align-items:center;gap:15px;text-align:left;color:#253B42;cursor:pointer;font-size:19px;font-weight:700}
-.topic span:first-child{font-size:38px}.topic .arrow{margin-left:auto}
-.remember,.card{background:white;border-radius:22px;padding:19px;margin-top:12px}
-.backtop{border:0;background:transparent;padding:8px 0;font-size:16px;color:#40565B;cursor:pointer}
-.topic-head{text-align:center;margin:12px 0 15px}.topic-icon{font-size:68px}.topic-title{font-size:29px;font-weight:700;margin-top:10px}.topic-intro{font-size:18px;line-height:1.45;color:#40565B;margin-top:8px;text-align:left}
-.step-card{border-radius:24px;padding:22px;margin-top:18px}.step-label{font-size:19px;font-weight:700}.step-text{font-size:18px;line-height:1.55;color:#40565B;margin-top:14px}
-.white-card{background:white}.white-card h3{margin:0 0 8px;font-size:19px}.white-card p{font-size:16px;line-height:1.5;color:#40565B}
-.primary,.secondary{width:100%;min-height:56px;border-radius:17px;font-size:17px;font-weight:700;cursor:pointer;margin-top:12px}
-.primary{background:#3F927D;color:white;border:0}.secondary{background:transparent;color:#3F927D;border:2px solid #3F927D}
-.done{text-align:center;background:white;border-radius:24px;padding:28px 22px;margin-top:20px}.done .big{font-size:55px}.done h2{font-size:28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}.field{margin-top:10px}.field label{font-size:13px;font-weight:700;color:#52656A}
-.input,.select,.textarea{width:100%;border:1px solid #ccd9d4;border-radius:11px;padding:10px;margin-top:5px;background:white}.textarea{min-height:90px;resize:vertical}
-.smallbtn{border:0;border-radius:11px;padding:9px 12px;background:#e7efeb;color:#29454b;font-weight:700;cursor:pointer}.smallbtn.green{background:#3F927D;color:white}.smallbtn.red{background:#f5e3e3;color:#9a4040}
-.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{background:#f0f6f2;border-radius:17px;padding:14px}.stat b{display:block;font-size:27px}.muted{color:#6b7b80;font-size:13px}
-.item{border:1px solid #e0e8e4;border-radius:16px;padding:13px;margin:9px 0}.item strong{display:block;margin-bottom:4px}.chips{margin-top:7px}.chip{display:inline-block;background:#e7f3ed;border-radius:20px;padding:4px 8px;font-size:12px;margin:2px}
-.progress{height:9px;background:#e6eeea;border-radius:10px;overflow:hidden;margin:8px 0}.progress i{display:block;height:100%;background:#3F927D}
-.check{display:flex;gap:9px;align-items:flex-start;padding:10px 0}.check input{margin-top:4px}
-@media(max-width:480px){.app{padding:13px}.intro h1{font-size:29px}.topic{min-height:80px}.statgrid{grid-template-columns:1fr 1fr}}
+:root{
+  --ink:#173b38;
+  --brand:#4f8f7d;
+  --brand-dark:#397767;
+  --soft:#e8f3ee;
+  --bg:#f7f8f6;
+  --line:#dce6e1;
+  --muted:#667873;
+  --white:#fff;
+  --warm:#fff7df;
+  --shadow:0 5px 20px rgba(23,59,56,.08);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.5;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  max-width:920px;
+  margin:auto;
+  padding:18px 16px 60px;
+}
+
+/* HEADER */
+
+header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:#dceee8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.brand{
+  font-size:28px;
+  font-weight:800;
+  line-height:1;
+}
+
+.tag{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:4px;
+}
+
+/* NAV */
+
+nav{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-bottom:18px;
+}
+
+nav button{
+  border:0;
+  background:#e7efeb;
+  color:var(--ink);
+  border-radius:18px;
+  min-height:56px;
+  padding:10px 8px;
+  font-weight:700;
+  font-size:16px;
+}
+
+nav button.active{
+  background:var(--brand);
+  color:white;
+}
+
+/* PAGES */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* HERO */
+
+.hero{
+  background:linear-gradient(135deg,#eaf7f2,#dceee8);
+  padding:28px 24px;
+  border-radius:28px;
+  margin-bottom:18px;
+}
+
+.hero small{
+  font-weight:700;
+  font-size:16px;
+}
+
+.hero h1{
+  font-size:clamp(32px,8vw,48px);
+  line-height:1.05;
+  margin:8px 0 14px;
+}
+
+.hero p{
+  font-size:18px;
+  margin:0;
+  max-width:720px;
+}
+
+/* CARDS */
+
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:20px;
+  margin:14px 0;
+  box-shadow:var(--shadow);
+}
+
+.card h2{
+  margin:0 0 8px;
+  font-size:25px;
+}
+
+.card h3{
+  margin:8px 0;
+  font-size:21px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+/* TALLRIKSMODELL */
+
+.plate{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:20px;
+  margin:18px 0;
+}
+
+.plate-intro{
+  background:var(--soft);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:16px;
+}
+
+.plate-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.plate-part{
+  border:0;
+  text-align:left;
+  background:#f8fbf9;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  color:var(--ink);
+}
+
+.plate-part:hover{
+  transform:translateY(-1px);
+}
+
+.plate-part .emoji{
+  font-size:30px;
+}
+
+.plate-part strong{
+  display:block;
+  font-size:19px;
+  margin-top:6px;
+}
+
+.plate-part p{
+  margin:7px 0 0;
+  color:var(--muted);
+}
+
+/* SITUATIONS */
+
+.section-title{
+  font-size:27px;
+  font-weight:800;
+  margin:25px 2px 6px;
+}
+
+.section-text{
+  color:var(--muted);
+  font-size:17px;
+}
+
+.tile{
+  border:0;
+  background:white;
+  border-radius:24px;
+  padding:20px;
+  min-height:205px;
+  text-align:left;
+  box-shadow:var(--shadow);
+  color:var(--ink);
+  width:100%;
+  border:1px solid var(--line);
+}
+
+.tile .emoji{
+  font-size:32px;
+}
+
+.tile strong{
+  display:block;
+  font-size:20px;
+  margin:9px 0 6px;
+}
+
+.tile small{
+  color:var(--muted);
+  line-height:1.5;
+  font-size:15px;
+}
+
+.chip{
+  display:inline-block;
+  background:var(--soft);
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:12px;
+  font-weight:700;
+  margin-top:10px;
+}
+
+/* EXAMPLES */
+
+.example{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  margin:12px 0;
+  background:#fff;
+}
+
+.example-number{
+  color:var(--brand-dark);
+  font-weight:800;
+  font-size:14px;
+}
+
+.example h3{
+  margin:5px 0;
+}
+
+.step{
+  background:#f7faf8;
+  border-radius:18px;
+  padding:15px;
+  margin:10px 0;
+  border-left:4px solid var(--brand);
+}
+
+.step strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+/* BUTTONS */
+
+.btn{
+  border:0;
+  border-radius:16px;
+  background:var(--brand);
+  color:white;
+  padding:13px 18px;
+  font-weight:700;
+  min-height:50px;
+}
+
+.btn:hover{
+  background:var(--brand-dark);
+}
+
+.btn.secondary{
+  background:#e7efeb;
+  color:var(--ink);
+}
+
+.btn.light{
+  background:white;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+/* FORMS */
+
+.field{
+  margin:15px 0;
+}
+
+label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:13px;
+  background:white;
+  color:var(--ink);
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin:18px 0;
+}
+
+.stat{
+  background:#edf5f1;
+  border-radius:20px;
+  padding:18px;
+  min-height:105px;
+}
+
+.stat span{
+  color:var(--muted);
+}
+
+.stat b{
+  display:block;
+  font-size:34px;
+  margin-top:4px;
+}
+
+/* INFO */
+
+.info{
+  background:var(--warm);
+  border-radius:20px;
+  padding:18px;
+  margin:14px 0;
+}
+
+.quote{
+  background:var(--soft);
+  border-radius:20px;
+  padding:18px;
+  font-size:18px;
+  font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .app{
+    padding:14px 12px 45px;
+  }
+
+  header{
+    margin-bottom:12px;
+  }
+
+  .brand{
+    font-size:25px;
+  }
+
+  nav{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  nav button{
+    font-size:15px;
+    min-height:58px;
+  }
+
+  .hero{
+    padding:23px 19px;
+    border-radius:24px;
+  }
+
+  .hero h1{
+    font-size:35px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .plate-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:18px;
+    border-radius:22px;
+  }
+
+  .tile{
+    min-height:auto;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
-  <div class="header">
-    <div class="logo">🧭</div>
-    <div><div class="brand">Vardagskompassen</div><div class="tagline">Små steg i vardagen räknas</div></div>
+
+<header>
+  <div class="logo">✦</div>
+  <div>
+    <div class="brand">Vardagskompassen</div>
+    <div class="tag">Stöd i vardagen för föräldrar</div>
+  </div>
+</header>
+
+<nav id="nav">
+  <button class="active" onclick="showPage('home',this)">Hem</button>
+  <button onclick="showPage('kompassen',this)">Kompassen</button>
+  <button onclick="showPage('situationer',this)">Situationer</button>
+  <button onclick="showPage('barn',this)">Barn</button>
+  <button onclick="showPage('historik',this)">Historik</button>
+  <button onclick="showPage('stod',this)">Stöd</button>
+</nav>
+
+
+<!-- HEM -->
+
+<section id="home" class="page active">
+
+  <div class="hero">
+    <small>VARDAGSKOMPASSEN</small>
+    <h1>Hur vill du vara med ditt barn?</h1>
+    <p>
+      Föräldraskap behöver inte vara perfekt.
+      Det handlar om många små stunder varje dag där du visar
+      ditt barn att du finns där, bryr dig och hjälper barnet att hitta sin väg.
+    </p>
   </div>
 
-  <div class="topnav">
-    <button class="navbtn active" data-page="home">Hem</button>
-    <button class="navbtn" data-page="profile">Barn</button>
-    <button class="navbtn" data-page="history">Historik</button>
-    <button class="navbtn" data-page="patterns">Mönster</button>
-    <button class="navbtn" data-page="follow">Uppföljning</button>
-    <button class="navbtn" data-page="reminders">Påminnelser</button>
+  <div class="quote">
+    ❤️ Det lilla du gör ofta kan betyda mer än det stora du gör ibland.
   </div>
 
-  <section id="home" class="page active">
-    <div class="intro">
-      <div class="hello">Hej! 👋</div>
-      <h1>Vad behöver<br>vi just nu?</h1>
-      <p>Välj ett område för att få enkla tankar, fem steg och ett litet nästa steg.</p>
+  <div class="card">
+    <h2>En enkel kompass för vardagen</h2>
+    <p>
+      Ibland vet vi att något inte fungerar hemma, men vi vet inte riktigt
+      vad vi ska göra annorlunda. Vardagskompassen hjälper dig att stanna upp,
+      förstå situationen och prova ett litet steg i taget.
+    </p>
+
+    <p>
+      Du behöver inte förändra allt på en gång. Börja med det som känns
+      viktigast just nu.
+    </p>
+
+    <button class="btn" onclick="showPage('kompassen')">
+      Se kompassen →
+    </button>
+  </div>
+
+  <h2 class="section-title">Tallriksmodellen</h2>
+
+  <p class="section-text">
+    Tänk på föräldraskapet som en tallrik. Barn behöver flera olika delar
+    för att känna sig trygga, sedda och älskade. Det behöver inte vara
+    perfekt varje dag. Det viktiga är att delarna finns med över tid.
+  </p>
+
+  <div class="plate">
+
+    <div class="plate-intro">
+      <strong>🍽️ En tallrik med flera viktiga delar</strong>
+      <p>
+        När vardagen känns svår kan du fråga dig:
+        <b>Vilken del behöver mitt barn lite mer av just nu?</b>
+      </p>
     </div>
-    <div class="section-title">Den psykologiska tallriksmodellen</div>
-    <div class="sub">Välj det område som känns mest relevant idag.</div>
-    <div id="topics"></div>
-    <div class="card">
-      <strong>💛 Kom ihåg</strong>
-      <p class="muted">Du behöver inte vara en perfekt förälder. Små förändringar i vardagen kan göra skillnad.</p>
+
+    <div class="plate-grid">
+
+      <button class="plate-part" onclick="openCategory(0)">
+        <span class="emoji">🤝</span>
+        <strong>Relation</strong>
+        <p>Visa att ni hör ihop och att barnet är viktigt för dig.</p>
+      </button>
+
+      <button class="plate-part" onclick="openCategory(1)">
+        <span class="emoji">❤️</span>
+        <strong>Kärlek & värme</strong>
+        <p>Visa med ord, blickar, beröring och små handlingar.</p>
+      </button>
+
+      <button class="plate-part" onclick="openCategory(2)">
+        <span class="emoji">👀</span>
+        <strong>Närvaro</strong>
+        <p>Var nära och försök att verkligen se och lyssna på barnet.</p>
+      </button>
+
+      <button class="plate-part" onclick="openCategory(3)">
+        <span class="emoji">🛡️</span>
+        <strong>Ramar</strong>
+        <p>Barn behöver vuxna som hjälper dem att veta vad som gäller.</p>
+      </button>
+
+      <button class="plate-part" onclick="openCategory(4)">
+        <span class="emoji">💬</span>
+        <strong>Tydlighet</strong>
+        <p>Säg vad du menar på ett lugnt och enkelt sätt.</p>
+      </button>
+
+      <button class="plate-part" onclick="openCategory(5)">
+        <span class="emoji">🌱</span>
+        <strong>Återhämtning</strong>
+        <p>Alla behöver vila, pauser och tid att fylla på energi.</p>
+      </button>
+
     </div>
-    <div class="card">
-      <div class="statgrid">
-        <div class="stat"><span class="muted">Sparade situationer</span><b id="homeEvents">0</b></div>
-        <div class="stat"><span class="muted">Öppna uppföljningar</span><b id="homeFollow">0</b></div>
-      </div>
+  </div>
+
+  <h2 class="section-title">Vad händer just nu?</h2>
+
+  <p class="section-text">
+    Välj en situation som liknar det du möter hemma.
+    Du får sedan konkreta exempel och enkla steg att prova.
+  </p>
+
+  <div class="grid" id="homeSituations"></div>
+
+</section>
+
+
+<!-- KOMPASSEN -->
+
+<section id="kompassen" class="page">
+
+  <div class="hero">
+    <small>DIN KOMPASS</small>
+    <h1>Små steg gör skillnad</h1>
+    <p>
+      När något blir svårt behöver du inte lösa hela problemet på en gång.
+      Börja med att förstå vad som händer och välj sedan ett litet steg.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>1. Stanna upp</h2>
+    <p>
+      Försök att inte lösa allt mitt i konflikten. Ta ett andetag.
+      Fråga dig själv vad som händer just nu och vad barnet kan behöva.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Se barnet</h2>
+    <p>
+      Ett barn som skriker, vägrar eller blir arg försöker ofta visa
+      något. Det betyder inte att du måste säga ja.
+      Försök först förstå vad som ligger bakom.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Välj en del</h2>
+    <p>
+      Behöver barnet mer närvaro? Mer tydlighet?
+      En lugnare ram? Mer värme? Eller kanske mer återhämtning?
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. Gör det enkelt</h2>
+    <p>
+      Välj en sak du kan göra annorlunda idag.
+      Små förändringar som upprepas kan bli nya vanor.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Följ upp</h2>
+    <p>
+      Fundera efteråt: Vad fungerade? Vad fungerade inte?
+      Vad vill jag prova nästa gång?
+    </p>
+  </div>
+
+</section>
+
+
+<!-- SITUATIONER -->
+
+<section id="situationer" class="page">
+
+  <div class="hero">
+    <small>VARDAGEN</small>
+    <h1>Välj en situation</h1>
+    <p>
+      Här finns vanliga situationer som många föräldrar känner igen.
+      Välj den som känns mest lik det du möter hemma.
+    </p>
+  </div>
+
+  <div class="grid" id="situations"></div>
+
+</section>
+
+
+<!-- BARN -->
+
+<section id="barn" class="page">
+
+  <div class="hero">
+    <small>MITT BARN</small>
+    <h1>Lär känna ditt barn</h1>
+    <p>
+      Du kan lägga till ett barn eller använda ett smeknamn.
+      Informationen sparas bara på den här enheten.
+    </p>
+  </div>
+
+  <div class="card">
+
+    <div class="field">
+      <label>Barnets namn eller smeknamn</label>
+      <input id="childName" placeholder="Till exempel Alex">
     </div>
-  </section>
 
-  <section id="topicPage" class="page">
-    <button class="backtop" onclick="showPage('home')">← Tillbaka</button>
-    <div class="topic-head"><div id="topicIcon" class="topic-icon"></div><div id="topicTitle" class="topic-title"></div><div id="topicIntro" class="topic-intro"></div></div>
-    <div id="stepCard" class="step-card"><div id="stepLabel" class="step-label"></div><div id="stepText" class="step-text"></div></div>
-    <div class="card white-card"><h3>💛 Ett litet steg</h3><p id="advice"></p></div>
-    <div class="card white-card">
-      <h3>📝 Stanna upp</h3>
-      <p class="muted">Vill du spara vad som hände och följa upp senare?</p>
-      <div class="field"><label>Barn</label><select id="topicChild" class="select"></select></div>
-      <div class="field"><label>Anteckning</label><textarea id="topicNote" class="textarea" placeholder="Skriv bara det som är viktigt för dig..."></textarea></div>
-      <button class="smallbtn green" onclick="saveTopicEvent()">Spara situation</button>
+    <div class="field">
+      <label>Ålder</label>
+      <input id="childAge" type="number" min="0" max="25" placeholder="Ålder">
     </div>
-    <button id="nextBtn" class="primary" onclick="nextStep()">Nästa steg →</button>
-    <button id="prevBtn" class="secondary" onclick="previousStep()">← Föregående steg</button>
-  </section>
 
-  <section id="donePage" class="page">
-    <button class="backtop" onclick="showPage('home')">← Tillbaka</button>
-    <div class="done"><div class="big">💛</div><h2>Bra jobbat!</h2><p>Du har gått igenom alla fem steg.</p><p>Välj gärna en liten sak att prova och följ upp hur det gick.</p><button class="primary" onclick="showPage('home')">Tillbaka till Vardagskompassen</button></div>
-  </section>
-
-  <section id="profile" class="page">
-    <div class="section-title">Barnprofiler</div>
-    <div class="sub">Du bestämmer själv vilken information du vill spara.</div>
-    <div class="card"><div id="childrenList"></div></div>
-    <div class="card">
-      <h3>Lägg till barn</h3>
-      <div class="grid">
-        <div class="field"><label>Namn / smeknamn</label><input id="childName" class="input" placeholder="Ex. Alex"></div>
-        <div class="field"><label>Ålder</label><input id="childAge" class="input" type="number" min="0" max="25"></div>
-      </div>
-      <div class="field"><label>Det som är bra att komma ihåg</label><textarea id="childNote" class="textarea"></textarea></div>
-      <button class="primary" onclick="addChild()">Spara barnprofil</button>
+    <div class="field">
+      <label>Något jag vill komma ihåg</label>
+      <textarea id="childNote"
+        placeholder="Vad tycker barnet om? Vad brukar fungera bra?"></textarea>
     </div>
-  </section>
 
-  <section id="history" class="page">
-    <div class="section-title">Historik</div>
-    <div class="sub">Här kan du gå tillbaka till sådant du har sparat och se vad du provade.</div>
-    <div class="card"><div id="historyList"></div></div>
-  </section>
+    <button class="btn" onclick="addChild()">Spara barn</button>
 
-  <section id="patterns" class="page">
-    <div class="section-title">Mönster</div>
-    <div class="sub">LUMORA-visning, men för Vardagskompassen: återkommande områden baserat på din egen historik.</div>
-    <div class="card"><div id="patternList"></div></div>
-    <div class="card"><h3>Per barn</h3><div id="childPatternList"></div></div>
-  </section>
+  </div>
 
-  <section id="follow" class="page">
-    <div class="section-title">Uppföljning</div>
-    <div class="sub">Efter en situation skapas en första uppföljning och en veckouppföljning.</div>
-    <div class="card"><div id="followList"></div></div>
-  </section>
+  <div id="childList"></div>
 
-  <section id="reminders" class="page">
-    <div class="section-title">Påminnelser</div>
-    <div class="sub">Planera en liten sak du vill komma ihåg.</div>
-    <div class="card"><div id="reminderList"></div></div>
-    <div class="card">
-      <h3>Ny påminnelse</h3>
-      <div class="field"><label>Vad vill du bli påmind om?</label><input id="remText" class="input" placeholder="Ex. Följ upp läggningen"></div>
-      <div class="field"><label>Datum</label><input id="remDate" class="input" type="date"></div>
-      <button class="primary" onclick="addReminder()">Spara påminnelse</button>
+</section>
+
+
+<!-- HISTORIK -->
+
+<section id="historik" class="page">
+
+  <div class="hero">
+    <small>MIN VARDAG</small>
+    <h1>Historik</h1>
+    <p>
+      Här kan du se situationer du har sparat och vad du ville prova.
+      Det kan hjälpa dig att upptäcka vad som fungerar över tid.
+    </p>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <span>Sparade situationer</span>
+      <b id="nEvents">0</b>
     </div>
-  </section>
+
+    <div class="stat">
+      <span>Barn</span>
+      <b id="nChildren">0</b>
+    </div>
+
+  </div>
+
+  <div id="historyList"></div>
+
+</section>
+
+
+<!-- STÖD -->
+
+<section id="stod" class="page">
+
+  <div class="hero">
+    <small>DU ÄR OCKSÅ VIKTIG</small>
+    <h1>Stöd för dig</h1>
+    <p>
+      Att vara förälder kan vara både fint och svårt.
+      Du behöver inte klara allt själv.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>❤️ Det är okej att inte vara perfekt</h2>
+    <p>
+      Alla föräldrar tappar tålamodet ibland. Alla gör saker de efteråt
+      önskar att de hade gjort annorlunda.
+    </p>
+    <p>
+      Det viktiga är vad du gör efteråt. Du kan säga:
+      <b>”Det där blev inte bra. Jag försöker igen.”</b>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🌱 Ta hand om dig själv</h2>
+    <p>
+      När du är trött och stressad blir det svårare att vara den lugna
+      vuxna du vill vara. Små pauser kan göra skillnad.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🤝 Be om hjälp</h2>
+    <p>
+      Att be om stöd betyder inte att du är en dålig förälder.
+      Det kan vara ett tecken på att du tar ansvar.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- DETALJ -->
+
+<section id="detail" class="page">
+
+  <div id="detailContent"></div>
+
+</section>
+
+
 </div>
 
+
 <script>
-const topics=[
-{icon:"❤️",title:"Kärlek",intro:"Visa barnet att du tycker om det och finns kvar.",color:"#FBE0E2",advice:"Du behöver inte göra allt. Välj det lilla som känns möjligt idag.",steps:[
-"Visa med ord och kroppsspråk att barnet är viktigt för dig.","Säg något positivt till barnet varje dag – även om det är något litet.","Visa närhet på det sätt som passar barnet, till exempel en kram eller att sitta nära.","Försök att visa kärlek även när barnet har gjort något du inte tycker om.","Ta en liten stund idag och visa barnet: ”Jag tycker om dig precis som du är.”"]},
-{icon:"👨‍👩‍👧",title:"Närvaro",intro:"Var tillsammans och försök vara närvarande i stunden.",color:"#E5F1EC",advice:"Vanliga vardagsstunder räknas. Det viktiga är att verkligen vara tillsammans en stund.",steps:[
-"Lägg undan mobilen en stund och försök vara helt närvarande.","Fråga barnet om något som hänt under dagen och lyssna på svaret.","Gör något enkelt tillsammans – laga mat, gå en promenad eller spela ett spel.","Försök fånga de små stunderna i vardagen i stället för att vänta på den perfekta tiden.","Bestäm dig för en liten stund idag då du bara är tillsammans med barnet."]},
-{icon:"💬",title:"Bekräftelse",intro:"Lyssna och visa att barnets känslor får finnas.",color:"#E2EEF7",advice:"Du behöver inte alltid lösa problemet. Börja med att lyssna och försöka förstå.",steps:[
-"Lyssna färdigt innan du försöker ge råd eller lösa problemet.","Sätt ord på det du tror att barnet känner: ”Det verkar som att du blev ledsen.”","Visa att känslan får finnas även om du inte håller med om allt barnet säger.","Undvik att direkt säga ”det är väl inget att vara ledsen för”.","Prova idag att säga: ”Jag förstår att det här känns jobbigt för dig.”"]},
-{icon:"🌱",title:"Självkänsla",intro:"Hjälp barnet att utveckla en trygg bild av sig själv.",color:"#E8F2DD",advice:"Visa intresse för barnet som person, inte bara för prestationer.",steps:[
-"Visa intresse för vem barnet är – inte bara för vad barnet presterar.","Uppmärksamma barnets ansträngning, inte bara resultatet.","Hjälp barnet att upptäcka saker som det själv tycker om och är bra på.","Visa att det är okej att göra misstag och försöka igen.","Säg något idag som visar barnet att du uppskattar det för den person det är."]},
-{icon:"😴",title:"Återhämtning",intro:"Barn och föräldrar behöver vila och återhämtning.",color:"#E8E5F5",advice:"Små stunder av lugn kan göra stor skillnad.",steps:[
-"Fundera på vad som brukar hjälpa barnet att varva ner.","Skapa en liten lugn stund utan krav och prestation.","Titta på om barnet får tillräckligt med sömn och pauser.","Kom ihåg att även du som förälder behöver återhämtning.","Välj en liten sak idag som gör vardagen lite lugnare för dig eller barnet."]},
-{icon:"🧭",title:"Ramar",intro:"Barn behöver tydliga och trygga gränser.",color:"#FFEFD8",advice:"En gräns kan vara tydlig samtidigt som barnets känsla får finnas.",steps:[
-"Bestäm vilka regler som verkligen är viktiga i er vardag.","Förklara lugnt och tydligt vad som gäller.","Försök vara konsekvent så att barnet vet vad det kan förvänta sig.","Bekräfta barnets känsla även när du håller fast vid en gräns.","Välj en situation idag där du kan sätta en tydlig men lugn gräns."]}
+
+/* =========================
+   DATA
+========================= */
+
+const categories = [
+
+{
+ emoji:"🤝",
+ title:"Relation",
+ intro:
+ "Relation handlar om känslan av att höra ihop. Barn behöver känna att de har en trygg vuxen som finns kvar även när det blir svårt.",
+ description:
+ "Relation byggs i vardagen. Det kan vara när ni äter tillsammans, går till skolan, pratar i bilen eller bara sitter bredvid varandra. Det behöver inte vara stora saker. Det är de många små kontakterna som hjälper barnet att känna sig tryggt.",
+ examples:[
+  "Mitt barn vill inte prata med mig.",
+  "Vi hamnar ofta i konflikt.",
+  "Mitt barn drar sig undan.",
+  "Jag känner att vi har tappat kontakten.",
+  "Jag vill få mer positiv tid tillsammans."
+ ],
+ steps:[
+  "Börja med en liten stund tillsammans utan krav.",
+  "Fråga vad barnet vill göra och försök följa med en stund.",
+  "Lyssna utan att direkt komma med lösningar.",
+  "Visa barnet att du finns kvar även när ni tycker olika.",
+  "Gör något litet tillsammans igen nästa dag."
+ ]
+},
+
+{
+ emoji:"❤️",
+ title:"Kärlek & värme",
+ intro:
+ "Barn behöver märka att de är älskade. Kärlek handlar inte bara om att säga ”jag älskar dig” utan också om hur vi visar det.",
+ description:
+ "Visa barnet att du tycker om att vara med det. En kram, ett leende, en hand på axeln, ett snällt ord eller att du frågar hur dagen varit kan betyda mycket. Värme hjälper barnet att känna sig tryggt.",
+ examples:[
+  "Jag säger oftast till när något blir fel.",
+  "Mitt barn får mycket negativ uppmärksamhet.",
+  "Vi har svårt att visa känslor.",
+  "Mitt barn behöver mycket bekräftelse.",
+  "Jag vill få in mer positivitet hemma."
+ ],
+ steps:[
+  "Försök hitta något barnet gör bra och säg det.",
+  "Ge barnet en stund av din fulla uppmärksamhet.",
+  "Säg något enkelt som: ”Jag tycker om att vara med dig.”",
+  "Visa värme även efter en konflikt.",
+  "Gör en liten positiv sak tillsammans varje dag."
+ ]
+},
+
+{
+ emoji:"👀",
+ title:"Närvaro",
+ intro:
+ "Närvaro betyder att vara där – inte bara fysiskt utan också med uppmärksamheten.",
+ description:
+ "Barn märker när vi lyssnar på riktigt. Du behöver inte lägga bort allt hela tiden. Men några minuter där mobilen är undan och barnet får din uppmärksamhet kan göra stor skillnad.",
+ examples:[
+  "Mitt barn säger att jag aldrig lyssnar.",
+  "Jag har svårt att lägga bort mobilen.",
+  "Vardagen går väldigt fort.",
+  "Mitt barn vill prata när jag är upptagen.",
+  "Jag vill få mer lugn tid tillsammans."
+ ],
+ steps:[
+  "Lägg undan mobilen en kort stund.",
+  "Titta på barnet när det pratar.",
+  "Lyssna färdigt innan du svarar.",
+  "Bekräfta det barnet säger även om du inte håller med.",
+  "Bestäm en liten stund varje dag som är bara er."
+ ]
+},
+
+{
+ emoji:"🛡️",
+ title:"Ramar",
+ intro:
+ "Barn behöver vuxna som sätter ramar. Ramar gör världen mer begriplig och hjälper barnet att veta vad som gäller.",
+ description:
+ "Att sätta en gräns betyder inte att vara hård. En trygg ram kan vara lugn, tydlig och varm på samma gång. Barn behöver veta både vad de får göra och vad de inte får göra.",
+ examples:[
+  "Mitt barn gör aldrig som jag säger.",
+  "Det blir bråk när jag sätter gränser.",
+  "Jag ger efter för att få lugn.",
+  "Vi har olika regler hemma.",
+  "Jag vet inte när jag ska säga nej."
+ ],
+ steps:[
+  "Bestäm vad som faktiskt är viktigt.",
+  "Säg regeln kort och lugnt.",
+  "Förklara kort varför regeln finns.",
+  "Var beredd på att barnet kan bli argt.",
+  "Håll fast vid ramen men fortsätt vara varm."
+ ]
+},
+
+{
+ emoji:"💬",
+ title:"Tydlighet",
+ intro:
+ "Barn har lättare att följa regler när vuxna säger tydligt vad de vill att barnet ska göra.",
+ description:
+ "Undvik långa förklaringar mitt i en konflikt. Säg en sak i taget och använd enkla ord. Barn behöver ofta hjälp att förstå vad som förväntas av dem.",
+ examples:[
+  "Jag måste säga samma sak många gånger.",
+  "Mitt barn verkar inte förstå vad jag menar.",
+  "Vi missförstår varandra.",
+  "Jag blir arg när barnet inte lyssnar.",
+  "Morgnarna blir ofta stressiga."
+ ],
+ steps:[
+  "Gå nära barnet och få kontakt.",
+  "Säg vad du vill att barnet ska göra.",
+  "Använd korta och enkla meningar.",
+  "Ge barnet lite tid att reagera.",
+  "Bekräfta när barnet försöker."
+ ]
+},
+
+{
+ emoji:"🌱",
+ title:"Återhämtning",
+ intro:
+ "Barn behöver vila och återhämtning. Det behöver vuxna också.",
+ description:
+ "När kroppen och hjärnan är trötta blir det lättare att hamna i konflikt. Sömn, mat, lugn, lek och pauser är en viktig del av vardagen.",
+ examples:[
+  "Mitt barn är ofta trött och irriterat.",
+  "Kvällarna blir kaos.",
+  "Mitt barn har svårt att komma till ro.",
+  "Jag själv är helt slut.",
+  "Vi har för mycket aktiviteter."
+ ],
+ steps:[
+  "Titta på när barnet brukar bli trött.",
+  "Försök skapa en lugnare övergång mellan aktiviteter.",
+  "Ha enkla och återkommande kvällsrutiner.",
+  "Planera in tid utan krav.",
+  "Se också till att du själv får någon paus."
+ ]
+}
+
 ];
 
-let db=JSON.parse(localStorage.getItem("vardagskompassen_complete")||"null")||{children:[],events:[],followups:[],reminders:[]};
-let currentTopic=null,currentStep=0;
-const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
-const fmt=d=>new Date(d).toLocaleDateString("sv-SE",{year:"numeric",month:"short",day:"numeric"});
-function save(){localStorage.setItem("vardagskompassen_complete",JSON.stringify(db));renderAll()}
-function showPage(id){
- document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll(".navbtn").forEach(x=>x.classList.toggle("active",x.dataset.page===id));
- window.scrollTo({top:0,behavior:"instant"});
-}
-document.querySelectorAll(".navbtn").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
 
-const topicsEl=document.getElementById("topics");
-topics.forEach((t,i)=>{const b=document.createElement("button");b.className="topic";b.style.background=t.color;b.innerHTML=`<span>${t.icon}</span><span>${t.title}</span><span class="arrow">›</span>`;b.onclick=()=>openTopic(i);topicsEl.appendChild(b)});
+const situations = [
 
-function childName(id){return db.children.find(c=>c.id===id)?.name||"Okänt barn"}
-function fillChildren(selectId){
- const s=document.getElementById(selectId);
- if(!s)return;
- s.innerHTML=db.children.length?db.children.map(c=>`<option value="${c.id}">${esc(c.name)}${c.age?" – "+esc(c.age)+" år":""}</option>`).join(""):"<option value=''>Lägg till barn först</option>";
-}
-function openTopic(i){currentTopic=topics[i];currentStep=0;fillChildren("topicChild");document.getElementById("topicNote").value="";renderStep();showPage("topicPage")}
-function renderStep(){
- document.getElementById("topicIcon").textContent=currentTopic.icon;
- document.getElementById("topicTitle").textContent=currentTopic.title;
- document.getElementById("topicIntro").textContent=currentTopic.intro;
- document.getElementById("stepCard").style.background=currentTopic.color;
- document.getElementById("stepLabel").textContent=`🌿 Steg ${currentStep+1} av 5`;
- document.getElementById("stepText").textContent=currentTopic.steps[currentStep];
- document.getElementById("advice").textContent=currentTopic.advice;
- document.getElementById("nextBtn").textContent=currentStep===4?"Klart ✓":"Nästa steg →";
- document.getElementById("prevBtn").textContent=currentStep===0?"← Tillbaka":"← Föregående steg";
-}
-function nextStep(){if(currentStep<4){currentStep++;renderStep()}else{showPage("donePage")}}
-function previousStep(){if(currentStep>0){currentStep--;renderStep()}else{showPage("home")}}
+{
+ emoji:"😤",
+ title:"Mitt barn får ett utbrott",
+ desc:
+ "När känslorna blir för stora och barnet skriker, gråter, vägrar eller tappar kontrollen."
+},
 
-function saveTopicEvent(){
- if(!db.children.length)return alert("Lägg först till en barnprofil under Barn.");
- const e={id:crypto.randomUUID(),childId:document.getElementById("topicChild").value,topic:currentTopic.title,note:document.getElementById("topicNote").value.trim(),date:new Date().toISOString(),status:"Öppen",stepCompleted:currentStep+1};
- db.events.unshift(e);
- db.followups.unshift({id:crypto.randomUUID(),eventId:e.id,type:"Första uppföljning",when:new Date(Date.now()+86400000).toISOString(),done:false});
- db.followups.push({id:crypto.randomUUID(),eventId:e.id,type:"Veckouppföljning",when:new Date(Date.now()+7*86400000).toISOString(),done:false});
- save();alert("Sparat. LUMORA-liknande uppföljning har lagts till.");showPage("history");
+{
+ emoji:"📱",
+ title:"Bråk om mobilen",
+ desc:
+ "När mobilen, surfplattan eller spel leder till tjat, konflikter eller långa diskussioner."
+},
+
+{
+ emoji:"🌙",
+ title:"Kvällen fungerar inte",
+ desc:
+ "När det är dags att sova men barnet inte vill, och kvällen lätt blir en kamp."
+},
+
+{
+ emoji:"🎒",
+ title:"Mitt barn vill inte gå till skolan",
+ desc:
+ "När barnet vägrar, har svårt att komma iväg eller verkar må dåligt inför skolan."
+},
+
+{
+ emoji:"💬",
+ title:"Mitt barn vill inte prata",
+ desc:
+ "När du märker att barnet håller saker för sig själv och du vill hitta ett sätt att komma närmare."
+},
+
+{
+ emoji:"😔",
+ title:"Mitt barn verkar ledset",
+ desc:
+ "När barnet verkar tyst, ledset, oroligt eller annorlunda än vanligt."
+},
+
+{
+ emoji:"🔥",
+ title:"Vi bråkar mycket hemma",
+ desc:
+ "När samma konflikter återkommer och du känner att ni fastnar i ett mönster."
+},
+
+{
+ emoji:"🚫",
+ title:"Mitt barn säger nej till allt",
+ desc:
+ "När nästan varje fråga eller önskemål möts av ett nej och vardagen blir tung."
 }
+
+];
+
+
+/* =========================
+   STORAGE
+========================= */
+
+let db = JSON.parse(
+  localStorage.getItem("vardagskompassenDB") ||
+  '{"children":[],"events":[]}'
+);
+
+function save(){
+  localStorage.setItem(
+    "vardagskompassenDB",
+    JSON.stringify(db)
+  );
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(id,button){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  if(button){
+    document.querySelectorAll("nav button")
+      .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  renderAll();
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function renderHome(){
+
+  document.getElementById("homeSituations").innerHTML =
+    situations.slice(0,4).map((s,i)=>`
+
+      <button class="tile"
+        onclick="openSituation(${i})">
+
+        <span class="emoji">${s.emoji}</span>
+
+        <strong>${s.title}</strong>
+
+        <small>${s.desc}</small>
+
+        <span class="chip">
+          5 exempel + 5 steg
+        </span>
+
+      </button>
+
+    `).join("");
+}
+
+
+/* =========================
+   SITUATIONS
+========================= */
+
+function renderSituations(){
+
+  document.getElementById("situations").innerHTML =
+    situations.map((s,i)=>`
+
+      <button class="tile"
+        onclick="openSituation(${i})">
+
+        <span class="emoji">${s.emoji}</span>
+
+        <strong>${s.title}</strong>
+
+        <small>${s.desc}</small>
+
+        <span class="chip">
+          5 exempel + 5 steg
+        </span>
+
+      </button>
+
+    `).join("");
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+function openCategory(index){
+
+  const c=categories[index];
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById("detail")
+    .classList.add("active");
+
+  document.getElementById("detailContent").innerHTML=`
+
+    <div class="hero">
+
+      <small>VARDAGSKOMPASSEN</small>
+
+      <h1>
+        ${c.emoji} ${c.title}
+      </h1>
+
+      <p>${c.intro}</p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Vad betyder det?</h2>
+
+      <p>
+        ${c.description}
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Vanliga situationer</h2>
+
+      ${c.examples.map((x,i)=>`
+
+        <div class="example">
+
+          <div class="example-number">
+            EXEMPEL ${i+1}
+          </div>
+
+          <h3>${x}</h3>
+
+          <p class="muted">
+            Det är vanligt att sådana här situationer
+            blir svåra. Du behöver inte lösa allt på en gång.
+          </p>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Fem små steg</h2>
+
+      <p class="muted">
+        Välj ett steg att prova. Du behöver inte göra alla på en gång.
+      </p>
+
+      ${c.steps.map((x,i)=>`
+
+        <div class="step">
+
+          <strong>
+            Steg ${i+1}
+          </strong>
+
+          ${x}
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+
+    <div class="actions">
+
+      <button class="btn"
+        onclick="saveCategory('${escapeText(c.title)}')">
+        💾 Spara som något jag vill jobba med
+      </button>
+
+      <button class="btn secondary"
+        onclick="showPage('kompassen')">
+        ← Tillbaka till kompassen
+      </button>
+
+    </div>
+  `;
+
+  window.scrollTo(0,0);
+}
+
+
+/* =========================
+   SITUATION DETAIL
+========================= */
+
+function openSituation(index){
+
+  const s=situations[index];
+
+  const category =
+    categories[index % categories.length];
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById("detail")
+    .classList.add("active");
+
+  document.getElementById("detailContent").innerHTML=`
+
+    <div class="hero">
+
+      <small>SITUATION</small>
+
+      <h1>
+        ${s.emoji} ${s.title}
+      </h1>
+
+      <p>${s.desc}</p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Först – försök lugna situationen</h2>
+
+      <p>
+        När känslorna är starka är det ofta svårt att lösa problemet.
+        Försök därför först skapa lite lugn.
+      </p>
+
+      <div class="step">
+        <strong>1. Stanna upp</strong>
+        Ta ett andetag och försök att själv prata lugnt.
+      </div>
+
+      <div class="step">
+        <strong>2. Sänk tempot</strong>
+        Säg mindre och ge barnet lite tid.
+      </div>
+
+      <div class="step">
+        <strong>3. Visa att du finns</strong>
+        Du kan vara tydlig med gränsen utan att lämna barnet ensamt med känslan.
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Fem saker att prova</h2>
+
+      ${category.steps.map((x,i)=>`
+
+        <div class="step">
+
+          <strong>Steg ${i+1}</strong>
+
+          ${x}
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Efteråt</h2>
+
+      <p>
+        När det har blivit lugnt kan du fundera på vad som hände.
+        Vad gjorde situationen svårare? Vad hjälpte?
+        Vad vill du prova nästa gång?
+      </p>
+
+      <div class="field">
+        <label>Vad hände?</label>
+
+        <textarea
+          id="eventNote"
+          placeholder="Skriv några ord om situationen..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Vad vill jag prova nästa gång?</label>
+
+        <textarea
+          id="eventPlan"
+          placeholder="Till exempel: Jag ska försöka vara tydligare innan läggningen."></textarea>
+      </div>
+
+      <button class="btn"
+        onclick="saveEvent('${escapeText(s.title)}')">
+        💾 Spara
+      </button>
+
+    </div>
+
+
+    <button class="btn secondary"
+      onclick="showPage('situationer')">
+      ← Tillbaka
+    </button>
+
+  `;
+
+  window.scrollTo(0,0);
+}
+
+
+/* =========================
+   SAVE EVENT
+========================= */
+
+function saveEvent(topic){
+
+  const note =
+    document.getElementById("eventNote").value.trim();
+
+  const plan =
+    document.getElementById("eventPlan").value.trim();
+
+  db.events.unshift({
+
+    id:Date.now(),
+
+    topic:topic,
+
+    note:note,
+
+    plan:plan,
+
+    date:new Date().toISOString()
+
+  });
+
+  save();
+
+  alert("Sparat! ❤️");
+
+  showPage("historik");
+
+}
+
+
+/* =========================
+   SAVE CATEGORY
+========================= */
+
+function saveCategory(title){
+
+  db.events.unshift({
+
+    id:Date.now(),
+
+    topic:title,
+
+    note:"Jag vill arbeta mer med detta område.",
+
+    plan:"Jag börjar med ett litet steg.",
+
+    date:new Date().toISOString()
+
+  });
+
+  save();
+
+  alert("Sparat i din historik ❤️");
+
+}
+
+
+/* =========================
+   CHILDREN
+========================= */
+
 function addChild(){
- const name=document.getElementById("childName").value.trim();if(!name)return alert("Skriv ett namn eller smeknamn.");
- db.children.push({id:crypto.randomUUID(),name,age:document.getElementById("childAge").value,note:document.getElementById("childNote").value.trim(),created:new Date().toISOString()});
- document.getElementById("childName").value="";document.getElementById("childAge").value="";document.getElementById("childNote").value="";save();
+
+  const name =
+    document.getElementById("childName").value.trim();
+
+  const age =
+    document.getElementById("childAge").value;
+
+  const note =
+    document.getElementById("childNote").value.trim();
+
+  if(!name){
+
+    alert("Skriv barnets namn eller smeknamn.");
+
+    return;
+
+  }
+
+  db.children.push({
+
+    id:Date.now(),
+
+    name:name,
+
+    age:age,
+
+    note:note
+
+  });
+
+  document.getElementById("childName").value="";
+  document.getElementById("childAge").value="";
+  document.getElementById("childNote").value="";
+
+  save();
+
+  renderAll();
+
+  alert("Barnet är sparat ❤️");
 }
-function deleteChild(id){if(confirm("Ta bort barnprofilen?")){db.children=db.children.filter(c=>c.id!==id);save()}}
-function deleteEvent(id){if(confirm("Ta bort denna historikpost?")){db.events=db.events.filter(e=>e.id!==id);db.followups=db.followups.filter(f=>f.eventId!==id);save()}}
-function doneFollow(id){const f=db.followups.find(x=>x.id===id);if(f)f.done=true;save()}
-function addReminder(){
- const text=document.getElementById("remText").value.trim(),date=document.getElementById("remDate").value;if(!text||!date)return alert("Fyll i text och datum.");
- db.reminders.push({id:crypto.randomUUID(),text,date,done:false});document.getElementById("remText").value="";document.getElementById("remDate").value="";save()
+
+
+function renderChildren(){
+
+  const el =
+    document.getElementById("childList");
+
+  if(!db.children.length){
+
+    el.innerHTML=`
+      <div class="card">
+        <p class="muted">
+          Inga barn är sparade ännu.
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+  el.innerHTML =
+    db.children.map(c=>`
+
+      <div class="card">
+
+        <h3>👤 ${escapeText(c.name)}</h3>
+
+        ${
+          c.age
+          ?
+          `<span class="chip">${escapeText(c.age)} år</span>`
+          :
+          ""
+        }
+
+        <p>
+          ${escapeText(c.note || "Ingen anteckning.")}
+        </p>
+
+      </div>
+
+    `).join("");
 }
-function doneReminder(id){const r=db.reminders.find(x=>x.id===id);if(r)r.done=true;save()}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+function renderHistory(){
+
+  document.getElementById("nEvents")
+    .textContent=db.events.length;
+
+  document.getElementById("nChildren")
+    .textContent=db.children.length;
+
+  const el =
+    document.getElementById("historyList");
+
+  if(!db.events.length){
+
+    el.innerHTML=`
+      <div class="card">
+        <p class="muted">
+          Du har inte sparat något ännu.
+          När du sparar en situation hamnar den här.
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+  el.innerHTML =
+    db.events.map(e=>`
+
+      <div class="card">
+
+        <h3>${escapeText(e.topic)}</h3>
+
+        <p class="muted">
+          ${new Date(e.date).toLocaleDateString("sv-SE")}
+        </p>
+
+        ${
+          e.note
+          ?
+          `<p><b>Vad hände?</b><br>
+          ${escapeText(e.note)}</p>`
+          :
+          ""
+        }
+
+        ${
+          e.plan
+          ?
+          `<p><b>Min plan:</b><br>
+          ${escapeText(e.plan)}</p>`
+          :
+          ""
+        }
+
+      </div>
+
+    `).join("");
+}
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeText(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
 function renderAll(){
- document.getElementById("homeEvents").textContent=db.events.length;
- document.getElementById("homeFollow").textContent=db.followups.filter(f=>!f.done).length;
- document.getElementById("childrenList").innerHTML=db.children.length?db.children.map(c=>`<div class="item"><strong>${esc(c.name)} ${c.age?`<span class="chip">${esc(c.age)} år</span>`:""}</strong><div class="muted">${esc(c.note||"Ingen anteckning")}</div><div class="chips"><button class="smallbtn red" onclick="deleteChild('${c.id}')">Ta bort</button></div></div>`).join(""):"<p class='muted'>Inga barnprofiler ännu.</p>";
- document.getElementById("historyList").innerHTML=db.events.length?db.events.map(e=>`<div class="item"><strong>${esc(e.topic)} – ${esc(childName(e.childId))}</strong><div class="muted">${fmt(e.date)} · ${esc(e.status)}</div><p>${esc(e.note||"Ingen anteckning.")}</p><span class="chip">Genomfört till steg ${e.stepCompleted} av 5</span><div class="chips"><button class="smallbtn red" onclick="deleteEvent('${e.id}')">Ta bort</button></div></div>`).join(""):"<p class='muted'>Ingen sparad historik ännu.</p>";
- const counts={};db.events.forEach(e=>counts[e.topic]=(counts[e.topic]||0)+1);
- const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
- document.getElementById("patternList").innerHTML=sorted.length?sorted.map(([k,v])=>`<div class="item"><strong>${esc(k)}</strong><div class="progress"><i style="width:${Math.min(100,v/db.events.length*100)}%"></i></div><div class="muted">${v} registrerade situationer</div></div>`).join(""):"<p class='muted'>Spara några situationer så kan du se återkommande områden.</p>";
- document.getElementById("childPatternList").innerHTML=db.children.length?db.children.map(c=>{const n=db.events.filter(e=>e.childId===c.id).length;return `<div class="item"><strong>${esc(c.name)}</strong><div class="muted">${n} sparade situationer</div></div>`}).join(""):"<p class='muted'>Lägg till barnprofiler för att se mönster per barn.</p>";
- const fl=db.followups.filter(f=>!f.done).sort((a,b)=>new Date(a.when)-new Date(b.when));
- document.getElementById("followList").innerHTML=fl.length?fl.map(f=>{const e=db.events.find(x=>x.id===f.eventId);return `<div class="item"><strong>${esc(f.type)} – ${e?esc(e.topic):"situation"}</strong><div class="muted">${fmt(f.when)} · ${e?esc(childName(e.childId)):""}</div>${e?`<p>${esc(e.note||"")}</p>`:""}<button class="smallbtn green" onclick="doneFollow('${f.id}')">Markera som gjord</button></div>`}).join(""):"<p class='muted'>Inga öppna uppföljningar 🎉</p>";
- const rl=db.reminders.slice().sort((a,b)=>a.date.localeCompare(b.date));
- document.getElementById("reminderList").innerHTML=rl.length?rl.map(r=>`<div class="item"><strong>${esc(r.text)}</strong><div class="muted">${esc(r.date)}</div><span class="chip">${r.done?"Klar":"Aktiv"}</span> ${!r.done?`<button class="smallbtn green" onclick="doneReminder('${r.id}')">Markera klar</button>`:""}</div>`).join(""):"<p class='muted'>Inga påminnelser ännu.</p>";
+
+  renderHome();
+
+  renderSituations();
+
+  renderChildren();
+
+  renderHistory();
+
 }
+
+
+/* =========================
+   START
+========================= */
+
 renderAll();
+
 </script>
+
 </body>
 </html>
