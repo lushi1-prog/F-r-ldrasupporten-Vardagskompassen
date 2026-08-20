@@ -1,1236 +1,744 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#3f8f7d">
-<meta name="description" content="Vardagskompassen – enkla tankar och små steg för föräldrar i vardagen.">
-<title>Vardagskompassen – stöd i vardagen</title>
-
+<title>Vardagskompassen – färdig version</title>
 <style>
 :root{
-  --ink:#173b38;
-  --brand:#3f8f7d;
-  --brand-dark:#2f7465;
-  --soft:#e9f3ef;
-  --bg:#f7f8f6;
-  --white:#ffffff;
-  --muted:#667a76;
-  --line:#d9e5e1;
-  --shadow:0 8px 25px rgba(23,59,56,.08);
-  --radius:22px;
+ --ink:#183c38;--brand:#3f8f7d;--brand2:#2f7465;--bg:#f6f8f6;
+ --card:#fff;--line:#dce7e3;--muted:#657a75;--soft:#e9f3ef;
+ --pink:#f5dfe5;--blue:#dcecf5;--purple:#e7e2f4;--green:#dfeedd;
+ --lilac:#e9e0f4;--sand:#f2e7d5;--shadow:0 8px 25px rgba(24,60,56,.08)
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Arial,Helvetica,sans-serif;
-  line-height:1.55;
-}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.app{max-width:980px;margin:auto;padding:18px 16px 60px}
-
-header{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:14px;
-}
-.logo{
-  width:48px;height:48px;border-radius:16px;
-  background:#dceee8;
-  display:grid;place-items:center;
-  font-size:26px;
-}
-.brand{font-size:25px;font-weight:800;letter-spacing:-.5px}
-.tag{font-size:14px;color:var(--muted);margin-top:1px}
-
-nav{
-  display:flex;gap:7px;overflow-x:auto;
-  padding:4px 0 12px;
-  scrollbar-width:none;
-}
+html,body{margin:0;padding:0;width:100%;min-height:100%;height:auto}
+body{background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;overflow-y:auto;line-height:1.55}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:1050px;margin:auto;padding:14px 16px 70px}
+header{display:flex;align-items:center;gap:11px;padding:4px 0 12px}
+.logo{width:48px;height:48px;border-radius:16px;background:#dceee8;display:grid;place-items:center;font-size:26px}
+.brand{font-weight:800;font-size:25px}.tag{font-size:13px;color:var(--muted)}
+nav{display:flex;gap:7px;overflow-x:auto;padding:4px 0 13px;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
-nav button{
-  border:0;background:#e8efec;color:var(--ink);
-  padding:12px 15px;border-radius:14px;
-  white-space:nowrap;font-weight:700;
-}
+nav button{border:0;background:#e8efec;color:var(--ink);border-radius:14px;padding:10px 14px;font-weight:700;white-space:nowrap}
 nav button.active{background:var(--brand);color:#fff}
+.page{display:none}.page.active{display:block}
+.hero{background:linear-gradient(135deg,#eaf6f1,#dceee8);border-radius:27px;padding:24px;margin:6px 0 18px}
+.hero h1{font-size:34px;line-height:1.1;margin:6px 0 10px}.hero p{font-size:17px;max-width:800px;margin:0;color:#31534e}
+.small{font-size:13px;font-weight:800;color:#3d6d64}
+h2{font-size:25px;margin:22px 0 6px}.intro{color:var(--muted);margin-top:0}
+.plate-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:20px;box-shadow:var(--shadow);margin:18px 0}
+.plate-layout{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:13px;align-items:center}
+.plate-side{display:grid;gap:11px}
+.part{border-radius:20px;padding:16px;border:1px solid rgba(0,0,0,.03);transition:.15s}
+.part:hover{transform:translateY(-1px)}
+.part strong{display:block;font-size:17px}.part span{display:block;color:#48625d;font-size:13px;margin-top:4px}
+.part.pink{background:var(--pink)}.part.blue{background:var(--blue)}.part.purple{background:var(--purple)}
+.part.green{background:var(--green)}.part.lilac{background:var(--lilac)}.part.sand{background:var(--sand)}
+.plate{width:100%;aspect-ratio:1/1;border-radius:50%;background:#f8fbfa;border:14px solid #dceee8;box-shadow:inset 0 0 0 2px #c8dfd8,0 10px 25px rgba(24,60,56,.10);display:flex;align-items:center;justify-content:center;text-align:center;padding:28px}
+.plate-inner{max-width:230px}.plate-inner .emoji{font-size:42px}.plate-inner h3{font-size:25px;margin:3px 0}.plate-inner p{color:var(--muted);font-size:14px;margin:0}
+.center-note{font-size:12px;color:#4e6963;margin-top:10px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.card{background:#fff;border:1px solid var(--line);border-radius:21px;padding:17px;box-shadow:0 4px 14px rgba(24,60,56,.04)}
+.emoji{font-size:29px}.card h3{margin:5px 0;font-size:20px}.card p{color:var(--muted);margin:5px 0 13px}
+.btn{border:0;background:var(--brand);color:#fff;border-radius:14px;padding:11px 15px;font-weight:800;min-height:45px}
+.btn.secondary{background:#e8efec;color:var(--ink)}.btn.full{width:100%}
+.action{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.detail{background:#fff;border:1px solid var(--line);border-radius:25px;padding:20px;box-shadow:var(--shadow);margin:14px 0}
+.detail-head{display:flex;gap:12px}.detail h2{margin:0;font-size:27px}.lead{color:#4c6661;margin-top:4px}
+.steps{display:grid;gap:9px;margin-top:16px}.step{display:flex;gap:11px;background:#f3f8f6;border-radius:17px;padding:14px}
+.num{flex:0 0 31px;height:31px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800}
+.step strong{display:block}
+.example{background:#edf6f2;border-left:5px solid var(--brand);padding:15px;margin-top:15px;border-radius:0 16px 16px 0}
+.next{background:#fff7df;padding:15px;border-radius:16px;margin-top:10px}.next strong{display:block}
+.counter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:18px 0}.counter{background:#fff;border:1px solid var(--line);border-radius:17px;padding:12px}.counter span{display:block;color:var(--muted);font-size:11px}.counter b{font-size:25px}
+.list{display:grid;gap:10px}.list-item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px}
+textarea,input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;color:var(--ink)}
+textarea{min-height:100px;resize:vertical}
+.chat{background:#fff;border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow);overflow:hidden}
+.chat-head{background:#e8f3ef;padding:18px}.chat-head h2{margin:0;font-size:23px}.chat-head p{margin:3px 0 0;color:var(--muted);font-size:14px}
+.messages{padding:16px;min-height:360px;max-height:520px;overflow-y:auto;background:#f8faf9;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:86%;padding:12px 14px;border-radius:17px;font-size:15px}.bot{align-self:flex-start;background:#e7f1ee}.user{align-self:flex-end;background:var(--brand);color:#fff}
+.chat-input{padding:12px;border-top:1px solid var(--line);display:flex;gap:8px}.chat-input input{min-width:0}.chat-input .btn{flex:0 0 auto}
+.quick{display:flex;gap:7px;flex-wrap:wrap;padding:12px;border-top:1px solid var(--line)}.quick button{border:0;background:#edf3f1;border-radius:13px;padding:9px 11px;color:var(--ink)}
+.flow{text-align:center}.flow .big{font-size:48px}.flow h1{font-size:29px;margin:2px}.progress{height:8px;background:#e1ebe7;border-radius:99px;overflow:visible;margin:15px 0}.progress i{display:block;height:100%;background:var(--brand)}
+.flowbox{background:var(--soft);border-radius:20px;padding:19px;text-align:left}.flowbox p{font-size:18px;margin:5px 0}
+.question{background:#fff8e7;border-radius:18px;padding:15px;margin-top:10px}.why{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:10px}
+footer{margin-top:35px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+@media(max-width:760px){
+ .plate{width:min(600px,96vw);border-width:8px}
+ .slice{padding:7px}.slice strong{font-size:12px}.slice small{font-size:8px}.slice-icon{font-size:20px}
+ .plate-center{width:32%;border-width:5px}.center-emoji{font-size:22px}.plate-center strong{font-size:12px}.plate-center span{font-size:9px}.plate-center small{font-size:8px}
+ .model-detail{padding:17px}.model-detail h3{font-size:22px}
+}
+@media(max-width:430px){
+ .plate{width:98vw}
+ .slice{padding:5px}.slice strong{font-size:10px}.slice small{font-size:7px}.slice-icon{font-size:16px}
+ .plate-center{width:33%}.center-emoji{font-size:18px}.plate-center strong{font-size:10px}.plate-center span{font-size:8px}.plate-center small{font-size:7px}
+}.plate-side{grid-template-columns:1fr}.plate-inner h3{font-size:22px}}
 
-.page{display:none}
-.page.active{display:block}
+.model-detail{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow);animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.model-detail-head{display:flex;gap:12px;align-items:flex-start}
+.model-detail-icon{width:52px;height:52px;border-radius:17px;background:var(--soft);display:grid;place-items:center;font-size:28px;flex:0 0 52px}
+.model-detail h3{margin:0;font-size:24px}.model-detail .detail-lead{color:#4f6863;margin:5px 0 0}
+.detail-block{margin-top:16px;padding:15px;border-radius:17px;background:#f7faf9}
+.detail-block strong{display:block;margin-bottom:4px}
+.click-hint{display:inline-flex;align-items:center;gap:6px;background:#edf5f2;border-radius:99px;padding:7px 11px;font-size:12px;color:#3c6b61;font-weight:700;margin-top:10px}
+.part{cursor:pointer;position:relative}
+.part.selected,.slice.selected{outline:4px solid rgba(63,143,125,.35);box-shadow:0 4px 12px rgba(63,143,125,.15);z-index:5}
+@media(max-width:760px){
+ .plate{width:min(600px,96vw);border-width:8px}
+ .slice{padding:7px}.slice strong{font-size:12px}.slice small{font-size:8px}.slice-icon{font-size:20px}
+ .plate-center{width:32%;border-width:5px}.center-emoji{font-size:22px}.plate-center strong{font-size:12px}.plate-center span{font-size:9px}.plate-center small{font-size:8px}
+ .model-detail{padding:17px}.model-detail h3{font-size:22px}
+}
+@media(max-width:430px){
+ .plate{width:98vw}
+ .slice strong{font-size:11px}.slice small{font-size:8px}.slice-icon{font-size:17px}
+ .slice-love{padding:9px 29px 23px 5px}.slice-presence{padding:9px 5px 23px 29px}
+ .slice-confirm{padding:23px 29px 9px 5px}.slice-self{padding:23px 5px 9px 29px}
+ .slice-rest{padding:4px 15px 27px}.slice-frames{padding:27px 15px 4px}
+ .plate-center{width:32%}.center-emoji{font-size:19px}.plate-center strong{font-size:11px}
+}
 
-.hero{
-  background:linear-gradient(135deg,#eaf6f1,#dceee8);
-  border-radius:28px;
-  padding:27px;
-  margin:8px 0 22px;
-}
-.hero .small{font-weight:800;font-size:15px}
-.hero h1{font-size:38px;line-height:1.08;margin:6px 0 12px}
-.hero p{font-size:18px;max-width:760px;margin:0;color:#31534e}
+html{min-height:100%;height:auto!important;overflow-x:hidden!important;overflow-y:scroll!important}
+body{min-height:100vh;height:auto!important;overflow-x:hidden!important;overflow-y:visible!important}
+.page{height:auto!important;min-height:0!important}
+.app{height:auto!important;min-height:100vh;overflow:visible!important}
+.plate{overflow:hidden}
 
-h2{font-size:25px;margin:22px 0 7px}
-h3{font-size:20px;margin:0 0 8px}
-.section-intro{color:var(--muted);margin-top:0}
+/* ===== FINAL TALLRIKSMODELL ===== */
+.plate-card .plate-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:8px 0 4px;
+}
+.plate-card .plate{
+  position:relative!important;
+  display:block!important;
+  width:min(700px,94vw)!important;
+  height:auto!important;
+  aspect-ratio:1/1!important;
+  padding:0!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+  border:12px solid #dceee8!important;
+  background:
+    conic-gradient(from -30deg,
+      #f9dede 0deg 60deg,
+      #dceef8 60deg 120deg,
+      #e9def5 120deg 180deg,
+      #dff0df 180deg 240deg,
+      #f3e5d2 240deg 300deg,
+      #e8ddf4 300deg 360deg)!important;
+  box-shadow:inset 0 0 0 2px #c6ddd7,0 14px 32px rgba(24,60,56,.13)!important;
+}
+.plate-card .plate::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 23%, rgba(255,255,255,.08) 23.2% 23.7%, transparent 24%),
+    radial-gradient(circle at 50% 50%, transparent 0 48%, rgba(255,255,255,.16) 48.2% 48.6%, transparent 49%);
+  z-index:0;
+}
+.plate-card .slice{
+  position:absolute!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  border:0!important;
+  margin:0!important;
+  padding:10px!important;
+  background:transparent!important;
+  color:#263d39!important;
+  cursor:pointer!important;
+  z-index:2!important;
+  transform:none!important;
+  transition:background .16s ease,transform .16s ease,box-shadow .16s ease!important;
+  border-radius:0!important;
+  min-width:0!important;
+}
+.plate-card .slice:hover{
+  background:rgba(255,255,255,.25)!important;
+  transform:scale(1.035)!important;
+  z-index:4!important;
+}
+.plate-card .slice:focus-visible{
+  outline:4px solid rgba(63,143,125,.45)!important;
+  z-index:6!important;
+}
+.plate-card .slice.selected{
+  background:rgba(255,255,255,.30)!important;
+  box-shadow:inset 0 0 0 4px rgba(63,143,125,.35)!important;
+  z-index:5!important;
+}
+.plate-card .slice-icon{font-size:28px!important;line-height:1!important;margin:0 0 5px!important}
+.plate-card .slice strong{font-size:16px!important;line-height:1.12!important;max-width:150px}
+.plate-card .slice small{font-size:10px!important;line-height:1.15!important;color:#4c6661!important;margin-top:5px!important;max-width:125px}
+.plate-card .slice-love{left:4%!important;top:4%!important;width:31%!important;height:40%!important}
+.plate-card .slice-presence{right:4%!important;top:4%!important;width:31%!important;height:40%!important}
+.plate-card .slice-confirm{left:4%!important;bottom:4%!important;width:31%!important;height:40%!important}
+.plate-card .slice-self{right:4%!important;bottom:4%!important;width:31%!important;height:40%!important}
+.plate-card .slice-rest{left:34.5%!important;top:4%!important;width:31%!important;height:32%!important}
+.plate-card .slice-frames{left:34.5%!important;bottom:4%!important;width:31%!important;height:32%!important}
+.plate-card .plate-center{
+  position:absolute!important;
+  left:50%!important;top:50%!important;
+  transform:translate(-50%,-50%)!important;
+  width:25%!important;height:25%!important;aspect-ratio:1/1!important;
+  padding:8px!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  border:7px solid #dceee8!important;
+  box-shadow:0 6px 18px rgba(24,60,56,.16)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  z-index:10!important;
+}
+.plate-card .center-emoji{font-size:29px!important;line-height:1!important}
+.plate-card .plate-center strong{font-size:15px!important;line-height:1.1!important}
+.plate-card .plate-center span{font-size:10px!important;color:#56706a!important;margin-top:3px}
+.plate-card .plate-center small{font-size:8px!important;color:#3f8f7d!important;font-weight:800!important;margin-top:4px}
+.plate-card #modelDetail{position:relative;z-index:20}
+@media(max-width:760px){
+  .plate-card .plate{width:min(610px,96vw)!important;border-width:8px!important}
+  .plate-card .slice-icon{font-size:22px!important}
+  .plate-card .slice strong{font-size:12px!important}
+  .plate-card .slice small{font-size:8px!important}
+  .plate-card .plate-center{width:27%!important;height:27%!important;border-width:5px!important}
+  .plate-card .center-emoji{font-size:21px!important}
+  .plate-card .plate-center strong{font-size:12px!important}
+  .plate-card .plate-center span{font-size:8px!important}
+  .plate-card .plate-center small{font-size:7px!important}
+}
+@media(max-width:430px){
+  .plate-card .plate{width:98vw!important}
+  .plate-card .slice{padding:5px!important}
+  .plate-card .slice-icon{font-size:17px!important}
+  .plate-card .slice strong{font-size:10px!important}
+  .plate-card .slice small{font-size:7px!important}
+  .plate-card .plate-center{width:29%!important;height:29%!important}
+  .plate-card .center-emoji{font-size:17px!important}
+  .plate-card .plate-center strong{font-size:10px!important}
+  .plate-card .plate-center span{font-size:7px!important}
+  .plate-card .plate-center small{font-size:6px!important}
+}
 
-.plate{
-  background:var(--white);
-  border:1px solid var(--line);
-  border-radius:26px;
-  padding:20px;
-  box-shadow:var(--shadow);
-  margin:18px 0;
-}
-.plate-top{
-  display:flex;justify-content:space-between;gap:14px;align-items:flex-start;
-}
-.plate-title{font-size:24px;font-weight:800}
-.plate-sub{color:var(--muted);font-size:15px;margin-top:3px}
-.plate-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
-.plate-part{
-  border-radius:18px;padding:16px;
-  min-height:118px;
-}
-.plate-part strong{display:block;font-size:17px;margin-bottom:5px}
-.plate-part span{font-size:14px;color:#385b55}
-.p-love{background:#f5dfe5}
-.p-presence{background:#dcecf5}
-.p-confirm{background:#e4e2f4}
-.p-self{background:#dcefdc}
-.p-rest{background:#e9e0f4}
-.p-frame{background:#f1e7d7}
 
-.counter-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:12px;margin:18px 0 28px;
+/* ===== IN-PLACE TEXT IN EACH TALLRIK SECTION ===== */
+.plate-card .slice{overflow:hidden!important}
+.plate-card .slice.expanded{
+  z-index:30!important;background:rgba(255,255,255,.96)!important;
+  box-shadow:0 5px 22px rgba(24,60,56,.18)!important;
+  border:2px solid rgba(63,143,125,.32)!important;
+  transform:scale(1.04)!important;border-radius:22px!important
 }
-.counter{
-  background:#fff;border:1px solid var(--line);
-  border-radius:20px;padding:17px;
+.plate-card .slice.expanded .slice-icon{font-size:22px!important;margin-bottom:3px!important}
+.plate-card .slice.expanded strong{font-size:15px!important}
+.plate-card .slice-expanded-text{
+  display:block!important;margin-top:7px!important;font-size:11px!important;
+  line-height:1.3!important;font-weight:500!important;color:#354e49!important;max-width:185px!important
 }
-.counter span{display:block;color:var(--muted);font-size:14px}
-.counter strong{font-size:31px;display:block;margin-top:3px}
+.plate-card .slice-expanded-example{
+  display:block!important;margin-top:6px!important;padding-top:5px!important;
+  border-top:1px solid rgba(63,143,125,.18)!important;font-size:9px!important;
+  line-height:1.25!important;font-weight:700!important;color:#3f6f65!important;max-width:185px!important
+}
+.plate-card .slice-expanded-hint{
+  display:block!important;margin-top:6px!important;font-size:8px!important;color:#3f8f7d!important;font-weight:800!important
+}
+@media(max-width:760px){
+ .plate-card .slice.expanded{transform:scale(1.035)!important;border-radius:18px!important}
+ .plate-card .slice.expanded .slice-icon{font-size:19px!important}
+ .plate-card .slice.expanded strong{font-size:11px!important}
+ .plate-card .slice-expanded-text{font-size:8px!important;line-height:1.22!important;max-width:145px!important;margin-top:4px!important}
+ .plate-card .slice-expanded-example{font-size:7px!important;line-height:1.18!important;max-width:145px!important;margin-top:4px!important}
+ .plate-card .slice-expanded-hint{font-size:6px!important;margin-top:4px!important}
+}
+@media(max-width:430px){
+ .plate-card .slice.expanded{transform:scale(1.025)!important;border-radius:14px!important}
+ .plate-card .slice.expanded .slice-icon{font-size:16px!important}
+ .plate-card .slice.expanded strong{font-size:9px!important}
+ .plate-card .slice-expanded-text{font-size:6.5px!important;line-height:1.15!important;max-width:105px!important}
+ .plate-card .slice-expanded-example{font-size:6px!important;line-height:1.12!important;max-width:105px!important}
+ .plate-card .slice-expanded-hint{font-size:5.5px!important}
+}
 
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.card{
-  background:#fff;border:1px solid var(--line);
-  border-radius:22px;padding:18px;
-  transition:.15s transform,.15s box-shadow;
-}
-.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.card .emoji{font-size:28px}
-.card p{color:var(--muted);margin:8px 0 14px}
-.btn{
-  border:0;background:var(--brand);color:#fff;
-  border-radius:14px;padding:11px 15px;font-weight:800;
-}
-.btn.secondary{background:#e8efec;color:var(--ink)}
-.btn.small{padding:9px 12px;font-size:14px}
 
-.detail{
-  background:#fff;border:1px solid var(--line);
-  border-radius:26px;padding:23px;margin-top:15px;
-  box-shadow:var(--shadow);
+/* ===== STÖRRE OCH LÄTTLÄST TEXT NÄR EN DEL ÖPPNAS ===== */
+.plate-card .slice.expanded{
+  padding:14px!important;
 }
-.detail-head{display:flex;gap:14px;align-items:flex-start}
-.detail-icon{font-size:34px}
-.detail h2{margin:0;font-size:28px}
-.detail .lead{color:#4c6661;font-size:17px;margin-top:5px}
+.plate-card .slice.expanded .slice-icon{
+  font-size:30px!important;
+  margin-bottom:6px!important;
+}
+.plate-card .slice.expanded strong{
+  font-size:19px!important;
+  line-height:1.15!important;
+}
+.plate-card .slice.expanded .slice-expanded-text{
+  font-size:14px!important;
+  line-height:1.4!important;
+  max-width:230px!important;
+  margin-top:9px!important;
+  font-weight:500!important;
+}
+.plate-card .slice.expanded .slice-expanded-example{
+  font-size:12px!important;
+  line-height:1.35!important;
+  max-width:225px!important;
+  margin-top:8px!important;
+  padding-top:7px!important;
+}
+.plate-card .slice.expanded .slice-expanded-hint{
+  font-size:10px!important;
+  margin-top:8px!important;
+}
+@media(max-width:760px){
+  .plate-card .slice.expanded{
+    padding:9px!important;
+  }
+  .plate-card .slice.expanded .slice-icon{
+    font-size:24px!important;
+  }
+  .plate-card .slice.expanded strong{
+    font-size:14px!important;
+  }
+  .plate-card .slice.expanded .slice-expanded-text{
+    font-size:10px!important;
+    line-height:1.3!important;
+    max-width:165px!important;
+    margin-top:6px!important;
+  }
+  .plate-card .slice.expanded .slice-expanded-example{
+    font-size:8.5px!important;
+    line-height:1.25!important;
+    max-width:160px!important;
+  }
+  .plate-card .slice.expanded .slice-expanded-hint{
+    font-size:7px!important;
+  }
+}
+@media(max-width:430px){
+  .plate-card .slice.expanded{
+    padding:6px!important;
+  }
+  .plate-card .slice.expanded .slice-icon{
+    font-size:20px!important;
+  }
+  .plate-card .slice.expanded strong{
+    font-size:11px!important;
+  }
+  .plate-card .slice.expanded .slice-expanded-text{
+    font-size:8px!important;
+    line-height:1.22!important;
+    max-width:120px!important;
+  }
+  .plate-card .slice.expanded .slice-expanded-example{
+    font-size:7px!important;
+    line-height:1.18!important;
+    max-width:115px!important;
+  }
+  .plate-card .slice.expanded .slice-expanded-hint{
+    font-size:6px!important;
+  }
+}
 
-.steps{counter-reset:step;display:grid;gap:10px;margin-top:18px}
-.step{
-  display:flex;gap:13px;align-items:flex-start;
-  background:#f4f8f6;border-radius:17px;padding:14px;
-}
-.step:before{
-  counter-increment:step;
-  content:counter(step);
-  flex:0 0 31px;height:31px;border-radius:50%;
-  background:var(--brand);color:#fff;
-  display:grid;place-items:center;font-weight:800;
-}
-.step strong{display:block;margin-bottom:2px}
 
-.example{
-  margin-top:18px;padding:17px;
-  border-left:5px solid var(--brand);
-  background:#edf6f2;border-radius:0 17px 17px 0;
+/* ===== TALLRIKSMODELL – LAYOUT SOM REFERENSBILDEN ===== */
+.plate-card{
+  padding:28px!important;
 }
-.next{
-  margin-top:16px;padding:17px;
-  background:#fff7df;border-radius:17px;
+.plate-card .plate-layout{
+  display:grid!important;
+  grid-template-columns:minmax(420px, 1fr) minmax(320px, .92fr)!important;
+  gap:30px!important;
+  align-items:center!important;
+  max-width:1080px!important;
+  margin:0 auto!important;
 }
-.next strong{display:block;margin-bottom:4px}
+.plate-card .plate-wrap{
+  min-width:0!important;
+  padding:0!important;
+}
+.plate-card .plate{
+  width:min(560px,100%)!important;
+  margin:0 auto!important;
+}
+.plate-card .model-detail{
+  min-height:390px!important;
+  margin:0!important;
+  padding:28px!important;
+  border:0!important;
+  border-radius:24px!important;
+  background:#eef3f0!important;
+  box-shadow:none!important;
+  display:flex!important;
+  align-items:center!important;
+}
+.plate-card .model-detail:empty{
+  visibility:hidden!important;
+}
+.plate-card .model-detail-inner{
+  width:100%!important;
+}
+.plate-card .model-detail-head{
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:13px!important;
+}
+.plate-card .model-detail-icon{
+  width:48px!important;
+  height:48px!important;
+  min-width:48px!important;
+  border-radius:15px!important;
+  display:grid!important;
+  place-items:center!important;
+  background:#fff!important;
+  font-size:25px!important;
+}
+.plate-card .model-detail h3{
+  margin:0!important;
+  font-size:27px!important;
+  line-height:1.1!important;
+}
+.plate-card .model-detail .detail-lead{
+  margin:12px 0 0!important;
+  font-size:16px!important;
+  line-height:1.55!important;
+  color:#405a54!important;
+}
+.plate-card .model-detail .detail-block{
+  margin-top:20px!important;
+  padding:17px 18px!important;
+  border-radius:17px!important;
+  background:#f6e9cf!important;
+  color:#334943!important;
+}
+.plate-card .model-detail .detail-block strong{
+  font-size:16px!important;
+  margin-bottom:5px!important;
+}
+.plate-card .model-detail .detail-block p{
+  margin:0!important;
+  font-size:14px!important;
+  line-height:1.45!important;
+}
+.plate-card .plate-card-hint{
+  margin-top:12px!important;
+  font-size:12px!important;
+  color:#5d746e!important;
+}
+@media(max-width:900px){
+  .plate-card .plate-layout{
+    grid-template-columns:1fr!important;
+    gap:20px!important;
+  }
+  .plate-card .plate{width:min(580px,96vw)!important}
+  .plate-card .model-detail{
+    min-height:0!important;
+    padding:22px!important;
+  }
+  .plate-card .model-detail:empty{display:none!important}
+}
+@media(max-width:520px){
+  .plate-card{padding:16px!important}
+  .plate-card .plate{width:98vw!important}
+  .plate-card .model-detail h3{font-size:22px!important}
+  .plate-card .model-detail .detail-lead{font-size:14px!important}
+}
 
-.action-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
 
-.list{display:grid;gap:10px}
-.list-item{
-  background:#fff;border:1px solid var(--line);
-  border-radius:18px;padding:16px;
-}
-.list-item strong{display:block;margin-bottom:4px}
+/* ===== VARDAGSKOMPASSEN CHAT – FUNGERANDE ===== */
+.chat-box input:disabled{opacity:.7}
+.chat-box button:disabled{opacity:.55;cursor:not-allowed}
+.chat-messages{scroll-behavior:smooth}
+.chat-message.user{margin-left:auto}
+.chat-message.bot{margin-right:auto}
+.chat-loading{display:flex;gap:5px;align-items:center;color:#58716b;font-size:13px}
+.chat-loading span{width:7px;height:7px;border-radius:50%;background:#7fa99e;display:inline-block;animation:chatPulse 1s infinite}
+.chat-loading span:nth-child(2){animation-delay:.15s}.chat-loading span:nth-child(3){animation-delay:.3s}
+@keyframes chatPulse{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
 
-textarea,input,select{
-  width:100%;border:1px solid var(--line);
-  background:#fff;border-radius:15px;
-  padding:13px;color:var(--ink);
-}
-textarea{min-height:120px;resize:vertical}
 
-.history-item{
-  background:#fff;border:1px solid var(--line);
-  border-radius:18px;padding:15px;
-  display:flex;justify-content:space-between;gap:12px;
+/* ===== CHAT – STABIL OCH MOBILVÄNLIG ===== */
+.chat{position:relative;z-index:1}
+.chat-input{position:relative;z-index:20;display:flex!important;align-items:center!important;gap:10px!important;pointer-events:auto!important}
+.chat-input input{display:block!important;position:relative!important;z-index:21!important;pointer-events:auto!important;user-select:text!important;-webkit-user-select:text!important;touch-action:manipulation!important;min-height:48px!important;box-sizing:border-box!important;cursor:text!important;opacity:1!important}
+.chat-input .btn{position:relative!important;z-index:22!important;min-height:48px!important;touch-action:manipulation!important}
+@media(max-width:600px){
+ .chat-input{padding:12px!important;align-items:stretch!important}
+ .chat-input input{font-size:16px!important;min-width:0!important;width:100%!important}
+ .chat-input .btn{padding:11px 14px!important;white-space:nowrap!important}
+ .quick{overflow-x:auto!important;flex-wrap:nowrap!important;padding-bottom:10px!important}
+ .quick button{flex:0 0 auto!important}
 }
-.history-item small{color:var(--muted)}
 
-footer{
-  margin-top:45px;padding:22px 4px 0;
-  color:var(--muted);font-size:13px;
-  border-top:1px solid var(--line);
-}
-footer strong{color:var(--ink)}
 
-.notice{
-  background:#eef6f3;border:1px solid #d5e8e2;
-  border-radius:18px;padding:16px;margin-top:15px;
-}
-.notice strong{display:block;margin-bottom:4px}
+#chatQuestionArea{display:flex;gap:10px;align-items:stretch!important;position:relative!important;z-index:100!important}
+#vardagsfraga{flex:1!important;min-width:0!important;width:100%!important;min-height:50px!important;box-sizing:border-box!important;resize:none!important;pointer-events:auto!important;user-select:text!important;-webkit-user-select:text!important;touch-action:manipulation!important;cursor:text!important;opacity:1!important}
+#vardagsSkicka{flex:0 0 auto!important;min-height:50px!important;pointer-events:auto!important;touch-action:manipulation!important}
+@media(max-width:600px){#chatQuestionArea{gap:8px!important}#vardagsfraga{font-size:16px!important;padding:13px!important}#vardagsSkicka{padding:10px 14px!important}}
 
-@media(max-width:700px){
-  .app{padding:13px 12px 45px}
-  header{margin-bottom:8px}
-  .brand{font-size:22px}
-  .hero{padding:22px;border-radius:23px}
-  .hero h1{font-size:31px}
-  .hero p{font-size:17px}
-  .counter-grid{grid-template-columns:repeat(2,1fr)}
-  .cards{grid-template-columns:1fr}
-  .plate-grid{grid-template-columns:1fr}
-  nav button{padding:11px 13px}
-}
 </style>
 </head>
-
 <body>
-
 <div class="app">
-
-<header>
-  <div class="logo">🧭</div>
-  <div>
-    <div class="brand">Vardagskompassen</div>
-    <div class="tag">Små steg i vardagen för föräldrar</div>
-  </div>
-</header>
-
-<nav id="nav">
-  <button class="active" data-page="home">Hem</button>
-  <button data-page="children">Barn</button>
-  <button data-page="history">Historik</button>
-  <button data-page="patterns">Mönster</button>
-  <button data-page="follow">Uppföljning</button>
-  <button data-page="reminders">Påminnelser</button>
+<header><div class="logo">🧭</div><div><div class="brand">Vardagskompassen</div><div class="tag">En enkel hjälp i vardagen för föräldrar</div></div></header>
+<nav>
+<button class="active" data-page="home">Hem</button>
+<button data-page="areas">Områden</button>
+<button data-page="chat">Fråga Vardagskompassen</button>
+<button data-page="history">Historik</button>
+<button data-page="follow">Följa upp</button>
 </nav>
 
-<main>
-
 <section id="home" class="page active">
+<div class="hero"><div class="small">Välkommen 👋</div><h1>Vad behöver ni just nu?</h1><p>Vardagskompassen hjälper dig att förstå vad som händer hemma och hitta ett litet steg som kan göra vardagen lättare. Du behöver inte göra allt på en gång.</p></div>
 
-<div class="hero">
-  <div class="small">Hej! 👋</div>
-  <h1>Vad behöver vi just nu?</h1>
-  <p>
-    Välj det område som känns mest viktigt idag.
-    Du behöver inte lösa allt på en gång.
-    Vardagskompassen hjälper dig att stanna upp,
-    förstå situationen och hitta ett litet nästa steg.
-  </p>
-</div>
+<h2>Den psykologiska tallriksmodellen</h2>
+<p class="intro">Tänk på barnets vardag som en tallrik. Sex delar behöver få plats över tid. Ingen familj behöver få allt rätt varje dag – börja där det känns mest viktigt just nu.</p>
 
-<h2>Det som bygger trygghet ❤️</h2>
+<div class="plate-card">
 
-<p class="section-intro">
-  En trygg vardag byggs av många små saker.
-  Kärlek, närvaro, bekräftelse, tydlighet, ramar,
-  återhämtning och att få känna att man duger.
-  Allt behöver inte fungera perfekt varje dag.
-  Det viktiga är vad barnet får med sig över tid.
-</p>
-
-<div class="plate">
-
-<div class="plate-top">
-  <div>
-    <div class="plate-title">Flera delar som hjälper i vardagen</div>
-    <div class="plate-sub">
-      Den psykologiska tallriksmodellen används här som
-      en enkel bild för att se vilka delar som kan behöva
-      mer plats.
+<div class="plate-layout">
+  <div class="plate-wrap">
+  <div class="plate">
+    <button class="slice slice-love" onclick="selectModelPart('love')" aria-label="Kärlek">
+      <span class="slice-icon">❤️</span><strong>Kärlek</strong><small>Känna sig älskad</small>
+    </button>
+    <button class="slice slice-presence" onclick="selectModelPart('presence')" aria-label="Närvaro">
+      <span class="slice-icon">👀</span><strong>Närvaro</strong><small>Tid och kontakt</small>
+    </button>
+    <button class="slice slice-confirm" onclick="selectModelPart('confirm')" aria-label="Bekräftelse">
+      <span class="slice-icon">💬</span><strong>Bekräftelse</strong><small>Lyssna och förstå</small>
+    </button>
+    <button class="slice slice-self" onclick="selectModelPart('self')" aria-label="Självkänsla och medkänsla">
+      <span class="slice-icon">🌱</span><strong>Självkänsla<br>& medkänsla</strong><small>Känna: jag duger</small>
+    </button>
+    <button class="slice slice-rest" onclick="selectModelPart('rest')" aria-label="Återhämtning">
+      <span class="slice-icon">🌿</span><strong>Återhämtning</strong><small>Vila och lugn</small>
+    </button>
+    <button class="slice slice-frames" onclick="selectModelPart('frames')" aria-label="Ramar">
+      <span class="slice-icon">🧭</span><strong>Ramar</strong><small>Tydliga gränser</small>
+    </button>
+    <div class="plate-center">
+      <div class="center-emoji">🍽️</div>
+      <strong>Tallriksmodellen</strong>
+      <span>Barnets vardag</span>
+      <small>Tryck på en del</small>
     </div>
   </div>
-
-  <button class="btn secondary small"
-          onclick="showPage('children')">
-    Utforska
-  </button>
-</div>
-
-<div class="plate-grid">
-
-<div class="plate-part p-love">
-<strong>❤️ Kärlek</strong>
-<span>Att känna sig omtyckt, viktig och trygg.</span>
-</div>
-
-<div class="plate-part p-presence">
-<strong>👨‍👩‍👧 Närvaro</strong>
-<span>Att få tid, kontakt och uppmärksamhet.</span>
-</div>
-
-<div class="plate-part p-confirm">
-<strong>💬 Bekräftelse</strong>
-<span>Att bli lyssnad på och tagen på allvar.</span>
-</div>
-
-<div class="plate-part p-self">
-<strong>🌱 Självkänsla</strong>
-<span>Att få känna: jag duger och jag kan lära mig.</span>
-</div>
-
-<div class="plate-part p-rest">
-<strong>😴 Återhämtning</strong>
-<span>Sömn, vila, lugn och tid att landa.</span>
-</div>
-
-<div class="plate-part p-frame">
-<strong>🧭 Ramar</strong>
-<span>Trygga gränser och vuxna som visar vägen.</span>
 </div>
 
 </div>
+
+
+  <div id="modelDetail" class="model-detail" aria-live="polite"></div>
 </div>
-
-<h2>Välj ett område</h2>
-
-<p class="section-intro">
-  Varje område ger dig enkla tankar, fem konkreta steg
-  och ett litet nästa steg att prova.
-</p>
-
-<div id="homeCards" class="cards"></div>
 
 <div class="counter-grid">
-
-<div class="counter">
-<span>Sparade situationer</span>
-<strong id="savedCount">0</strong>
+<div class="counter"><span>Sparade</span><b id="saved">0</b></div><div class="counter"><span>Följa upp</span><b id="followCount">0</b></div><div class="counter"><span>Anteckningar</span><b id="notes">0</b></div><div class="counter"><span>Påminnelser</span><b id="reminders">0</b></div>
 </div>
 
-<div class="counter">
-<span>Öppna uppföljningar</span>
-<strong id="followCount">0</strong>
+<h2>Behöver du hjälp att börja?</h2>
+<div class="cards">
+<div class="card"><div class="emoji">💬</div><h3>Fråga Vardagskompassen</h3><p>Beskriv en situation med dina egna ord och få hjälp att sortera vad som kan vara ett nästa steg.</p><button class="btn full" onclick="showPage('chat')">Öppna chatten</button></div>
+<div class="card"><div class="emoji">🧩</div><h3>Välj en situation</h3><p>Gå igenom fem enkla steg kring något som händer hemma.</p><button class="btn secondary full" onclick="showPage('areas')">Se alla områden</button></div>
 </div>
-
-<div class="counter">
-<span>Påminnelser</span>
-<strong id="reminderCount">0</strong>
-</div>
-
-<div class="counter">
-<span>Anteckningar</span>
-<strong id="noteCount">0</strong>
-</div>
-
-</div>
-
-<div class="notice">
-<strong>💛 Kom ihåg</strong>
-Du behöver inte vara en perfekt förälder.
-Barn behöver vuxna som försöker, lyssnar
-och kommer tillbaka när något blev fel.
-</div>
-
 </section>
 
-<section id="children" class="page">
+<section id="areas" class="page"><div class="hero"><div class="small">Vardagens olika delar</div><h1>Välj det som känns mest aktuellt</h1><p>Du kan läsa mer om varje område och sedan gå steg för steg.</p></div><div id="areaCards" class="cards"></div></section>
 
-<div class="hero">
-<div class="small">Barnets vardag</div>
-<h1>Vad vill du förstå bättre?</h1>
+<section id="detail" class="page"><button class="btn secondary" onclick="showPage('areas')">← Alla områden</button><div id="detailContent"></div></section>
 
-<p>
-Välj ett område. Börja där det känns mest relevant.
-Ett litet steg kan vara mer hjälpsamt än att försöka
-ändra allt på samma gång.
-</p>
+<section id="flow" class="page"><button class="btn secondary" onclick="showPage('areas')">← Tillbaka</button><div class="detail"><div class="flow"><div id="flowIcon" class="big"></div><h1 id="flowTitle"></h1><p id="flowLead" class="intro"></p></div><div class="progress"><i id="bar"></i></div><div class="flowbox"><b id="stepNo"></b><p id="stepText"></p></div><div class="question"><b id="qTitle"></b><p id="qText" class="intro"></p></div><div class="why"><b>💡 Varför kan detta hjälpa?</b><p id="whyText" class="intro"></p></div><div id="flowSave"></div><div class="action"><button id="next" class="btn" onclick="nextStep()">Nästa steg →</button><button class="btn secondary" onclick="prevStep()">← Föregående</button></div></div></section>
 
+<section id="chat" class="page">
+<div class="hero"><div class="small">Din digitala kompass 💬</div><h1>Fråga Vardagskompassen</h1><p>Berätta med dina egna ord. Chatten hjälper dig att tänka igenom situationen på ett enkelt sätt.</p></div>
+<div class="chat">
+<div class="chat-head"><h2>Vardagskompassen</h2><p>Jag dömer inte. Vi tar en sak i taget.</p></div>
+<div id="messages" class="messages"><div class="msg bot">Hej! 👋 Vad händer hemma just nu? Du kan skriva precis som du skulle berätta för en annan person.</div><div class="msg bot">Till exempel: ”Mitt barn blir jättearg när mobilen ska stängas av.”</div></div>
+<div class="quick"><button onclick="quick('Mitt barn får ett utbrott')">Utbrott</button><button onclick="quick('Vi bråkar om mobilen')">Mobil/skärm</button><button onclick="quick('Mitt barn vill inte gå till skolan')">Skolan</button><button onclick="quick('Kvällarna blir jobbiga')">Kvällar</button></div>
+<div class="chat-input" id="chatQuestionArea">
+<textarea id="vardagsfraga" rows="2" placeholder="Skriv din fråga här…" aria-label="Skriv din fråga här"></textarea>
+<button class="btn" id="vardagsSkicka" type="button">Skicka</button>
 </div>
-
-<div id="detailList"></div>
-
+</div>
+<div class="notice card" style="margin-top:12px"><strong>🌱 Ett litet tips</strong>Du behöver inte hitta den perfekta lösningen. Försök först förstå vad som händer och välj sedan en liten sak att prova.</div>
 </section>
 
-<section id="history" class="page">
+<section id="history" class="page"><div class="hero"><div class="small">Det du sparat</div><h1>Historik</h1><p>Här hittar du sådant du har sparat i den här webbläsaren.</p></div><div id="historyList" class="list"></div></section>
 
-<div class="hero">
-<div class="small">Din historik</div>
-<h1>Det du har sparat</h1>
+<section id="follow" class="page"><div class="hero"><div class="small">Nästa steg</div><h1>Följa upp</h1><p>Se vad du provade och vad du vill göra nästa gång.</p></div><div id="followList" class="list"></div></section>
 
-<p>
-Här samlas situationer och egna anteckningar
-på den här enheten.
-</p>
-
-</div>
-
-<div id="historyList" class="list"></div>
-
-<div class="action-row">
-<button class="btn secondary" onclick="clearHistory()">
-Rensa sparad historik
-</button>
-</div>
-
-</section>
-
-<section id="patterns" class="page">
-
-<div class="hero">
-
-<div class="small">Se mönster</div>
-
-<h1>Vad återkommer?</h1>
-
-<p>
-Ibland blir samma situationer jobbiga om och om igen.
-Att se när det händer kan göra det lättare att prova
-något nytt.
-</p>
-
-</div>
-
-<div class="list">
-
-<div class="list-item">
-<strong>🔎 När blir det ofta svårt?</strong>
-Skriv ner tid på dagen, vad som hände precis innan
-och hur barnet och du reagerade.
-</div>
-
-<div class="list-item">
-<strong>🌡️ Hur var läget innan?</strong>
-Var någon trött, hungrig, stressad eller redan ledsen?
-</div>
-
-<div class="list-item">
-<strong>🔁 Vad brukar hända efteråt?</strong>
-Se om samma mönster upprepas.
-Det är inte för att hitta skuld – utan för att hitta
-en möjlighet att göra annorlunda.
-</div>
-
-</div>
-
-<div class="detail">
-
-<h3>Min egen anteckning</h3>
-
-<textarea id="patternNote"
-placeholder="Skriv några rader om ett mönster du har lagt märke till..."></textarea>
-
-<div class="action-row">
-
-<button class="btn" onclick="saveNote()">
-Spara anteckning
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="follow" class="page">
-
-<div class="hero">
-
-<div class="small">Uppföljning</div>
-
-<h1>Vad hände sedan?</h1>
-
-<p>
-Små förändringar blir lättare att se när du följer upp dem.
-Du kan skriva vad du provade och vad som fungerade.
-</p>
-
-</div>
-
-<div id="followList" class="list"></div>
-
-</section>
-
-<section id="reminders" class="page">
-
-<div class="hero">
-
-<div class="small">Påminnelser</div>
-
-<h1>Kom ihåg det som är viktigt</h1>
-
-<p>
-Välj en enkel sak du vill komma ihåg.
-Påminnelsen sparas på den här enheten.
-</p>
-
-</div>
-
-<div class="detail">
-
-<h3>Ny påminnelse</h3>
-
-<input id="reminderText"
-placeholder="Till exempel: 10 minuter tillsammans efter middagen">
-
-<div class="action-row">
-
-<button class="btn" onclick="addReminder()">
-Spara påminnelse
-</button>
-
-</div>
-
-</div>
-
-<div id="reminderList"
-class="list"
-style="margin-top:14px"></div>
-
-</section>
-
-</main>
-
-<footer>
-
-<strong>Vardagskompassen 1.0 – 2026</strong><br>
-
-Ett eget framtaget pedagogiskt stödmaterial med egna texter,
-vardagsexempel och ett eget pedagogiskt upplägg.
-Materialet är tänkt att ge föräldrar enkla tankar och verktyg
-för vardagen och är inte en ersättning för professionell hjälp
-när sådan behövs.
-
-<br><br>
-
-<strong>© Vardagskompassen 2026</strong><br>
-
-Materialet får inte kopieras, ändras, återpubliceras
-eller användas som eget material utan tillstånd.
-
-</footer>
-
+<footer><strong>Vardagskompassen</strong><br>Ett pedagogiskt vardagsstöd för föräldrar. Vid behov av professionell hjälp bör man kontakta rätt stöd i sin kommun eller vården.</footer>
 </div>
 
 <script>
-
-const areas = [
-
-{
-id:"love",
-icon:"❤️",
-title:"Kärlek",
-short:"Visa barnet att det är viktigt och omtyckt.",
-lead:"Barn behöver känna att de är älskade även när de gör fel, blir arga eller inte gör som du vill. Kärlek kan synas i små saker: en kram, en blick, några minuter tillsammans eller att du visar att du bryr dig.",
-steps:[
-["Visa värme","Säg eller visa något som berättar: jag tycker om dig."],
-["Stanna kvar","Försök finnas kvar även när barnet är argt eller ledset."],
-["Se det som fungerar","Lägg märke till små saker barnet gör bra och säg det."],
-["Gör något tillsammans","Några minuter med full uppmärksamhet kan betyda mycket."],
-["Börja om","Om det blev fel mellan er, försök hitta tillbaka och prata när ni lugnat er."]
-],
-example:"Barnet kommer hem på dåligt humör. I stället för att direkt fråga varför det beter sig så kan du börja med: ”Jag ser att du haft en jobbig stund. Jag finns här.”",
-next:"Idag: ge barnet fem minuter där du bara är tillsammans med det – utan mobil."
-},
-
-{
-id:"presence",
-icon:"👨‍👩‍👧",
-title:"Närvaro",
-short:"Visa att du lyssnar och verkligen är där.",
-lead:"Närvaro handlar inte om att du måste ha mycket tid. Det handlar ofta om hur du använder den tid ni faktiskt har. När barnet märker att du lyssnar och försöker förstå blir kontakten starkare.",
-steps:[
-["Lägg undan mobilen","När det går, ge barnet några minuter med din fulla uppmärksamhet."],
-["Lyssna färdigt","Försök att inte lösa problemet innan barnet har fått berätta."],
-["Ställ en enkel fråga","Fråga till exempel: ”Vad var bäst och sämst idag?”"],
-["Dela något själv","Berätta kort om något från din egen dag. Det kan göra samtalet lättare."],
-["Skapa en liten rutin","Välj en stund som ofta fungerar: på väg hem, vid maten eller före läggning."]
-],
-example:"Barnet berättar något som verkar litet. Du stannar upp, tittar på barnet och frågar: ”Berätta mer.”",
-next:"Idag: välj en vardagsstund där du försöker vara helt närvarande i tio minuter."
-},
-
-{
-id:"confirm",
-icon:"💬",
-title:"Bekräftelse",
-short:"Visa att barnets känslor får finnas.",
-lead:"Att bekräfta betyder inte att du måste hålla med om allt barnet säger eller gör. Det betyder att du visar att du hör och förstår att känslan finns.",
-steps:[
-["Sätt ord på känslan","”Jag tror att du blev riktigt besviken.”"],
-["Lyssna innan du förklarar","Låt barnet berätta sin sida."],
-["Skilj på känsla och handling","Alla känslor får finnas, men alla handlingar är inte okej."],
-["Undvik att förminska","Försök med mindre av ”det är väl inget” och mer av ”jag förstår att det känns så”."],
-["Hjälp barnet vidare","När känslan har lugnat sig kan ni prata om vad ni kan göra nästa gång."]
-],
-example:"Barnet blir argt för att skärmen ska stängas. Du kan säga: ”Du ville verkligen fortsätta. Jag förstår att du blir arg. Skärmen ska ändå stängas nu.”",
-next:"Idag: försök bekräfta en känsla innan du ger råd eller sätter en gräns."
-},
-
-{
-id:"self",
-icon:"🌱",
-title:"Självkänsla",
-short:"Hjälp barnet känna att det duger och kan utvecklas.",
-lead:"Självkänsla växer när barnet får uppleva att det är värdefullt även när något inte går bra. Försök att uppmärksamma ansträngning, mod och utveckling – inte bara resultat.",
-steps:[
-["Beröm försöket","”Du gav inte upp trots att det var svårt.”"],
-["Låt barnet prova","Ge lagom mycket hjälp så att barnet får känna att det kan själv."],
-["Undvik jämförelser","Försök jämföra barnet med sig själv: vad har blivit bättre?"],
-["Acceptera misstag","Visa att ett misstag är något man kan lära sig av."],
-["Se barnet bortom prestationen","Visa att barnet är viktigt även när resultatet inte blev som det tänkt."]
-],
-example:"Barnet misslyckas med något och säger ”Jag är dålig”. Svara med: ”Det gick inte som du ville den här gången. Det betyder inte att du är dålig.”",
-next:"Idag: säg något positivt om barnets ansträngning, inte om resultatet."
-},
-
-{
-id:"rest",
-icon:"😴",
-title:"Återhämtning",
-short:"Ge plats för sömn, vila, lugn och pauser.",
-lead:"Barn kan bli extra känsliga när kroppen och hjärnan går på högvarv. Sömn, mat, rörelse, lugn och pauser kan påverka hur lätt det är att hantera känslor och vardagens krav.",
-steps:[
-["Se över sömnen","Tänk på om barnet får tillräckligt med sömn och en lugn väg till läggning."],
-["Planera pauser","Alla behöver inte vara aktiva hela tiden."],
-["Gör övergångar lugna","Förvarna när något ska ta slut eller börja."],
-["Tänk på grundbehoven","Trötthet, hunger och stress kan göra konflikter större."],
-["Skydda lugn tid","Ha gärna en stund där barnet får landa utan krav."]
-],
-example:"Kvällarna blir ofta bråkiga. Prova att börja nedvarvningen tidigare i stället för att försöka lösa konflikten när alla redan är trötta.",
-next:"Idag: hitta en stund som kan bli lite lugnare och ta bort ett onödigt krav."
-},
-
-{
-id:"frames",
-icon:"🧭",
-title:"Ramar",
-short:"Trygga gränser hjälper barnet att veta vad som gäller.",
-lead:"Barn behöver vuxna som vågar sätta gränser. En ram blir tryggare när den är enkel, lugn och så förutsägbar som möjligt. Du behöver inte vara hård för att vara tydlig.",
-steps:[
-["Välj det viktigaste","Allt behöver inte bli en konflikt. Börja med det som verkligen spelar roll."],
-["Säg vad som gäller","Använd korta och tydliga meningar."],
-["Förklara kort","Barnet behöver inte alltid en lång föreläsning."],
-["Håll dig lugn","Försök att inte höja nivån när barnet höjer sin."],
-["Följ upp","När det är lugnt kan ni prata om vad som hände och vad ni gör nästa gång."]
-],
-example:"”Jag vet att du vill fortsätta spela. Speltiden är slut nu. Du kan välja om du vill stänga av själv eller om jag ska hjälpa dig.”",
-next:"Idag: välj en gräns hemma som kan göras enklare och tydligare."
-},
-
-{
-id:"clarity",
-icon:"🎯",
-title:"Tydlighet",
-short:"Gör det lättare för barnet att förstå vad du menar.",
-lead:"Barn kan ha svårt att följa instruktioner när de är trötta, stressade eller upptagna med något annat. Korta besked och en sak i taget kan göra stor skillnad.",
-steps:[
-["Säg en sak i taget","Undvik fem instruktioner på en gång."],
-["Säg vad barnet ska göra","”Skorna på” är tydligare än ”Sluta krångla.”"],
-["Ge rimlig tid","Barn behöver ibland några sekunder för att byta fokus."],
-["Kolla att ni förstått varandra","Be barnet berätta vad som ska hända om det behövs."],
-["Använd samma ord","Återkommande rutiner blir lättare när språket är likadant."]
-],
-example:"I stället för ”Nu får du väl sluta och göra dig klar någon gång” kan du säga: ”Nu tar vi på pyjamas. Sedan borstar vi tänderna.”",
-next:"Idag: byt ut en vag uppmaning mot en kort och konkret instruktion."
-},
-
-{
-id:"communication",
-icon:"🗣️",
-title:"Kommunikation",
-short:"Prata så att barnet kan förstå och vågar berätta.",
-lead:"Bra kommunikation handlar både om att prata och att lyssna. Barn berättar oftare när de märker att vuxna kan lyssna utan att direkt bli arga eller döma.",
-steps:[
-["Börja mjukt","En lugn start gör det lättare att få kontakt."],
-["Lyssna efter behovet","Ibland finns en känsla eller ett behov bakom orden."],
-["Var rak men vänlig","Du kan vara tydlig utan att vara hård."],
-["Undvik långa föreläsningar","Korta samtal kan fungera bättre när känslorna är stora."],
-["Ta om samtalet","Om det blev fel, försök igen när ni båda är lugnare."]
-],
-example:"”Jag blev arg när du slog igen dörren. Jag vill förstå vad som hände. Berätta från början.”",
-next:"Idag: ställ en fråga och lyssna färdigt innan du ger din lösning."
-},
-
-{
-id:"cooperation",
-icon:"🤝",
-title:"Samarbete",
-short:"Låt barnet vara med och hitta lösningar.",
-lead:"Barn följer ofta lättare en plan när de får vara med och påverka sådant som faktiskt går att påverka. Du som vuxen bestämmer inte alltid allt – men du har fortfarande ansvar för ramarna.",
-steps:[
-["Säg vad som inte går att ändra","Var tydlig med den gräns som gäller."],
-["Ge två rimliga val","Det kan ge barnet känslan av att få vara med."],
-["Fråga efter idéer","”Hur kan vi göra det här lättare?”"],
-["Testa en lösning","Välj något litet som ni kan prova."],
-["Följ upp tillsammans","Fråga om det fungerade och ändra om det behövs."]
-],
-example:"Om morgnarna blir stressiga kan ni tillsammans välja vad som ska göras kvällen före.",
-next:"Idag: låt barnet vara med och bestämma en liten sak som faktiskt går att påverka."
-},
-
-{
-id:"problem",
-icon:"🧩",
-title:"Problemlösning",
-short:"Gå från fast konflikt till ett litet nästa steg.",
-lead:"När samma problem återkommer är det lätt att fastna i vem som gjorde fel. Försök i stället att förstå situationen och hitta en förändring som är möjlig att prova.",
-steps:[
-["Beskriv problemet enkelt","Vad är det som faktiskt händer?"],
-["Ta reda på vad som ligger bakom","När brukar det bli svårt?"],
-["Välj en sak att ändra","Försök inte lösa allt samtidigt."],
-["Testa under några dagar","Se vad som händer i verkligheten."],
-["Justera utan skuld","Om det inte fungerade har ni fått information om vad som behöver ändras."]
-],
-example:"Läggningen tar lång tid. I stället för att bara säga ”du vägrar sova” kan ni titta på hela kvällen: mat, skärm, tempo, rutiner och tid för nedvarvning.",
-next:"Idag: välj ett återkommande problem och skriv ner vad som händer precis innan."
-}
-
+const areas=[
+{id:"love",icon:"❤️",title:"Kärlek",short:"Visa barnet att det är älskat och viktigt.",lead:"Barn behöver känna att de är älskade och viktiga – också när vardagen är stressig och barnet gör fel. Kärlek handlar inte om att alltid säga ja. Du kan sätta gränser och samtidigt visa värme. Det viktiga är att barnet känner: ”Mamma eller pappa finns kvar även när det blir svårt.”",steps:[["Visa att barnet är viktigt","Säg eller visa på något enkelt att barnet betyder mycket för dig."],["Se barnet","Försök få en liten stund där du verkligen ser och lyssnar på barnet."],["Visa kärlek på barnets sätt","Alla barn vill inte ha kärlek på samma sätt. Fundera på vad just ditt barn tycker om."],["Kärlek även när det blir fel","Du kan säga nej till ett beteende och ändå visa att du tycker om barnet."],["Ett litet steg","Välj en liten sak du vill göra mer av i vardagen."]],example:"Du kan säga: ”Jag tycker inte om det du gjorde, men jag tycker fortfarande om dig och jag finns här.”",next:"Gör idag en liten sak som tydligt visar: Du är viktig för mig."},
+{id:"presence",icon:"👀",title:"Närvaro",short:"Var tillsammans och försök vara närvarande i stunden.",lead:"Närvaro handlar inte om att du måste ha mycket tid. En kort stund med riktig uppmärksamhet kan betyda mycket. När barnet märker att du lyssnar och är där blir kontakten ofta starkare.",steps:[["Var här just nu","Försök vara med barnet utan att samtidigt tänka på allt annat."],["Lyssna på riktigt","Låt barnet prata klart och visa att du lyssnar."],["Fånga vardagen","Använd små stunder som redan finns, till exempel vid maten eller på väg hem."],["Lägg undan det som stör","Se om mobilen eller något annat kan vänta en stund."],["Ett litet steg","Välj en kort stund idag då du bara är med barnet."]],example:"Barnet berättar något. Lägg undan mobilen, titta på barnet och säg: ”Berätta mer.”",next:"Välj en stund idag och försök vara helt närvarande i den."},
+{id:"confirm",icon:"💬",title:"Bekräftelse",short:"Lyssna och visa att barnets känslor får finnas.",lead:"Att bekräfta betyder inte att du måste hålla med om allt barnet säger eller gör. Det betyder att du visar att du ser och hör barnet och försöker förstå känslan. När barnet känner sig förstått blir det ofta lättare att prata vidare.",steps:[["Börja med att lyssna","Låt barnet prata färdigt innan du ger råd eller försöker lösa."],["Sätt ord på känslan","Prova: ”Det verkar som att det här blev jobbigt för dig.”"],["Du behöver inte hålla med","En känsla kan få finnas även när du tycker annorlunda om saken."],["Undvik att förminska","Byt till exempel ut ”Det är väl inget” mot ”Jag förstår att det känns jobbigt.”"],["Ett litet steg","Nästa gång barnet blir ledset eller argt: lyssna, bekräfta och fråga vad barnet behöver."]],example:"”Jag förstår att du blev ledsen när det blev så. Jag håller inte med om allt, men jag hör att det blev jobbigt för dig.”",next:"Bekräfta en känsla innan du ger råd eller sätter en gräns."},
+{id:"self",icon:"🌱",title:"Självkänsla & medkänsla",short:"Hjälp barnet känna att det duger och vara snällt mot sig själv.",lead:"Självkänsla handlar om att känna: ”Jag duger.” Medkänsla handlar bland annat om att kunna vara snäll mot sig själv när något blir fel. Försök därför att inte bara prata om resultat. Lägg också märke till hur barnet försöker, lär sig, vågar prova och visar omtanke.",steps:[["Se personen","Visa intresse för vem barnet är – inte bara för vad barnet gör eller presterar."],["Se ansträngningen","Lägg märke till att barnet försöker, även när resultatet inte blir perfekt."],["Låt barnet prova","Ge lagom mycket hjälp så barnet får känna: ”Jag kan faktiskt själv.”"],["Prata snällt om misstag","Visa att misstag händer och att man kan försöka igen."],["Ett litet steg","Säg något idag som visar barnet att det duger även när något inte blev rätt."]],example:"Om barnet säger ”Jag är dålig”, kan du säga: ”Det blev inte som du ville. Men du är inte dålig. Vad tror du skulle kunna hjälpa nästa gång?”",next:"Uppmärksamma en ansträngning, ett försök eller en omtanke – inte bara ett resultat."},
+{id:"frames",icon:"🧭",title:"Ramar",short:"Tydliga gränser hjälper barnet att veta vad som gäller.",lead:"Barn behöver vuxna som visar vägen. Regler och rutiner kan göra vardagen tryggare och lättare att förstå. Det betyder inte att du behöver bestämma allt. Välj det som verkligen är viktigt och håll fast vid det på ett lugnt sätt. Du kan vara varm och samtidigt sätta en tydlig gräns.",steps:[["Välj det viktigaste","Allt behöver inte bli en konflikt. Börja med det som verkligen spelar roll."],["Säg vad som gäller","Använd korta och tydliga meningar."],["Förklara kort","Barnet behöver inte alltid en lång förklaring."],["Håll dig lugn","Försök att inte höja nivån när barnet höjer sin."],["Ett litet steg","Bestäm en mening du kan använda nästa gång en svår situation uppstår."]],example:"”Jag förstår att du vill fortsätta. Speltiden är slut nu. Du kan stänga av själv eller så hjälper jag dig.”",next:"Välj en gräns hemma som kan göras enklare och tydligare."},
+{id:"rest",icon:"🌿",title:"Återhämtning",short:"Ge plats för sömn, vila, lek och pauser – även för dig.",lead:"Barn behöver tid att vila, leka och bara vara. Men det behöver du som förälder också. När man är trött och stressad blir det lättare att tappa tålamodet. Återhämtning behöver inte vara något stort. En kort paus, en promenad eller hjälp från någon annan kan göra skillnad.",steps:[["Se över sömnen","Tänk på om barnet och du får tillräckligt med sömn och lugn inför natten."],["Planera pauser","Alla behöver inte vara aktiva eller ha krav hela tiden."],["Låt barnet leka och bara vara","Fri tid kan också vara viktig återhämtning."],["Se dina egna behov","När du får möjlighet att fylla på energi blir det lättare att vara den vuxna du vill vara."],["Ett litet steg","Hitta en liten stund idag för vila eller lugn."]],example:"Om kvällen blir bråkig kan det vara hjälpsamt att börja varva ner tidigare, innan alla är för trötta.",next:"Hitta en stund idag som kan bli lite lugnare och ta bort ett onödigt krav."}
 ];
+const qs=[["Vad händer just nu?","Vad gör barnet och vad gör du?"],["Vad kan hjälpa just nu?","Vad kan göra situationen lite lugnare eller lättare?"],["Vad kan du prova?","Vilken liten sak kan du säga eller göra?"],["Vad vill du göra annorlunda?","Vilken liten förändring känns möjlig att prova?"],["Spara och följ upp","Vad vill du komma ihåg till nästa gång?"]];
+const whys=["Att stanna upp och se vad som händer gör det lättare att välja nästa steg.","När tempot sjunker blir det ofta lättare att lyssna och tänka.","En liten konkret förändring är lättare att prova än att försöka ändra allt.","Genom att prova och justera kan ni hitta det som fungerar i just er vardag.","När du sparar kan du komma tillbaka och se vad du provade."];
 
-function getData(key,fallback){
-try{
-return JSON.parse(localStorage.getItem(key)) ?? fallback;
-}catch(e){
-return fallback;
-}
-}
-
-function setData(key,value){
-localStorage.setItem(key,JSON.stringify(value));
-updateCounts();
-}
-
+let current=0,step=0;
+const $=id=>document.getElementById(id);
+function data(k,d=[]){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v));counts()}
+function topOfPage(){document.documentElement.scrollTop=0;document.body.scrollTop=0;window.scrollTo(0,0)}
 function showPage(id){
-
-document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
-
-const page=document.getElementById(id);
-
-if(page) page.classList.add("active");
-
-document.querySelectorAll("nav button")
-.forEach(b=>{
-b.classList.toggle("active",b.dataset.page===id);
-});
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-if(id==="history") renderHistory();
-if(id==="follow") renderFollow();
-if(id==="reminders") renderReminders();
-
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+ const target=$(id); if(!target)return;
+ target.classList.add("active");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ topOfPage();
+ requestAnimationFrame(topOfPage);
+ setTimeout(topOfPage,50);
+ if(id==="history")renderHistory();
+ if(id==="follow")renderFollow();
 }
-
-document.querySelectorAll("nav button")
-.forEach(btn=>{
-btn.addEventListener("click",()=>{
-showPage(btn.dataset.page);
-});
-});
-
-function cardHTML(a){
-
-return `
-<article class="card">
-
-<div class="emoji">${a.icon}</div>
-
-<h3>${a.title}</h3>
-
-<p>${a.short}</p>
-
-<button class="btn small"
-onclick="openArea('${a.id}')">
-Visa fem steg
-</button>
-
-</article>
-`;
-
-}
-
-document.getElementById("homeCards").innerHTML=
-areas.map(cardHTML).join("");
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
 
 function openArea(id){
+ current=areas.findIndex(a=>a.id===id);
+ const a=areas[current];
+ $("detailContent").innerHTML=`<div class="detail"><div class="detail-head"><div class="emoji">${a.icon}</div><div><h2>${a.title}</h2><div class="lead">${a.lead}</div></div></div><div class="steps">${a.steps.map((s,i)=>`<div class="step"><div class="num">${i+1}</div><div><strong>${s[0]}</strong>${s[1]}</div></div>`).join("")}</div><div class="example"><strong>💡 Vardagsexempel</strong><br>${a.example}</div><div class="next"><strong>🌱 Litet nästa steg</strong>${a.next}</div><div class="action"><button class="btn" onclick="startFlow()">Gå steg för steg</button><button class="btn secondary" onclick="saveArea()">Spara</button></div></div>`;
+ showPage("detail");
+}
+function selectModelPart(id){
+  const a = areas.find(x => x.id === id);
+  if(!a) return;
 
-const a=areas.find(x=>x.id===id);
+  document.querySelectorAll(".plate-card .slice").forEach(slice => {
+    slice.classList.remove("selected","expanded");
+  });
 
-if(!a)return;
+  const target = document.querySelector(`.plate-card .slice[onclick*="${id}"]`);
+  if(target) target.classList.add("selected");
 
-showPage("children");
+  const detail = $("modelDetail");
+  if(!detail) return;
 
-const el=document.getElementById("detail-"+id);
+  detail.innerHTML = `
+    <div class="model-detail-inner">
+      <div class="model-detail-head">
+        <div class="model-detail-icon">${a.icon}</div>
+        <div>
+          <h3>${a.title}</h3>
+        </div>
+      </div>
+      <p class="detail-lead">${a.lead}</p>
+      <div class="detail-block">
+        <strong>Prova idag:</strong>
+        <p>${a.example.replace(/^.*?:\s*/, "")}</p>
+      </div>
+      <div class="plate-card-hint">Tryck på en annan del av tallriken för att läsa om den.</div>
+    </div>
+  `;
 
-if(el)
-el.scrollIntoView({
-behavior:"smooth",
-block:"start"
+  detail.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+function startFlow(){step=0;renderFlow();showPage("flow")}
+function renderFlow(){const a=areas[current];$("flowIcon").textContent=a.icon;$("flowTitle").textContent=a.title;$("flowLead").textContent=a.lead;$("stepNo").textContent="Steg "+(step+1)+" av 5";$("stepText").textContent=a.steps[step][1];$("qTitle").textContent=qs[step][0];$("qText").textContent=qs[step][1];$("whyText").textContent=whys[step];$("bar").style.width=((step+1)*20)+"%";$("next").textContent=step===4?"💾 Spara och följ upp":"Nästa steg →";$("flowSave").innerHTML=step===4?`<div class="card"><textarea id="plan" placeholder="${a.next}"></textarea></div>`:""}
+function nextStep(){if(step<4){step++;renderFlow();return}const a=areas[current],h=data("vc_history");h.unshift({title:a.title,text:$("plan")?.value||a.next,date:new Date().toLocaleString("sv-SE")});save("vc_history",h.slice(0,100));const f=data("vc_follow");f.unshift({title:a.title,text:$("plan")?.value||a.next,date:new Date().toLocaleDateString("sv-SE")});save("vc_follow",f.slice(0,50));alert("Sparat!");showPage("follow")}
+function prevStep(){if(step>0){step--;renderFlow()}else showPage("detail")}
+function saveArea(){const a=areas[current],h=data("vc_history");h.unshift({title:a.title,text:a.next,date:new Date().toLocaleString("sv-SE")});save("vc_history",h.slice(0,100));alert("Sparat!")}
+$("areaCards").innerHTML=areas.map(a=>`<div class="card"><div class="emoji">${a.icon}</div><h3>${a.title}</h3><p>${a.short}</p><button class="btn full" onclick="openArea('${a.id}')">Läs mer</button></div>`).join("");
+
+
+/* ===== NY STABIL FRÅGEFUNKTION ===== */
+function svaraPaVardagsfraga(){
+  const input=document.getElementById("vardagsfraga");
+  const messages=document.getElementById("messages");
+  const button=document.getElementById("vardagsSkicka");
+  if(!input || !messages) return;
+  const text=input.value.trim();
+  if(!text) { input.focus(); return; }
+
+  const user=document.createElement("div");
+  user.className="msg user";
+  user.textContent=text;
+  messages.appendChild(user);
+  input.value="";
+  button.disabled=true;
+  input.disabled=true;
+  messages.scrollTop=messages.scrollHeight;
+
+  setTimeout(function(){
+    const x=text.toLowerCase();
+    let r="Jag hör att det här är jobbigt. Vi kan börja enkelt: vad brukar hända precis innan situationen blir svår?";
+    if(x.includes("mobil")||x.includes("skärm")||x.includes("telefon")){
+      r="Skärmbråk är vanligt. Försök att vara tydlig och förvarna innan skärmen ska stängas. Bekräfta känslan, men håll fast vid ramen.\n\n💡 Prova idag: Säg: ”Jag vet att du vill fortsätta. Det är svårt att sluta när man har roligt. Tiden är slut nu.”";
+    } else if(x.includes("utbrott")||x.includes("arg")||x.includes("ilska")){
+      r="När barnet är väldigt argt är det ofta svårt att ta in långa förklaringar. Försök först att lugna situationen och visa att du finns kvar.\n\n💡 Prova idag: Säg: ”Jag ser att du är jättearg. Jag stannar här. Vi pratar när det känns lugnare.”";
+    } else if(x.includes("skola")||x.includes("gå till skolan")){
+      r="Försök först förstå vad som gör skolan svår. Det kan handla om morgonen, kompisar, krav, oro eller något annat.\n\n💡 Prova idag: Fråga: ”Vad är det som känns svårast med skolan just nu?” och lyssna innan du försöker lösa.";
+    } else if(x.includes("sova")||x.includes("kväll")||x.includes("läggdags")){
+      r="Kvällar blir ofta svårare när barnet och den vuxne är trötta. En enkel och återkommande rutin kan göra det lättare.\n\n💡 Prova idag: Börja nedvarvningen lite tidigare och håll samma ordning varje kväll.";
+    } else if(x.includes("gräns")||x.includes("nej")||x.includes("regler")){
+      r="En tydlig gräns kan vara trygg för barnet. Du kan säga nej till beteendet och samtidigt visa att du förstår känslan.\n\n💡 Prova idag: Säg kort: ”Jag förstår att du vill, men det är inte okej. Jag hjälper dig.”";
+    } else if(x.includes("självkänsla")||x.includes("duger")||x.includes("misslyck")){
+      r="Försök att se barnets ansträngning, inte bara resultatet. Barnet behöver känna att det duger även när något inte går som tänkt.\n\n💡 Prova idag: Säg: ”Det blev inte som du ville, men jag såg hur mycket du försökte.”";
+    }
+    const bot=document.createElement("div");
+    bot.className="msg bot";
+    bot.textContent=r;
+    messages.appendChild(bot);
+    messages.scrollTop=messages.scrollHeight;
+    button.disabled=false;
+    input.disabled=false;
+    input.focus();
+  },350);
+}
+window.addEventListener("DOMContentLoaded",function(){
+  const input=document.getElementById("vardagsfraga");
+  const button=document.getElementById("vardagsSkicka");
+  if(!input || !button) return;
+  button.addEventListener("click",svaraPaVardagsfraga);
+  input.addEventListener("keydown",function(e){
+    if(e.key==="Enter" && !e.shiftKey){e.preventDefault();svaraPaVardagsfraga();}
+  });
 });
 
-}
+function sendChat(){svaraPaVardagsfraga()}
+function quick(t){const input=document.getElementById("vardagsfraga");if(input){input.value=t;svaraPaVardagsfraga()}}
+function addMsg(t,c){const d=document.createElement("div");d.className="msg "+c;d.textContent=t;$("messages").appendChild(d);$("messages").scrollTop=$("messages").scrollHeight}
+function respond(t){const x=t.toLowerCase();let r="Jag hör att det här är jobbigt. Vi kan börja enkelt: Vad brukar hända precis innan situationen blir svår?";if(x.includes("mobil")||x.includes("skärm"))r="Skärmbråk är vanligt. Börja gärna med en tydlig gräns och förvarna innan skärmen ska stängas. Du kan säga: ”Jag vet att du vill fortsätta. Om fem minuter stänger vi av.” Vill du sedan läsa mer om Ramar?";else if(x.includes("utbrott")||x.includes("arg"))r="När barnet är väldigt argt är det ofta svårt att prata om lösningar. Försök först att få ner tempot. Bekräfta känslan och håll gränsen lugnt. Till exempel: ”Jag ser att du är jättearg. Jag hjälper dig. Jag låter dig inte slå.”";else if(x.includes("skola"))r="Om skolan blivit svårt kan det vara bra att först försöka förstå vad som händer innan ni bara fokuserar på frånvaron. När blir det svårt – på morgonen, i klassrummet, med kompisar eller något annat?";else if(x.includes("kväll"))r="Kvällar blir ofta svårare när alla är trötta. Titta på hela vägen fram till läggning: mat, skärm, tempo, rutiner och tid att varva ner. Ett litet första steg kan vara att börja nedvarvningen lite tidigare.";addMsg(r,"bot")}
+function renderHistory(){const h=data("vc_history");$("historyList").innerHTML=h.length?h.map(x=>`<div class="list-item"><strong>${x.title}</strong><p>${x.text}</p><small>${x.date}</small></div>`).join(""):'<div class="list-item">Du har inte sparat något ännu.</div>'}
+function renderFollow(){const f=data("vc_follow");$("followList").innerHTML=f.length?f.map((x,i)=>`<div class="list-item"><strong>${x.title}</strong><p>${x.text}</p><small>${x.date}</small><div class="action"><button class="btn secondary" onclick="removeFollow(${i})">Ta bort</button></div></div>`).join(""):'<div class="list-item">Inget att följa upp ännu.</div>'}
+function removeFollow(i){const f=data("vc_follow");f.splice(i,1);save("vc_follow",f);renderFollow()}
+function counts(){$("saved").textContent=data("vc_history").length;$("followCount").textContent=data("vc_follow").length;$("notes").textContent=data("vc_history").length;$("reminders").textContent=0}
+counts();
 
-document.getElementById("detailList").innerHTML=
-areas.map(a=>`
-
-<article class="detail" id="detail-${a.id}">
-
-<div class="detail-head">
-
-<div class="detail-icon">
-${a.icon}
-</div>
-
-<div>
-
-<h2>${a.title}</h2>
-
-<div class="lead">
-${a.lead}
-</div>
-
-</div>
-
-</div>
-
-<div class="steps">
-
-${a.steps.map(s=>`
-
-<div class="step">
-
-<div>
-
-<strong>${s[0]}</strong>
-
-${s[1]}
-
-</div>
-
-</div>
-
-`).join("")}
-
-</div>
-
-<div class="example">
-
-<strong>💡 Vardagsexempel</strong>
-<br>
-
-${a.example}
-
-</div>
-
-<div class="next">
-
-<strong>🌱 Litet nästa steg</strong>
-
-${a.next}
-
-</div>
-
-<div class="action-row">
-
-<button class="btn small"
-onclick="saveSituation('${a.id}')">
-Spara situation
-</button>
-
-<button class="btn secondary small"
-onclick="addFollow('${a.id}')">
-Lägg till uppföljning
-</button>
-
-</div>
-
-</article>
-
-`).join("");
-
-function saveSituation(id){
-
-const a=areas.find(x=>x.id===id);
-
-const arr=getData("vc_history",[]);
-
-arr.unshift({
-type:"situation",
-id,
-title:a.title,
-date:new Date().toLocaleString("sv-SE")
+if("scrollRestoration" in history) history.scrollRestoration="manual";
+window.addEventListener("load",()=>{topOfPage();setTimeout(topOfPage,100)});
+window.addEventListener("pageshow",()=>{topOfPage();setTimeout(topOfPage,100)});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Home" && !["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName)){
+  e.preventDefault();topOfPage();
+ }
 });
-
-setData("vc_history",arr.slice(0,100));
-
-alert("Sparat. Du hittar det under Historik.");
-
-}
-
-function addFollow(id){
-
-const a=areas.find(x=>x.id===id);
-
-const arr=getData("vc_follow",[]);
-
-arr.unshift({
-id,
-title:a.title,
-date:new Date().toLocaleDateString("sv-SE"),
-note:""
-});
-
-setData("vc_follow",arr.slice(0,50));
-
-alert("Uppföljningen är sparad.");
-
-}
-
-function saveNote(){
-
-const text=
-document.getElementById("patternNote")
-.value.trim();
-
-if(!text){
-alert("Skriv något först.");
-return;
-}
-
-const arr=getData("vc_history",[]);
-
-arr.unshift({
-type:"note",
-title:"Egen anteckning",
-note:text,
-date:new Date().toLocaleString("sv-SE")
-});
-
-setData("vc_history",arr.slice(0,100));
-
-document.getElementById("patternNote").value="";
-
-alert("Anteckningen är sparad.");
-
-}
-
-function renderHistory(){
-
-const arr=getData("vc_history",[]);
-
-const box=document.getElementById("historyList");
-
-if(!arr.length){
-
-box.innerHTML=`
-<div class="list-item">
-
-<strong>Inget sparat ännu.</strong>
-
-När du sparar en situation eller anteckning
-visas den här.
-
-</div>
-`;
-
-return;
-
-}
-
-box.innerHTML=arr.map((x,i)=>`
-
-<div class="history-item">
-
-<div>
-
-<strong>${x.title}</strong>
-
-<br>
-
-${x.note ? escapeHTML(x.note) : "Sparad situation"}
-
-<br>
-
-<small>${x.date}</small>
-
-</div>
-
-<button class="btn secondary small"
-onclick="removeHistory(${i})">
-
-Ta bort
-
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-function removeHistory(i){
-
-const arr=getData("vc_history",[]);
-
-arr.splice(i,1);
-
-setData("vc_history",arr);
-
-renderHistory();
-
-}
-
-function clearHistory(){
-
-if(confirm("Vill du ta bort hela historiken?")){
-
-localStorage.removeItem("vc_history");
-
-renderHistory();
-
-updateCounts();
-
-}
-
-}
-
-function renderFollow(){
-
-const arr=getData("vc_follow",[]);
-
-const box=document.getElementById("followList");
-
-if(!arr.length){
-
-box.innerHTML=`
-<div class="list-item">
-
-<strong>Inga uppföljningar ännu.</strong>
-
-Spara en uppföljning från ett område
-när du vill följa vad som händer.
-
-</div>
-`;
-
-return;
-
-}
-
-box.innerHTML=arr.map((x,i)=>`
-
-<div class="detail">
-
-<h3>${x.title}</h3>
-
-<small>${x.date}</small>
-
-<textarea
-id="f-${i}"
-placeholder="Vad provade du? Vad fungerade? Vad vill du prova nästa gång?"
->${escapeHTML(x.note||"")}</textarea>
-
-<div class="action-row">
-
-<button class="btn small"
-onclick="saveFollow(${i})">
-Spara
-</button>
-
-<button class="btn secondary small"
-onclick="removeFollow(${i})">
-Ta bort
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-function saveFollow(i){
-
-const arr=getData("vc_follow",[]);
-
-arr[i].note=
-document.getElementById("f-"+i).value;
-
-setData("vc_follow",arr);
-
-alert("Uppföljningen är sparad.");
-
-}
-
-function removeFollow(i){
-
-const arr=getData("vc_follow",[]);
-
-arr.splice(i,1);
-
-setData("vc_follow",arr);
-
-renderFollow();
-
-}
-
-function addReminder(){
-
-const input=document.getElementById("reminderText");
-
-const text=input.value.trim();
-
-if(!text){
-
-alert("Skriv vad du vill komma ihåg.");
-
-return;
-
-}
-
-const arr=getData("vc_reminders",[]);
-
-arr.unshift({
-text,
-date:new Date().toLocaleDateString("sv-SE")
-});
-
-setData("vc_reminders",arr.slice(0,50));
-
-input.value="";
-
-renderReminders();
-
-}
-
-function renderReminders(){
-
-const arr=getData("vc_reminders",[]);
-
-const box=document.getElementById("reminderList");
-
-if(!arr.length){
-
-box.innerHTML=`
-<div class="list-item">
-
-<strong>Inga påminnelser ännu.</strong>
-
-</div>
-`;
-
-return;
-
-}
-
-box.innerHTML=arr.map((x,i)=>`
-
-<div class="history-item">
-
-<div>
-
-<strong>
-💛 ${escapeHTML(x.text)}
-</strong>
-
-<br>
-
-<small>
-Skapad ${x.date}
-</small>
-
-</div>
-
-<button class="btn secondary small"
-onclick="removeReminder(${i})">
-
-Klar
-
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-function removeReminder(i){
-
-const arr=getData("vc_reminders",[]);
-
-arr.splice(i,1);
-
-setData("vc_reminders",arr);
-
-renderReminders();
-
-}
-
-function updateCounts(){
-
-document.getElementById("savedCount").textContent=
-getData("vc_history",[])
-.filter(x=>x.type==="situation").length;
-
-document.getElementById("followCount").textContent=
-getData("vc_follow",[]).length;
-
-document.getElementById("reminderCount").textContent=
-getData("vc_reminders",[]).length;
-
-document.getElementById("noteCount").textContent=
-getData("vc_history",[])
-.filter(x=>x.type==="note").length;
-
-}
-
-function escapeHTML(str){
-
-return String(str).replace(
-/[&<>"']/g,
-m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[m])
-);
-
-}
-
-updateCounts();
 
 </script>
-
 </body>
 </html>
