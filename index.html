@@ -1,23 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#17443e">
-<title>Vardagskompassen – stöd i vardagen för föräldrar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3f8f7d">
+<meta name="description" content="Vardagskompassen – enkla tankar och små steg för föräldrar i vardagen.">
+<title>Vardagskompassen – stöd i vardagen</title>
+
 <style>
 :root{
   --ink:#173b38;
-  --brand:#4f8f7d;
-  --brand-dark:#397565;
-  --soft:#e8f3ee;
+  --brand:#3f8f7d;
+  --brand-dark:#2f7465;
+  --soft:#e9f3ef;
   --bg:#f7f8f6;
-  --line:#dce6e1;
-  --muted:#667873;
-  --white:#fff;
-  --warm:#fff5df;
-  --pink:#fceceb;
-  --shadow:0 8px 24px rgba(23,59,56,.08);
+  --white:#ffffff;
+  --muted:#667a76;
+  --line:#d9e5e1;
+  --shadow:0 8px 25px rgba(23,59,56,.08);
+  --radius:22px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -26,450 +27,1210 @@ body{
   background:var(--bg);
   color:var(--ink);
   font-family:Arial,Helvetica,sans-serif;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
+  line-height:1.55;
 }
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-.app{
-  width:100%;
-  max-width:980px;
-  margin:auto;
-  padding:16px 16px 70px;
-}
+.app{max-width:980px;margin:auto;padding:18px 16px 60px}
+
 header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin:6px 0 14px;
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:14px;
 }
 .logo{
   width:48px;height:48px;border-radius:16px;
-  background:#dceee7;
+  background:#dceee8;
   display:grid;place-items:center;
-  font-size:25px;flex:0 0 auto;
+  font-size:26px;
 }
-.brand{font-size:27px;font-weight:800;letter-spacing:.2px}
-.tag{font-size:13px;color:var(--muted);margin-top:1px}
+.brand{font-size:25px;font-weight:800;letter-spacing:-.5px}
+.tag{font-size:14px;color:var(--muted);margin-top:1px}
+
 nav{
-  display:flex;gap:8px;overflow-x:auto;
-  padding:4px 0 10px;
+  display:flex;gap:7px;overflow-x:auto;
+  padding:4px 0 12px;
   scrollbar-width:none;
 }
 nav::-webkit-scrollbar{display:none}
 nav button{
-  border:0;background:#e8efeb;color:var(--ink);
-  border-radius:14px;padding:11px 14px;white-space:nowrap;
-  font-weight:700;
+  border:0;background:#e8efec;color:var(--ink);
+  padding:12px 15px;border-radius:14px;
+  white-space:nowrap;font-weight:700;
 }
-nav button.active{background:var(--brand);color:white}
+nav button.active{background:var(--brand);color:#fff}
+
 .page{display:none}
 .page.active{display:block}
+
 .hero{
   background:linear-gradient(135deg,#eaf6f1,#dceee8);
-  border-radius:28px;padding:26px;margin:8px 0 18px;
+  border-radius:28px;
+  padding:27px;
+  margin:8px 0 22px;
 }
-.kicker{font-weight:800;font-size:15px;letter-spacing:.4px}
-.hero h1{font-size:36px;line-height:1.08;margin:7px 0 12px}
-.hero p{font-size:18px;max-width:760px;margin:0}
-.stats{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
-  background:var(--white);border:1px solid var(--line);
-  border-radius:24px;padding:16px;margin-bottom:22px;
+.hero .small{font-weight:800;font-size:15px}
+.hero h1{font-size:38px;line-height:1.08;margin:6px 0 12px}
+.hero p{font-size:18px;max-width:760px;margin:0;color:#31534e}
+
+h2{font-size:25px;margin:22px 0 7px}
+h3{font-size:20px;margin:0 0 8px}
+.section-intro{color:var(--muted);margin-top:0}
+
+.plate{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  margin:18px 0;
 }
-.stat{background:#eef5f1;border-radius:18px;padding:15px}
-.stat small{display:block;color:var(--muted);font-size:14px}
-.stat strong{display:block;font-size:31px;margin-top:3px}
-.section-title{font-size:25px;margin:22px 0 5px}
-.muted{color:var(--muted)}
-.grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;
+.plate-top{
+  display:flex;justify-content:space-between;gap:14px;align-items:flex-start;
 }
+.plate-title{font-size:24px;font-weight:800}
+.plate-sub{color:var(--muted);font-size:15px;margin-top:3px}
+.plate-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
+.plate-part{
+  border-radius:18px;padding:16px;
+  min-height:118px;
+}
+.plate-part strong{display:block;font-size:17px;margin-bottom:5px}
+.plate-part span{font-size:14px;color:#385b55}
+.p-love{background:#f5dfe5}
+.p-presence{background:#dcecf5}
+.p-confirm{background:#e4e2f4}
+.p-self{background:#dcefdc}
+.p-rest{background:#e9e0f4}
+.p-frame{background:#f1e7d7}
+
+.counter-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin:18px 0 28px;
+}
+.counter{
+  background:#fff;border:1px solid var(--line);
+  border-radius:20px;padding:17px;
+}
+.counter span{display:block;color:var(--muted);font-size:14px}
+.counter strong{font-size:31px;display:block;margin-top:3px}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .card{
-  background:white;border:1px solid var(--line);
-  border-radius:22px;padding:19px;box-shadow:var(--shadow);
+  background:#fff;border:1px solid var(--line);
+  border-radius:22px;padding:18px;
+  transition:.15s transform,.15s box-shadow;
 }
-.card h3{margin:5px 0 7px;font-size:20px}
-.card p{margin:0;color:#4f625d}
-.card .icon{font-size:28px}
-.card button,.primary{
-  margin-top:15px;border:0;background:var(--brand);
-  color:white;border-radius:13px;padding:11px 14px;font-weight:700;
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.card .emoji{font-size:28px}
+.card p{color:var(--muted);margin:8px 0 14px}
+.btn{
+  border:0;background:var(--brand);color:#fff;
+  border-radius:14px;padding:11px 15px;font-weight:800;
 }
-.card button:hover,.primary:hover{background:var(--brand-dark)}
-.situation{
-  background:white;border:1px solid var(--line);
-  border-radius:24px;padding:20px;margin:14px 0;
+.btn.secondary{background:#e8efec;color:var(--ink)}
+.btn.small{padding:9px 12px;font-size:14px}
+
+.detail{
+  background:#fff;border:1px solid var(--line);
+  border-radius:26px;padding:23px;margin-top:15px;
+  box-shadow:var(--shadow);
 }
-.situation h3{font-size:22px;margin:0 0 8px}
-.steps{margin:16px 0 0;padding:0;list-style:none}
-.steps li{
-  display:flex;gap:11px;padding:12px 0;border-top:1px solid var(--line);
+.detail-head{display:flex;gap:14px;align-items:flex-start}
+.detail-icon{font-size:34px}
+.detail h2{margin:0;font-size:28px}
+.detail .lead{color:#4c6661;font-size:17px;margin-top:5px}
+
+.steps{counter-reset:step;display:grid;gap:10px;margin-top:18px}
+.step{
+  display:flex;gap:13px;align-items:flex-start;
+  background:#f4f8f6;border-radius:17px;padding:14px;
 }
-.num{
-  width:29px;height:29px;border-radius:50%;background:var(--soft);
-  display:grid;place-items:center;font-weight:800;flex:0 0 auto;
+.step:before{
+  counter-increment:step;
+  content:counter(step);
+  flex:0 0 31px;height:31px;border-radius:50%;
+  background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-weight:800;
 }
-.tip{
-  background:var(--warm);border-radius:18px;padding:15px;margin-top:14px;
+.step strong{display:block;margin-bottom:2px}
+
+.example{
+  margin-top:18px;padding:17px;
+  border-left:5px solid var(--brand);
+  background:#edf6f2;border-radius:0 17px 17px 0;
 }
-.danger{
-  background:var(--pink);border-radius:18px;padding:15px;margin-top:14px;
+.next{
+  margin-top:16px;padding:17px;
+  background:#fff7df;border-radius:17px;
 }
-.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
-.toolbar button{
-  border:1px solid var(--line);background:white;color:var(--ink);
-  border-radius:13px;padding:10px 13px;font-weight:700;
+.next strong{display:block;margin-bottom:4px}
+
+.action-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+
+.list{display:grid;gap:10px}
+.list-item{
+  background:#fff;border:1px solid var(--line);
+  border-radius:18px;padding:16px;
 }
-.search{
-  width:100%;border:1px solid var(--line);border-radius:15px;
-  padding:13px 15px;background:white;outline:none;
+.list-item strong{display:block;margin-bottom:4px}
+
+textarea,input,select{
+  width:100%;border:1px solid var(--line);
+  background:#fff;border-radius:15px;
+  padding:13px;color:var(--ink);
 }
-.search:focus{border-color:var(--brand)}
-textarea{
-  width:100%;min-height:120px;resize:vertical;
-  border:1px solid var(--line);border-radius:16px;padding:14px;
-  background:white;color:var(--ink);outline:none;
+textarea{min-height:120px;resize:vertical}
+
+.history-item{
+  background:#fff;border:1px solid var(--line);
+  border-radius:18px;padding:15px;
+  display:flex;justify-content:space-between;gap:12px;
 }
-.note-row{display:grid;grid-template-columns:1fr auto;gap:10px}
-.empty{padding:20px;text-align:center;color:var(--muted)}
+.history-item small{color:var(--muted)}
+
 footer{
-  text-align:center;color:var(--muted);font-size:13px;
-  margin-top:35px;padding-top:20px;border-top:1px solid var(--line);
+  margin-top:45px;padding:22px 4px 0;
+  color:var(--muted);font-size:13px;
+  border-top:1px solid var(--line);
 }
-.small{font-size:14px}
-.back{background:#edf3f0!important}
+footer strong{color:var(--ink)}
+
+.notice{
+  background:#eef6f3;border:1px solid #d5e8e2;
+  border-radius:18px;padding:16px;margin-top:15px;
+}
+.notice strong{display:block;margin-bottom:4px}
+
 @media(max-width:700px){
-  .app{padding:12px 12px 50px}
-  header{margin-top:3px}
-  .brand{font-size:24px}
-  nav button{padding:10px 12px}
-  .hero{padding:21px;border-radius:24px}
+  .app{padding:13px 12px 45px}
+  header{margin-bottom:8px}
+  .brand{font-size:22px}
+  .hero{padding:22px;border-radius:23px}
   .hero h1{font-size:31px}
   .hero p{font-size:17px}
-  .stats{grid-template-columns:repeat(2,1fr);padding:12px;gap:9px}
-  .stat strong{font-size:28px}
-  .grid{grid-template-columns:1fr}
-  .card{padding:17px}
-  .section-title{font-size:23px}
-}
-@media(min-width:701px){
-  .situation-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-}
-
-.plate-section{margin-top:8px}
-.plate-wrap{display:grid;grid-template-columns:minmax(300px,470px) 1fr;gap:24px;align-items:center;background:white;border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow)}
-.plate{position:relative;width:min(100%,430px);aspect-ratio:1;border-radius:50%;margin:auto;background:conic-gradient(#f6d6d2 0 16.66%,#dceee8 16.66% 33.33%,#f6e8bd 33.33% 50%,#dfe8f5 50% 66.66%,#e6dff2 66.66% 83.33%,#dcebd6 83.33% 100%);box-shadow:inset 0 0 0 12px #fff,0 8px 25px rgba(23,59,56,.13)}
-.plate:before{content:"";position:absolute;inset:12%;border-radius:50%;background:rgba(255,255,255,.45);box-shadow:inset 0 0 0 3px rgba(255,255,255,.7)}
-.slice{position:absolute;z-index:2;border:0;background:transparent;color:var(--ink);font-weight:800;text-align:center;line-height:1.1;padding:7px;border-radius:15px}
-.slice:hover{background:rgba(255,255,255,.6);transform:scale(1.04)}
-.slice span{display:block;font-size:13px;margin-top:2px}
-.s1{top:8%;left:36%}.s2{top:27%;right:7%}.s3{bottom:26%;right:6%}.s4{bottom:7%;left:32%}.s5{bottom:27%;left:6%}.s6{top:27%;left:7%}
-.plate-center{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);width:30%;aspect-ratio:1;border-radius:50%;background:white;display:grid;place-items:center;text-align:center;font-weight:900;font-size:12px;line-height:1.15;box-shadow:0 3px 15px rgba(23,59,56,.12)}
-.plate-info{background:#eef5f1;border-radius:22px;padding:22px;min-height:190px}
-.plate-info h3{font-size:22px;margin:0 0 8px}.plate-info p{margin:0;color:#4f625d}
-@media(max-width:700px){
- .plate-wrap{grid-template-columns:1fr;padding:15px}
- .plate{width:min(100%,350px)}
- .plate-info{min-height:auto}
- .slice span{font-size:11px}
- .plate-center{font-size:10px}
+  .counter-grid{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:1fr}
+  .plate-grid{grid-template-columns:1fr}
+  nav button{padding:11px 13px}
 }
 </style>
 </head>
 
 <body>
+
 <div class="app">
+
 <header>
-  <div class="logo">✦</div>
+  <div class="logo">🧭</div>
   <div>
     <div class="brand">Vardagskompassen</div>
-    <div class="tag">Stöd i vardagen för föräldrar</div>
+    <div class="tag">Små steg i vardagen för föräldrar</div>
   </div>
 </header>
 
 <nav id="nav">
   <button class="active" data-page="home">Hem</button>
-  <button data-page="situationer">Situationer</button>
-  <button data-page="relation">❤️ Kärlek & relation</button>
-  <button data-page="tydlighet">🧭 Ramar & tydlighet</button>
-  <button data-page="känslor">💛 Känslor & bekräftelse</button>
-  <button data-page="återhämtning">🌿 Återhämtning</button>
-  <button data-page="verktyg">Verktyg</button>
-  <button data-page="anteckningar">Mina anteckningar</button>
+  <button data-page="children">Barn</button>
+  <button data-page="history">Historik</button>
+  <button data-page="patterns">Mönster</button>
+  <button data-page="follow">Uppföljning</button>
+  <button data-page="reminders">Påminnelser</button>
 </nav>
 
 <main>
+
 <section id="home" class="page active">
-  <div class="hero">
-    <div class="kicker">VARDAGSKOMPASSEN</div>
-    <h1>Vad händer just nu?</h1>
-    <p>Välj det som känns mest likt det du möter hemma. Du behöver inte göra allt perfekt. Börja med ett litet steg.</p>
-  </div>
 
-  <div class="stats">
-    <div class="stat"><small>Situationer</small><strong id="situationCount">0</strong></div>
-    <div class="stat"><small>Favoriter</small><strong id="favCount">0</strong></div>
-    <div class="stat"><small>Mina anteckningar</small><strong id="noteCount">0</strong></div>
-    <div class="stat"><small>Genomförda steg</small><strong id="doneCount">0</strong></div>
-  </div>
+<div class="hero">
+  <div class="small">Hej! 👋</div>
+  <h1>Vad behöver vi just nu?</h1>
+  <p>
+    Välj det område som känns mest viktigt idag.
+    Du behöver inte lösa allt på en gång.
+    Vardagskompassen hjälper dig att stanna upp,
+    förstå situationen och hitta ett litet nästa steg.
+  </p>
+</div>
 
-  <h2 class="section-title">En enkel kompass</h2>
-  <p class="muted">När vardagen blir svår kan det hjälpa att tänka i några grunddelar: relation, närvaro, känslor, tydliga ramar och återhämtning. Det finns ingen enda lösning som passar alla familjer.</p>
+<h2>Det som bygger trygghet ❤️</h2>
 
-  <div class="grid">
-    <article class="card"><div class="icon">❤️</div><h3>Relation först</h3><p>Visa barnet att du finns där. Små stunder av värme och kontakt kan göra stor skillnad.</p><button data-go="relation">Läs mer</button></article>
-    <article class="card"><div class="icon">🧭</div><h3>Tydliga ramar</h3><p>Barn behöver veta vad som gäller. Tydlighet kan vara lugn, enkel och förutsägbar.</p><button data-go="tydlighet">Läs mer</button></article>
-    <article class="card"><div class="icon">💛</div><h3>Förstå känslan</h3><p>Bakom ett beteende finns ofta en känsla, ett behov eller något som blev svårt.</p><button data-go="känslor">Läs mer</button></article>
-    <article class="card"><div class="icon">🌿</div><h3>Ta hand om dig</h3><p>En förälder som får återhämtning har ofta lättare att vara lugn och närvarande.</p><button data-go="återhämtning">Läs mer</button></article>
-  </div>
+<p class="section-intro">
+  En trygg vardag byggs av många små saker.
+  Kärlek, närvaro, bekräftelse, tydlighet, ramar,
+  återhämtning och att få känna att man duger.
+  Allt behöver inte fungera perfekt varje dag.
+  Det viktiga är vad barnet får med sig över tid.
+</p>
 
-  
-  <section class="plate-section">
-    <div class="hero" style="margin-top:22px">
-      <div class="kicker">🥗 PSYKOLOGISKA TALLRIKSMODELLEN</div>
-      <h1>Sex delar som hjälper barnet att må bra</h1>
-      <p>Ingen familj behöver få allt rätt hela tiden. Tallriken hjälper dig att se vilka delar som finns i vardagen och vilken del du kanske vill ge lite extra plats just nu.</p>
+<div class="plate">
+
+<div class="plate-top">
+  <div>
+    <div class="plate-title">Flera delar som hjälper i vardagen</div>
+    <div class="plate-sub">
+      Den psykologiska tallriksmodellen används här som
+      en enkel bild för att se vilka delar som kan behöva
+      mer plats.
     </div>
-    <div class="plate-wrap">
-      <div class="plate" aria-label="Psykologiska tallriksmodellen">
-        <button class="slice s1" data-plate="Kärlek">❤️<span>Kärlek</span></button>
-        <button class="slice s2" data-plate="Närvaro">👀<span>Närvaro</span></button>
-        <button class="slice s3" data-plate="Bekräftelse">💬<span>Bekräftelse</span></button>
-        <button class="slice s4" data-plate="Självkänsla & medkänsla">🌱<span>Självkänsla<br>& medkänsla</span></button>
-        <button class="slice s5" data-plate="Ramar">🧭<span>Ramar</span></button>
-        <button class="slice s6" data-plate="Återhämtning">🌿<span>Återhämtning</span></button>
-        <div class="plate-center">VARDAGS-<br>KOMPASSEN</div>
-      </div>
-      <div id="plateInfo" class="plate-info">
-        <h3>Alla delar hör ihop</h3>
-        <p>Tryck på en del av tallriken för att läsa mer. Börja där det känns mest relevant för er familj just nu.</p>
-      </div>
-    </div>
-  </section>
-
-  <h2 class="section-title">Välj en situation</h2>
-  <p class="muted">Varje situation har en kort förklaring, fem enkla steg och ett konkret tips att prova.</p>
-  <div id="homeSituations" class="grid"></div>
-</section>
-
-<section id="situationer" class="page">
-  <div class="hero">
-    <div class="kicker">SITUATIONER</div>
-    <h1>När det kör ihop sig</h1>
-    <p>Sök efter det som händer hemma. Välj sedan en situation och prova ett steg i taget.</p>
   </div>
-  <input id="search" class="search" placeholder="Sök: utbrott, skärm, sömn, skola..." aria-label="Sök situation">
-  <div id="allSituations"></div>
+
+  <button class="btn secondary small"
+          onclick="showPage('children')">
+    Utforska
+  </button>
+</div>
+
+<div class="plate-grid">
+
+<div class="plate-part p-love">
+<strong>❤️ Kärlek</strong>
+<span>Att känna sig omtyckt, viktig och trygg.</span>
+</div>
+
+<div class="plate-part p-presence">
+<strong>👨‍👩‍👧 Närvaro</strong>
+<span>Att få tid, kontakt och uppmärksamhet.</span>
+</div>
+
+<div class="plate-part p-confirm">
+<strong>💬 Bekräftelse</strong>
+<span>Att bli lyssnad på och tagen på allvar.</span>
+</div>
+
+<div class="plate-part p-self">
+<strong>🌱 Självkänsla</strong>
+<span>Att få känna: jag duger och jag kan lära mig.</span>
+</div>
+
+<div class="plate-part p-rest">
+<strong>😴 Återhämtning</strong>
+<span>Sömn, vila, lugn och tid att landa.</span>
+</div>
+
+<div class="plate-part p-frame">
+<strong>🧭 Ramar</strong>
+<span>Trygga gränser och vuxna som visar vägen.</span>
+</div>
+
+</div>
+</div>
+
+<h2>Välj ett område</h2>
+
+<p class="section-intro">
+  Varje område ger dig enkla tankar, fem konkreta steg
+  och ett litet nästa steg att prova.
+</p>
+
+<div id="homeCards" class="cards"></div>
+
+<div class="counter-grid">
+
+<div class="counter">
+<span>Sparade situationer</span>
+<strong id="savedCount">0</strong>
+</div>
+
+<div class="counter">
+<span>Öppna uppföljningar</span>
+<strong id="followCount">0</strong>
+</div>
+
+<div class="counter">
+<span>Påminnelser</span>
+<strong id="reminderCount">0</strong>
+</div>
+
+<div class="counter">
+<span>Anteckningar</span>
+<strong id="noteCount">0</strong>
+</div>
+
+</div>
+
+<div class="notice">
+<strong>💛 Kom ihåg</strong>
+Du behöver inte vara en perfekt förälder.
+Barn behöver vuxna som försöker, lyssnar
+och kommer tillbaka när något blev fel.
+</div>
+
 </section>
 
-<section id="relation" class="page">
-  <div class="hero"><div class="kicker">❤️ KÄRLEK & RELATION</div><h1>Bygg en trygg och nära relation</h1><p>Relation handlar inte om att göra stora saker hela tiden. Det handlar mycket om små stunder där barnet märker: “Du ser mig och du finns här.”</p></div>
-  <div class="grid">
-    <article class="card"><h3>10 minuter nära</h3><p>Lägg undan mobilen en stund och följ barnets intresse. Du behöver inte undervisa eller lösa något.</p></article>
-    <article class="card"><h3>Bekräfta först</h3><p>Visa att du har hört barnet innan du kommer med råd. “Jag fattar att du blev besviken.”</p></article>
-    <article class="card"><h3>Lägg märke till det som fungerar</h3><p>Säg vad du faktiskt såg: “Du väntade på din tur.” Det gör det lättare för barnet att förstå vad du uppskattar.</p></article>
-    <article class="card"><h3>Reparation efter konflikt</h3><p>Det är okej att det blir fel. Kom tillbaka efteråt, säg förlåt om det behövs och försök igen.</p></article>
-  </div>
-  <div class="tip"><strong>Kom ihåg:</strong> Du behöver inte vara perfekt. Målet är en trygg relation där ni kan hitta tillbaka efter svåra stunder.</div>
+<section id="children" class="page">
+
+<div class="hero">
+<div class="small">Barnets vardag</div>
+<h1>Vad vill du förstå bättre?</h1>
+
+<p>
+Välj ett område. Börja där det känns mest relevant.
+Ett litet steg kan vara mer hjälpsamt än att försöka
+ändra allt på samma gång.
+</p>
+
+</div>
+
+<div id="detailList"></div>
+
 </section>
 
-<section id="tydlighet" class="page">
-  <div class="hero"><div class="kicker">🧭 RAMAR & TYDLIGHET</div><h1>Visa vägen med lugna och tydliga ramar</h1><p>Tydlighet betyder inte hårdhet. Förbered, förenkla och gör det lättare för barnet att förstå vad som ska hända.</p></div>
-  <div class="grid">
-    <article class="card"><h3>Förbered övergångar</h3><p>Säg vad som ska hända innan det händer: “Om fem minuter stänger vi av och går och äter.”</p></article>
-    <article class="card"><h3>Färre ord när det är stressigt</h3><p>När barnet är upprört är långa förklaringar ofta svåra att ta in. Säg kort, lugnt och tydligt.</p></article>
-    <article class="card"><h3>Rutiner hjälper</h3><p>Gör vissa saker på ungefär samma sätt varje dag. Det minskar behovet av nya diskussioner.</p></article>
-    <article class="card"><h3>Bygg bort konflikter</h3><p>Om något nästan alltid blir en kamp, fundera på om miljön eller rutinen kan ändras så att situationen blir enklare.</p></article>
-  </div>
-  <div class="tip"><strong>Testa:</strong> Fråga dig: “Hur kan jag göra rätt sak lättare för barnet?”</div>
+<section id="history" class="page">
+
+<div class="hero">
+<div class="small">Din historik</div>
+<h1>Det du har sparat</h1>
+
+<p>
+Här samlas situationer och egna anteckningar
+på den här enheten.
+</p>
+
+</div>
+
+<div id="historyList" class="list"></div>
+
+<div class="action-row">
+<button class="btn secondary" onclick="clearHistory()">
+Rensa sparad historik
+</button>
+</div>
+
 </section>
 
-<section id="känslor" class="page">
-  <div class="hero"><div class="kicker">💛 KÄNSLOR & BEKRÄFTELSE</div><h1>Hjälp barnet att förstå sina känslor</h1><p>Starka känslor är inte samma sak som dåligt beteende. Hjälp barnet att komma ner i varv först. Prata och lös problemet när det är lugnare.</p></div>
-  <div class="grid">
-    <article class="card"><h3>Stanna upp</h3><p>Andas, sänk rösten och försök att inte vinna diskussionen mitt i stormen.</p></article>
-    <article class="card"><h3>Sätt ord på känslan</h3><p>“Du blev jättearg när det inte blev som du ville.” Att sätta ord på känslan kan hjälpa barnet att förstå sig själv.</p></article>
-    <article class="card"><h3>Håll gränsen lugnt</h3><p>Du kan förstå känslan och samtidigt säga nej till ett beteende som inte är okej.</p></article>
-    <article class="card"><h3>Prata efteråt</h3><p>När barnet är lugnt kan ni tillsammans fundera på vad som hände och vad som kan hjälpa nästa gång.</p></article>
-  </div>
-  <div class="danger"><strong>Viktigt:</strong> Om någon riskerar att skadas behöver säkerhet gå först. Sök professionellt stöd när situationen blir svår att hantera på egen hand.</div>
+<section id="patterns" class="page">
+
+<div class="hero">
+
+<div class="small">Se mönster</div>
+
+<h1>Vad återkommer?</h1>
+
+<p>
+Ibland blir samma situationer jobbiga om och om igen.
+Att se när det händer kan göra det lättare att prova
+något nytt.
+</p>
+
+</div>
+
+<div class="list">
+
+<div class="list-item">
+<strong>🔎 När blir det ofta svårt?</strong>
+Skriv ner tid på dagen, vad som hände precis innan
+och hur barnet och du reagerade.
+</div>
+
+<div class="list-item">
+<strong>🌡️ Hur var läget innan?</strong>
+Var någon trött, hungrig, stressad eller redan ledsen?
+</div>
+
+<div class="list-item">
+<strong>🔁 Vad brukar hända efteråt?</strong>
+Se om samma mönster upprepas.
+Det är inte för att hitta skuld – utan för att hitta
+en möjlighet att göra annorlunda.
+</div>
+
+</div>
+
+<div class="detail">
+
+<h3>Min egen anteckning</h3>
+
+<textarea id="patternNote"
+placeholder="Skriv några rader om ett mönster du har lagt märke till..."></textarea>
+
+<div class="action-row">
+
+<button class="btn" onclick="saveNote()">
+Spara anteckning
+</button>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="återhämtning" class="page">
-  <div class="hero"><div class="kicker">🌿 ÅTERHÄMTNING</div><h1>Ta hand om dig själv också</h1><p>Återhämtning är inte ett lyxproblem. Små pauser och stöd kan göra det lättare att vara den förälder du vill vara.</p></div>
-  <div class="grid">
-    <article class="card"><h3>En liten paus</h3><p>Om det är möjligt, ta fem minuter utan krav. Drick vatten, gå ut eller sitt en stund.</p></article>
-    <article class="card"><h3>Be om hjälp</h3><p>Fundera på vem som kan avlasta dig. Att be om hjälp är inte ett misslyckande.</p></article>
-    <article class="card"><h3>Sänk kraven</h3><p>Alla dagar behöver inte fungera perfekt. Välj det viktigaste och låt resten vänta när det behövs.</p></article>
-    <article class="card"><h3>Se dina varningssignaler</h3><p>Vad märker du hos dig när du börjar bli för trött eller stressad? Lär dig känna igen det tidigt.</p></article>
-  </div>
+<section id="follow" class="page">
+
+<div class="hero">
+
+<div class="small">Uppföljning</div>
+
+<h1>Vad hände sedan?</h1>
+
+<p>
+Små förändringar blir lättare att se när du följer upp dem.
+Du kan skriva vad du provade och vad som fungerade.
+</p>
+
+</div>
+
+<div id="followList" class="list"></div>
+
 </section>
 
-<section id="verktyg" class="page">
-  <div class="hero"><div class="kicker">🛠️ VERKTYG</div><h1>Små verktyg som hjälper i vardagen</h1><p>Välj ett verktyg och prova det i några dagar. Det viktiga är inte att göra allt – utan att hitta det som passar just er.</p></div>
-  <div class="grid">
-    <article class="card"><div class="icon">👀</div><h3>Se först</h3><p>Vad händer precis innan konflikten? Vad gör barnet? Vad gör du? Leta efter mönstret utan att döma.</p></article>
-    <article class="card"><div class="icon">🧱</div><h3>Bygg bort</h3><p>Ändra miljön, tiden eller rutinen så att en återkommande konflikt blir mindre sannolik.</p></article>
-    <article class="card"><div class="icon">💬</div><h3>Säg så här</h3><p>“Jag ser att du är arg. Jag hjälper dig. Vi pratar om det när det har blivit lugnare.”</p></article>
-    <article class="card"><div class="icon">🔁</div><h3>Prova igen</h3><p>Om något inte fungerade behöver det inte betyda att allt är fel. Justera ett litet steg och försök igen.</p></article>
-    <article class="card"><div class="icon">📝</div><h3>En sak i taget</h3><p>Välj ett beteende eller en situation. Gör en liten förändring och se vad som händer innan du lägger till mer.</p></article>
-    <article class="card"><div class="icon">⭐</div><h3>Fånga det som fungerar</h3><p>När något går bättre, stanna upp och lägg märke till vad som hjälpte. Det kan bli en ny rutin.</p></article>
-  </div>
+<section id="reminders" class="page">
+
+<div class="hero">
+
+<div class="small">Påminnelser</div>
+
+<h1>Kom ihåg det som är viktigt</h1>
+
+<p>
+Välj en enkel sak du vill komma ihåg.
+Påminnelsen sparas på den här enheten.
+</p>
+
+</div>
+
+<div class="detail">
+
+<h3>Ny påminnelse</h3>
+
+<input id="reminderText"
+placeholder="Till exempel: 10 minuter tillsammans efter middagen">
+
+<div class="action-row">
+
+<button class="btn" onclick="addReminder()">
+Spara påminnelse
+</button>
+
+</div>
+
+</div>
+
+<div id="reminderList"
+class="list"
+style="margin-top:14px"></div>
+
 </section>
 
-<section id="anteckningar" class="page">
-  <div class="hero"><div class="kicker">MINA ANTECKNINGAR</div><h1>Skriv ner det du vill komma ihåg</h1><p>Anteckningarna sparas lokalt i den här webbläsaren på din enhet.</p></div>
-  <div class="card">
-    <textarea id="notes" placeholder="Skriv till exempel: Vad fungerade idag? Vad vill jag prova nästa gång?"></textarea>
-    <div class="toolbar">
-      <button class="primary" id="saveNotes">Spara anteckning</button>
-      <button id="clearNotes">Rensa</button>
-    </div>
-    <div id="savedNotes"></div>
-  </div>
-</section>
 </main>
 
 <footer>
-  Vardagskompassen är ett pedagogiskt stöd för reflektion och vardagliga situationer. Det ersätter inte individuell bedömning eller professionell hjälp.
+
+<strong>Vardagskompassen 1.0 – 2026</strong><br>
+
+Ett eget framtaget pedagogiskt stödmaterial med egna texter,
+vardagsexempel och ett eget pedagogiskt upplägg.
+Materialet är tänkt att ge föräldrar enkla tankar och verktyg
+för vardagen och är inte en ersättning för professionell hjälp
+när sådan behövs.
+
+<br><br>
+
+<strong>© Vardagskompassen 2026</strong><br>
+
+Materialet får inte kopieras, ändras, återpubliceras
+eller användas som eget material utan tillstånd.
+
 </footer>
+
 </div>
 
 <script>
-const situations=[
- {id:"utbrott",icon:"😤",title:"Mitt barn får ett utbrott",desc:"När barnet blir väldigt argt eller ledset kan det kännas som att inget du säger hjälper. Börja med att få ner stressen. Försök sedan förstå vad som hände.",steps:["Stanna upp och sänk din egen röst.","Se till att barnet och andra är säkra.","Sätt ord på känslan utan att skälla.","Håll en viktig gräns kort och lugnt.","Prata om vad som hände först när barnet är lugnt."],tip:"Du behöver inte lösa hela problemet mitt i utbrottet."},
- {id:"skärm",icon:"📱",title:"Vi bråkar om mobilen eller skärmen",desc:"Skärm kan lätt bli en återkommande konflikt, särskilt när barnet ska sluta med något roligt. Förberedelse och tydliga rutiner kan göra övergången lättare.",steps:["Bestäm i förväg när skärmen ska sluta.","Ge en tydlig förvarning.","Använd samma rutin så ofta det går.","Bekräfta att det är svårt att sluta.","Undvik en lång diskussion när tiden är slut."],tip:"Gör avslutet förutsägbart i stället för att förhandla varje gång."},
- {id:"läggning",icon:"🌙",title:"Läggningen fungerar inte",desc:"När kvällen blir en kamp kan både barn och vuxen bli trötta. En enkel rutin och lugna övergångar kan hjälpa.",steps:["Börja nedvarvningen i god tid.","Gör rutinen så lik från dag till dag som möjligt.","Säg tydligt vad som händer nu och sedan.","Håll dig lugn om barnet protesterar.","Titta på vad som fungerade nästa morgon."],tip:"En lugn rutin kan vara viktigare än en perfekt rutin."},
- {id:"skola",icon:"🎒",title:"Mitt barn vill inte gå till skolan",desc:"Skolvägran eller starkt motstånd kan ha många orsaker. Försök förstå vad som ligger bakom i stället för att bara fokusera på att barnet ska iväg.",steps:["Lyssna när barnet är lugnt.","Fråga vad som känns svårt, utan förhör.","Leta efter mönster: när, var och med vem blir det svårt?","Ta kontakt med skolan när det behövs.","Gör en liten plan tillsammans och följ upp."],tip:"Om problemen håller i sig eller barnet mår dåligt, ta hjälp tidigt."},
- {id:"mat",icon:"🍽️",title:"Vi bråkar vid maten",desc:"Måltider kan bli laddade när barnet inte vill äta eller när vuxna blir oroliga. Försök skapa lugn runt själva måltiden.",steps:["Skapa en lugn plats för maten.","Försök ha ungefärliga tider.","Undvik att göra varje tugga till en diskussion.","Visa att du litar på barnet och håll en lugn struktur.","Lägg märke till om konflikterna återkommer eller om något verkar fel."],tip:"Målet är inte att vinna varje måltid utan att skapa en fungerande vardag."},
- {id:"syskon",icon:"👧🧒",title:"Mina barn bråkar med varandra",desc:"Syskonkonflikter är vanliga, men kan bli väldigt tröttande. Försök skilja på känslorna och det beteende som inte är okej.",steps:["Gå nära och stoppa om någon riskerar att skadas.","Lyssna kort på båda.","Bekräfta känslan utan att utse en vinnare.","Hjälp dem hitta nästa steg.","Prata om lösningen när alla är lugna."],tip:"Rättvisa betyder inte alltid att allt blir exakt lika."},
- {id:"gränser",icon:"🧭",title:"Mitt barn testar alla gränser",desc:"Det kan kännas som att barnet säger nej till allt. Tydliga, förutsägbara ramar kan minska antalet konflikter.",steps:["Välj vilka gränser som verkligen är viktiga.","Säg regeln kort och tydligt.","Förbered barnet innan en svår situation.","Följ upp på ett lugnt och konsekvent sätt.","Beröm när barnet klarar det."],tip:"Färre tydliga regler kan fungera bättre än många regler."},
- {id:"ledsen",icon:"💛",title:"Mitt barn verkar ledset",desc:"När barnet blir tyst, ledset eller annorlunda än vanligt kan det vara svårt att veta vad man ska göra. Börja med kontakt och nyfikenhet.",steps:["Välj en lugn stund.","Säg vad du har lagt märke till.","Lyssna mer än du pratar.","Undvik att direkt lösa eller avfärda känslan.","Sök mer stöd om det håller i sig eller blir allvarligt."],tip:"Du behöver inte ha rätt ord. Att du finns kvar kan vara det viktigaste."},
- {id:"stress",icon:"🌪️",title:"Jag som förälder blir för stressad",desc:"Ibland är det inte barnet som behöver börja med en förändring – det kan vara den vuxnes stress som behöver få lite mer plats.",steps:["Lägg märke till dina första stressignaler.","Om det är säkert, ta en kort paus.","Sänk kraven på det som inte är viktigt just nu.","Be någon om hjälp om du kan.","Fundera efteråt på vad som utlöste stressen."],tip:"En kort paus kan vara ett sätt att ta ansvar, inte att ge upp."},
- {id:"morgon",icon:"☀️",title:"Morgonen blir alltid kaos",desc:"När många små saker ska hända samtidigt blir morgonen lätt en konflikt. Förbered sådant som går att förbereda redan kvällen innan.",steps:["Bestäm några få viktiga morgonsteg.","Lägg fram kläder och väskor kvällen innan.","Använd samma ordning varje morgon.","Ge korta påminnelser i stället för många instruktioner.","Utvärdera en sak som kan göras enklare."],tip:"Bygg bort så mycket stress som möjligt innan morgonen börjar."}
+
+const areas = [
+
+{
+id:"love",
+icon:"❤️",
+title:"Kärlek",
+short:"Visa barnet att det är viktigt och omtyckt.",
+lead:"Barn behöver känna att de är älskade även när de gör fel, blir arga eller inte gör som du vill. Kärlek kan synas i små saker: en kram, en blick, några minuter tillsammans eller att du visar att du bryr dig.",
+steps:[
+["Visa värme","Säg eller visa något som berättar: jag tycker om dig."],
+["Stanna kvar","Försök finnas kvar även när barnet är argt eller ledset."],
+["Se det som fungerar","Lägg märke till små saker barnet gör bra och säg det."],
+["Gör något tillsammans","Några minuter med full uppmärksamhet kan betyda mycket."],
+["Börja om","Om det blev fel mellan er, försök hitta tillbaka och prata när ni lugnat er."]
+],
+example:"Barnet kommer hem på dåligt humör. I stället för att direkt fråga varför det beter sig så kan du börja med: ”Jag ser att du haft en jobbig stund. Jag finns här.”",
+next:"Idag: ge barnet fem minuter där du bara är tillsammans med det – utan mobil."
+},
+
+{
+id:"presence",
+icon:"👨‍👩‍👧",
+title:"Närvaro",
+short:"Visa att du lyssnar och verkligen är där.",
+lead:"Närvaro handlar inte om att du måste ha mycket tid. Det handlar ofta om hur du använder den tid ni faktiskt har. När barnet märker att du lyssnar och försöker förstå blir kontakten starkare.",
+steps:[
+["Lägg undan mobilen","När det går, ge barnet några minuter med din fulla uppmärksamhet."],
+["Lyssna färdigt","Försök att inte lösa problemet innan barnet har fått berätta."],
+["Ställ en enkel fråga","Fråga till exempel: ”Vad var bäst och sämst idag?”"],
+["Dela något själv","Berätta kort om något från din egen dag. Det kan göra samtalet lättare."],
+["Skapa en liten rutin","Välj en stund som ofta fungerar: på väg hem, vid maten eller före läggning."]
+],
+example:"Barnet berättar något som verkar litet. Du stannar upp, tittar på barnet och frågar: ”Berätta mer.”",
+next:"Idag: välj en vardagsstund där du försöker vara helt närvarande i tio minuter."
+},
+
+{
+id:"confirm",
+icon:"💬",
+title:"Bekräftelse",
+short:"Visa att barnets känslor får finnas.",
+lead:"Att bekräfta betyder inte att du måste hålla med om allt barnet säger eller gör. Det betyder att du visar att du hör och förstår att känslan finns.",
+steps:[
+["Sätt ord på känslan","”Jag tror att du blev riktigt besviken.”"],
+["Lyssna innan du förklarar","Låt barnet berätta sin sida."],
+["Skilj på känsla och handling","Alla känslor får finnas, men alla handlingar är inte okej."],
+["Undvik att förminska","Försök med mindre av ”det är väl inget” och mer av ”jag förstår att det känns så”."],
+["Hjälp barnet vidare","När känslan har lugnat sig kan ni prata om vad ni kan göra nästa gång."]
+],
+example:"Barnet blir argt för att skärmen ska stängas. Du kan säga: ”Du ville verkligen fortsätta. Jag förstår att du blir arg. Skärmen ska ändå stängas nu.”",
+next:"Idag: försök bekräfta en känsla innan du ger råd eller sätter en gräns."
+},
+
+{
+id:"self",
+icon:"🌱",
+title:"Självkänsla",
+short:"Hjälp barnet känna att det duger och kan utvecklas.",
+lead:"Självkänsla växer när barnet får uppleva att det är värdefullt även när något inte går bra. Försök att uppmärksamma ansträngning, mod och utveckling – inte bara resultat.",
+steps:[
+["Beröm försöket","”Du gav inte upp trots att det var svårt.”"],
+["Låt barnet prova","Ge lagom mycket hjälp så att barnet får känna att det kan själv."],
+["Undvik jämförelser","Försök jämföra barnet med sig själv: vad har blivit bättre?"],
+["Acceptera misstag","Visa att ett misstag är något man kan lära sig av."],
+["Se barnet bortom prestationen","Visa att barnet är viktigt även när resultatet inte blev som det tänkt."]
+],
+example:"Barnet misslyckas med något och säger ”Jag är dålig”. Svara med: ”Det gick inte som du ville den här gången. Det betyder inte att du är dålig.”",
+next:"Idag: säg något positivt om barnets ansträngning, inte om resultatet."
+},
+
+{
+id:"rest",
+icon:"😴",
+title:"Återhämtning",
+short:"Ge plats för sömn, vila, lugn och pauser.",
+lead:"Barn kan bli extra känsliga när kroppen och hjärnan går på högvarv. Sömn, mat, rörelse, lugn och pauser kan påverka hur lätt det är att hantera känslor och vardagens krav.",
+steps:[
+["Se över sömnen","Tänk på om barnet får tillräckligt med sömn och en lugn väg till läggning."],
+["Planera pauser","Alla behöver inte vara aktiva hela tiden."],
+["Gör övergångar lugna","Förvarna när något ska ta slut eller börja."],
+["Tänk på grundbehoven","Trötthet, hunger och stress kan göra konflikter större."],
+["Skydda lugn tid","Ha gärna en stund där barnet får landa utan krav."]
+],
+example:"Kvällarna blir ofta bråkiga. Prova att börja nedvarvningen tidigare i stället för att försöka lösa konflikten när alla redan är trötta.",
+next:"Idag: hitta en stund som kan bli lite lugnare och ta bort ett onödigt krav."
+},
+
+{
+id:"frames",
+icon:"🧭",
+title:"Ramar",
+short:"Trygga gränser hjälper barnet att veta vad som gäller.",
+lead:"Barn behöver vuxna som vågar sätta gränser. En ram blir tryggare när den är enkel, lugn och så förutsägbar som möjligt. Du behöver inte vara hård för att vara tydlig.",
+steps:[
+["Välj det viktigaste","Allt behöver inte bli en konflikt. Börja med det som verkligen spelar roll."],
+["Säg vad som gäller","Använd korta och tydliga meningar."],
+["Förklara kort","Barnet behöver inte alltid en lång föreläsning."],
+["Håll dig lugn","Försök att inte höja nivån när barnet höjer sin."],
+["Följ upp","När det är lugnt kan ni prata om vad som hände och vad ni gör nästa gång."]
+],
+example:"”Jag vet att du vill fortsätta spela. Speltiden är slut nu. Du kan välja om du vill stänga av själv eller om jag ska hjälpa dig.”",
+next:"Idag: välj en gräns hemma som kan göras enklare och tydligare."
+},
+
+{
+id:"clarity",
+icon:"🎯",
+title:"Tydlighet",
+short:"Gör det lättare för barnet att förstå vad du menar.",
+lead:"Barn kan ha svårt att följa instruktioner när de är trötta, stressade eller upptagna med något annat. Korta besked och en sak i taget kan göra stor skillnad.",
+steps:[
+["Säg en sak i taget","Undvik fem instruktioner på en gång."],
+["Säg vad barnet ska göra","”Skorna på” är tydligare än ”Sluta krångla.”"],
+["Ge rimlig tid","Barn behöver ibland några sekunder för att byta fokus."],
+["Kolla att ni förstått varandra","Be barnet berätta vad som ska hända om det behövs."],
+["Använd samma ord","Återkommande rutiner blir lättare när språket är likadant."]
+],
+example:"I stället för ”Nu får du väl sluta och göra dig klar någon gång” kan du säga: ”Nu tar vi på pyjamas. Sedan borstar vi tänderna.”",
+next:"Idag: byt ut en vag uppmaning mot en kort och konkret instruktion."
+},
+
+{
+id:"communication",
+icon:"🗣️",
+title:"Kommunikation",
+short:"Prata så att barnet kan förstå och vågar berätta.",
+lead:"Bra kommunikation handlar både om att prata och att lyssna. Barn berättar oftare när de märker att vuxna kan lyssna utan att direkt bli arga eller döma.",
+steps:[
+["Börja mjukt","En lugn start gör det lättare att få kontakt."],
+["Lyssna efter behovet","Ibland finns en känsla eller ett behov bakom orden."],
+["Var rak men vänlig","Du kan vara tydlig utan att vara hård."],
+["Undvik långa föreläsningar","Korta samtal kan fungera bättre när känslorna är stora."],
+["Ta om samtalet","Om det blev fel, försök igen när ni båda är lugnare."]
+],
+example:"”Jag blev arg när du slog igen dörren. Jag vill förstå vad som hände. Berätta från början.”",
+next:"Idag: ställ en fråga och lyssna färdigt innan du ger din lösning."
+},
+
+{
+id:"cooperation",
+icon:"🤝",
+title:"Samarbete",
+short:"Låt barnet vara med och hitta lösningar.",
+lead:"Barn följer ofta lättare en plan när de får vara med och påverka sådant som faktiskt går att påverka. Du som vuxen bestämmer inte alltid allt – men du har fortfarande ansvar för ramarna.",
+steps:[
+["Säg vad som inte går att ändra","Var tydlig med den gräns som gäller."],
+["Ge två rimliga val","Det kan ge barnet känslan av att få vara med."],
+["Fråga efter idéer","”Hur kan vi göra det här lättare?”"],
+["Testa en lösning","Välj något litet som ni kan prova."],
+["Följ upp tillsammans","Fråga om det fungerade och ändra om det behövs."]
+],
+example:"Om morgnarna blir stressiga kan ni tillsammans välja vad som ska göras kvällen före.",
+next:"Idag: låt barnet vara med och bestämma en liten sak som faktiskt går att påverka."
+},
+
+{
+id:"problem",
+icon:"🧩",
+title:"Problemlösning",
+short:"Gå från fast konflikt till ett litet nästa steg.",
+lead:"När samma problem återkommer är det lätt att fastna i vem som gjorde fel. Försök i stället att förstå situationen och hitta en förändring som är möjlig att prova.",
+steps:[
+["Beskriv problemet enkelt","Vad är det som faktiskt händer?"],
+["Ta reda på vad som ligger bakom","När brukar det bli svårt?"],
+["Välj en sak att ändra","Försök inte lösa allt samtidigt."],
+["Testa under några dagar","Se vad som händer i verkligheten."],
+["Justera utan skuld","Om det inte fungerade har ni fått information om vad som behöver ändras."]
+],
+example:"Läggningen tar lång tid. I stället för att bara säga ”du vägrar sova” kan ni titta på hela kvällen: mat, skärm, tempo, rutiner och tid för nedvarvning.",
+next:"Idag: välj ett återkommande problem och skriv ner vad som händer precis innan."
+}
+
 ];
 
-const state={
- fav:new Set(JSON.parse(localStorage.getItem("vkFav")||"[]")),
- done:new Set(JSON.parse(localStorage.getItem("vkDone")||"[]")),
- notes:JSON.parse(localStorage.getItem("vkNotes")||"[]")
-};
+function getData(key,fallback){
+try{
+return JSON.parse(localStorage.getItem(key)) ?? fallback;
+}catch(e){
+return fallback;
+}
+}
 
-function saveState(){
- localStorage.setItem("vkFav",JSON.stringify([...state.fav]));
- localStorage.setItem("vkDone",JSON.stringify([...state.done]));
- updateStats();
+function setData(key,value){
+localStorage.setItem(key,JSON.stringify(value));
+updateCounts();
 }
-function updateStats(){
- document.getElementById("situationCount").textContent=situations.length;
- document.getElementById("favCount").textContent=state.fav.size;
- document.getElementById("noteCount").textContent=state.notes.length;
- document.getElementById("doneCount").textContent=state.done.size;
-}
-function card(s){
- const fav=state.fav.has(s.id);
- return `<article class="card">
-  <div class="icon">${s.icon}</div>
-  <h3>${s.title}</h3>
-  <p>${s.desc}</p>
-  <div class="toolbar">
-   <button data-open="${s.id}">Öppna</button>
-   <button class="back" data-fav="${s.id}">${fav?"★ Favorit":"☆ Spara"}</button>
-  </div>
- </article>`;
-}
-function renderLists(filter=""){
- const list=situations.filter(s=>(s.title+" "+s.desc).toLowerCase().includes(filter.toLowerCase()));
- document.getElementById("homeSituations").innerHTML=situations.slice(0,6).map(card).join("");
- document.getElementById("allSituations").innerHTML=list.length?list.map(s=>`<div class="situation">${card(s).replace('<article class="card">','<div>').replace('</article>','</div>')}</div>`).join(""):`<div class="empty">Hittade ingen situation. Prova ett annat ord.</div>`;
- bindDynamic();
-}
-function openSituation(id){
- const s=situations.find(x=>x.id===id); if(!s)return;
- const page=document.getElementById("situationer");
- page.innerHTML=`<div class="hero"><div class="kicker">SITUATION</div><h1>${s.icon} ${s.title}</h1><p>${s.desc}</p></div>
- <div class="situation">
- <h3>Prova så här</h3>
- <ol class="steps">${s.steps.map((x,i)=>`<li><span class="num">${i+1}</span><span>${x}</span></li>`).join("")}</ol>
- <div class="tip"><strong>Ett litet tips:</strong> ${s.tip}</div>
- <div class="toolbar">
-   <button class="primary" data-done="${s.id}">${state.done.has(s.id)?"✓ Steg markerat":"Markera som provat"}</button>
-   <button class="back" data-fav="${s.id}">${state.fav.has(s.id)?"★ Favorit":"☆ Spara som favorit"}</button>
-   <button class="back" data-page-back="situationer">← Till situationer</button>
- </div>
- </div>`;
- showPage("situationer");
- bindDynamic();
-}
+
 function showPage(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
- document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
- window.scrollTo({top:0,behavior:"smooth"});
- if(id==="situationer"){
-   const search=document.getElementById("search");
-   if(!search) return;
- }
-}
-function bindDynamic(){
- document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openSituation(b.dataset.open));
- document.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{
-   const id=b.dataset.fav;
-   state.fav.has(id)?state.fav.delete(id):state.fav.add(id);
-   saveState(); renderLists(document.getElementById("search")?.value||"");
-   if(document.querySelector("#situationer .steps")) openSituation(id);
- });
- document.querySelectorAll("[data-done]").forEach(b=>b.onclick=()=>{
-   state.done.add(b.dataset.done); saveState(); openSituation(b.dataset.done);
- });
- document.querySelectorAll("[data-page-back]").forEach(b=>b.onclick=()=>{renderLists();showPage(b.dataset.pageBack)});
-}
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
- if(b.dataset.page==="situationer")renderLists(document.getElementById("search")?.value||"");
- showPage(b.dataset.page);
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+const page=document.getElementById(id);
+
+if(page) page.classList.add("active");
+
+document.querySelectorAll("nav button")
+.forEach(b=>{
+b.classList.toggle("active",b.dataset.page===id);
 });
-document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>showPage(b.dataset.go));
-document.getElementById("search").addEventListener("input",e=>renderLists(e.target.value));
 
-function renderNotes(){
- const box=document.getElementById("savedNotes");
- box.innerHTML=state.notes.length?state.notes.map((n,i)=>`<div class="situation"><strong>${n.date}</strong><p>${escapeHtml(n.text)}</p><button class="back" data-delete-note="${i}">Ta bort</button></div>`).join(""):"<div class='empty'>Inga sparade anteckningar ännu.</div>";
- document.querySelectorAll("[data-delete-note]").forEach(b=>b.onclick=()=>{
-   state.notes.splice(Number(b.dataset.deleteNote),1);
-   localStorage.setItem("vkNotes",JSON.stringify(state.notes));
-   renderNotes();updateStats();
- });
-}
-function escapeHtml(t){
- return t.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-}
-document.getElementById("saveNotes").onclick=()=>{
- const text=document.getElementById("notes").value.trim();
- if(!text)return;
- state.notes.unshift({text,date:new Date().toLocaleString("sv-SE",{dateStyle:"short",timeStyle:"short"})});
- localStorage.setItem("vkNotes",JSON.stringify(state.notes));
- document.getElementById("notes").value="";
- renderNotes();updateStats();
-};
-document.getElementById("clearNotes").onclick=()=>document.getElementById("notes").value="";
-
-renderLists();
-renderNotes();
-updateStats();
-
-const plateTexts={
- "Kärlek":"Visa barnet att det är älskat och viktigt. Säg det, visa det och försök hitta små stunder där ni kan vara nära varandra. Kärlek betyder inte att barnet alltid får som det vill. Du kan säga nej och ändå visa värme och omtanke. Det viktiga är att barnet känner: “Mamma eller pappa finns kvar även när det blir svårt.”",
- "Närvaro":"Visa barnet att du finns där och att du vill vara med. Lyssna när barnet berättar och försök vara nära i stunden. Du behöver inte alltid lösa problemen eller komma med bra råd. Ibland räcker det att lyssna och visa att du bryr dig. Små stunder av närvaro kan göra stor skillnad.",
- "Bekräftelse":"Försök visa att du ser och hör barnet. Om barnet är argt, ledset eller besviket kan du först försöka förstå känslan. Du behöver inte hålla med om allt barnet säger eller gör. Du kan till exempel säga: “Jag förstår att du blev ledsen när det blev så.” När barnet känner sig förstått blir det ofta lättare att prata vidare.",
- "Självkänsla & medkänsla":"Hjälp barnet att känna att det duger som det är, även när något blir fel. Försök att inte bara berömma resultatet, utan lägg också märke till hur barnet försöker, lär sig och vågar prova. Visa att misstag är en del av livet. Hjälp barnet att vara snällt mot sig själv när något inte går som det tänkt.",
- "Ramar":"Barn behöver vuxna som visar vägen. Regler och rutiner kan göra vardagen tryggare och lättare att förstå. Det betyder inte att du behöver bestämma allt. Försök välja ut det som verkligen är viktigt och håll fast vid det på ett lugnt sätt. Du kan vara varm och samtidigt sätta en tydlig gräns.",
- "Återhämtning":"Barn behöver tid att vila, leka och bara vara. Men det behöver du som förälder också. När man är trött och stressad blir det lättare att tappa tålamodet. Försök därför hitta små stunder för vila och återhämtning. Det behöver inte vara något stort. En kort paus, en promenad eller hjälp från någon annan kan göra skillnad."
-};
-document.querySelectorAll("[data-plate]").forEach(btn=>btn.onclick=()=>{
- const key=btn.dataset.plate;
- const box=document.getElementById("plateInfo");
- box.innerHTML=`<h3>${btn.textContent.trim()}</h3><p>${plateTexts[key]}</p><div class="tip"><strong>Prova idag:</strong> Välj en liten sak från den här delen och testa den utan krav på att det ska bli perfekt.</div>`;
+window.scrollTo({
+top:0,
+behavior:"smooth"
 });
+
+if(id==="history") renderHistory();
+if(id==="follow") renderFollow();
+if(id==="reminders") renderReminders();
+
+}
+
+document.querySelectorAll("nav button")
+.forEach(btn=>{
+btn.addEventListener("click",()=>{
+showPage(btn.dataset.page);
+});
+});
+
+function cardHTML(a){
+
+return `
+<article class="card">
+
+<div class="emoji">${a.icon}</div>
+
+<h3>${a.title}</h3>
+
+<p>${a.short}</p>
+
+<button class="btn small"
+onclick="openArea('${a.id}')">
+Visa fem steg
+</button>
+
+</article>
+`;
+
+}
+
+document.getElementById("homeCards").innerHTML=
+areas.map(cardHTML).join("");
+
+function openArea(id){
+
+const a=areas.find(x=>x.id===id);
+
+if(!a)return;
+
+showPage("children");
+
+const el=document.getElementById("detail-"+id);
+
+if(el)
+el.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+document.getElementById("detailList").innerHTML=
+areas.map(a=>`
+
+<article class="detail" id="detail-${a.id}">
+
+<div class="detail-head">
+
+<div class="detail-icon">
+${a.icon}
+</div>
+
+<div>
+
+<h2>${a.title}</h2>
+
+<div class="lead">
+${a.lead}
+</div>
+
+</div>
+
+</div>
+
+<div class="steps">
+
+${a.steps.map(s=>`
+
+<div class="step">
+
+<div>
+
+<strong>${s[0]}</strong>
+
+${s[1]}
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+<div class="example">
+
+<strong>💡 Vardagsexempel</strong>
+<br>
+
+${a.example}
+
+</div>
+
+<div class="next">
+
+<strong>🌱 Litet nästa steg</strong>
+
+${a.next}
+
+</div>
+
+<div class="action-row">
+
+<button class="btn small"
+onclick="saveSituation('${a.id}')">
+Spara situation
+</button>
+
+<button class="btn secondary small"
+onclick="addFollow('${a.id}')">
+Lägg till uppföljning
+</button>
+
+</div>
+
+</article>
+
+`).join("");
+
+function saveSituation(id){
+
+const a=areas.find(x=>x.id===id);
+
+const arr=getData("vc_history",[]);
+
+arr.unshift({
+type:"situation",
+id,
+title:a.title,
+date:new Date().toLocaleString("sv-SE")
+});
+
+setData("vc_history",arr.slice(0,100));
+
+alert("Sparat. Du hittar det under Historik.");
+
+}
+
+function addFollow(id){
+
+const a=areas.find(x=>x.id===id);
+
+const arr=getData("vc_follow",[]);
+
+arr.unshift({
+id,
+title:a.title,
+date:new Date().toLocaleDateString("sv-SE"),
+note:""
+});
+
+setData("vc_follow",arr.slice(0,50));
+
+alert("Uppföljningen är sparad.");
+
+}
+
+function saveNote(){
+
+const text=
+document.getElementById("patternNote")
+.value.trim();
+
+if(!text){
+alert("Skriv något först.");
+return;
+}
+
+const arr=getData("vc_history",[]);
+
+arr.unshift({
+type:"note",
+title:"Egen anteckning",
+note:text,
+date:new Date().toLocaleString("sv-SE")
+});
+
+setData("vc_history",arr.slice(0,100));
+
+document.getElementById("patternNote").value="";
+
+alert("Anteckningen är sparad.");
+
+}
+
+function renderHistory(){
+
+const arr=getData("vc_history",[]);
+
+const box=document.getElementById("historyList");
+
+if(!arr.length){
+
+box.innerHTML=`
+<div class="list-item">
+
+<strong>Inget sparat ännu.</strong>
+
+När du sparar en situation eller anteckning
+visas den här.
+
+</div>
+`;
+
+return;
+
+}
+
+box.innerHTML=arr.map((x,i)=>`
+
+<div class="history-item">
+
+<div>
+
+<strong>${x.title}</strong>
+
+<br>
+
+${x.note ? escapeHTML(x.note) : "Sparad situation"}
+
+<br>
+
+<small>${x.date}</small>
+
+</div>
+
+<button class="btn secondary small"
+onclick="removeHistory(${i})">
+
+Ta bort
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+function removeHistory(i){
+
+const arr=getData("vc_history",[]);
+
+arr.splice(i,1);
+
+setData("vc_history",arr);
+
+renderHistory();
+
+}
+
+function clearHistory(){
+
+if(confirm("Vill du ta bort hela historiken?")){
+
+localStorage.removeItem("vc_history");
+
+renderHistory();
+
+updateCounts();
+
+}
+
+}
+
+function renderFollow(){
+
+const arr=getData("vc_follow",[]);
+
+const box=document.getElementById("followList");
+
+if(!arr.length){
+
+box.innerHTML=`
+<div class="list-item">
+
+<strong>Inga uppföljningar ännu.</strong>
+
+Spara en uppföljning från ett område
+när du vill följa vad som händer.
+
+</div>
+`;
+
+return;
+
+}
+
+box.innerHTML=arr.map((x,i)=>`
+
+<div class="detail">
+
+<h3>${x.title}</h3>
+
+<small>${x.date}</small>
+
+<textarea
+id="f-${i}"
+placeholder="Vad provade du? Vad fungerade? Vad vill du prova nästa gång?"
+>${escapeHTML(x.note||"")}</textarea>
+
+<div class="action-row">
+
+<button class="btn small"
+onclick="saveFollow(${i})">
+Spara
+</button>
+
+<button class="btn secondary small"
+onclick="removeFollow(${i})">
+Ta bort
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+function saveFollow(i){
+
+const arr=getData("vc_follow",[]);
+
+arr[i].note=
+document.getElementById("f-"+i).value;
+
+setData("vc_follow",arr);
+
+alert("Uppföljningen är sparad.");
+
+}
+
+function removeFollow(i){
+
+const arr=getData("vc_follow",[]);
+
+arr.splice(i,1);
+
+setData("vc_follow",arr);
+
+renderFollow();
+
+}
+
+function addReminder(){
+
+const input=document.getElementById("reminderText");
+
+const text=input.value.trim();
+
+if(!text){
+
+alert("Skriv vad du vill komma ihåg.");
+
+return;
+
+}
+
+const arr=getData("vc_reminders",[]);
+
+arr.unshift({
+text,
+date:new Date().toLocaleDateString("sv-SE")
+});
+
+setData("vc_reminders",arr.slice(0,50));
+
+input.value="";
+
+renderReminders();
+
+}
+
+function renderReminders(){
+
+const arr=getData("vc_reminders",[]);
+
+const box=document.getElementById("reminderList");
+
+if(!arr.length){
+
+box.innerHTML=`
+<div class="list-item">
+
+<strong>Inga påminnelser ännu.</strong>
+
+</div>
+`;
+
+return;
+
+}
+
+box.innerHTML=arr.map((x,i)=>`
+
+<div class="history-item">
+
+<div>
+
+<strong>
+💛 ${escapeHTML(x.text)}
+</strong>
+
+<br>
+
+<small>
+Skapad ${x.date}
+</small>
+
+</div>
+
+<button class="btn secondary small"
+onclick="removeReminder(${i})">
+
+Klar
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+function removeReminder(i){
+
+const arr=getData("vc_reminders",[]);
+
+arr.splice(i,1);
+
+setData("vc_reminders",arr);
+
+renderReminders();
+
+}
+
+function updateCounts(){
+
+document.getElementById("savedCount").textContent=
+getData("vc_history",[])
+.filter(x=>x.type==="situation").length;
+
+document.getElementById("followCount").textContent=
+getData("vc_follow",[]).length;
+
+document.getElementById("reminderCount").textContent=
+getData("vc_reminders",[]).length;
+
+document.getElementById("noteCount").textContent=
+getData("vc_history",[])
+.filter(x=>x.type==="note").length;
+
+}
+
+function escapeHTML(str){
+
+return String(str).replace(
+/[&<>"']/g,
+m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m])
+);
+
+}
+
+updateCounts();
+
 </script>
+
 </body>
 </html>
